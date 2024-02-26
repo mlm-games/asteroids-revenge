@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dcxtjhyrfyf5d"
+path="res://.godot/imported/flaunch.wav-2cf75442d69209ded7d8d6d231321b6d.sample"
+
+[deps]
+
+source_file="res://Art and Sound/launches/flaunch.wav"
+dest_files=["res://.godot/imported/flaunch.wav-2cf75442d69209ded7d8d6d231321b6d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

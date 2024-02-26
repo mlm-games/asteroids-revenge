@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://dh74b3h6q3026"]
+
+[ext_resource type="Script" path="res://Scenes/Main.gd" id="1_0lgb2"]
+[ext_resource type="Texture2D" uid="uid://c33xrciyt6ilb" path="res://Art and Sound/bg_1_1.png" id="2_as2ci"]
+[ext_resource type="FontFile" uid="uid://by86tftjfcedw" path="res://Art and Sound/kenney_space-shooter-redux/Bonus/kenvector_future_thin.ttf" id="3_k5igf"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6uu41"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_0cih4"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_f7s2m"]
+events = [SubResource("InputEventKey_0cih4")]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwy38"]
+bg_color = Color(0.6, 0.6, 0.392157, 0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Theme" id="Theme_hsrux"]
+default_font = ExtResource("3_k5igf")
+default_font_size = 40
+/styles/stylebox_custom = SubResource("StyleBoxFlat_wwy38")
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_0lgb2")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 648.0
+offset_bottom = 1152.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_as2ci")
+
+[node name="GameName" type="Label" parent="."]
+offset_left = 3.0
+offset_top = 9.0
+offset_right = 642.0
+offset_bottom = 132.0
+theme_override_fonts/font = ExtResource("3_k5igf")
+theme_override_font_sizes/font_size = 48
+text = "Asteriod's Revenge"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 250.0
+offset_top = 656.0
+offset_right = 403.0
+offset_bottom = 737.0
+theme_override_fonts/font = ExtResource("3_k5igf")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_6uu41")
+shortcut = SubResource("Shortcut_f7s2m")
+text = "Play"
+
+[node name="ExitButton" type="Button" parent="."]
+offset_left = 245.0
+offset_top = 781.0
+offset_right = 398.0
+offset_bottom = 862.0
+theme = SubResource("Theme_hsrux")
+theme_type_variation = &"FlatButton"
+text = "Quit
+"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

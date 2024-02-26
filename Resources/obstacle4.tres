@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Obstacles" load_steps=3 format=3 uid="uid://dlh1j1b38v1ib"]
+
+[ext_resource type="PackedScene" uid="uid://n77epdb0yra" path="res://bouncing_laser.tscn" id="1_mxkjd"]
+[ext_resource type="Script" path="res://obstacles.gd" id="2_vbcc3"]
+
+[resource]
+script = ExtResource("2_vbcc3")
+name = "bouncing_laser"
+scene = ExtResource("1_mxkjd")

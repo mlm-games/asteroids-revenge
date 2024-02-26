@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxi3stw7wrvli"]
+
+[ext_resource type="Script" path="res://Scenes/player_rock.gd" id="1_kccwu"]
+[ext_resource type="Texture2D" uid="uid://fv4u676rvcc6" path="res://Art and Sound/kenney_space-shooter-redux/PNG/Meteors/meteorBrown_big1.png" id="2_ctg6k"]
+[ext_resource type="AudioStream" uid="uid://bdri2e7vh3reo" path="res://Art and Sound/launches/rlaunch.wav" id="3_xgo6l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4pdcd"]
+radius = 57.85
+
+[node name="PlayerRock" type="CharacterBody2D"]
+position = Vector2(56.9999, 590)
+scale = Vector2(0.85, 0.85)
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("1_kccwu")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(5.88247, -1.17646)
+scale = Vector2(1.63075, 1.68067)
+texture = ExtResource("2_ctg6k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.706, -8.2353)
+shape = SubResource("CircleShape2D_4pdcd")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+scale = Vector2(1.17647, 1.17647)
+stream = ExtResource("3_xgo6l")
+pitch_scale = 0.2
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
