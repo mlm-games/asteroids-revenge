@@ -1,5 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
-savegame.bin
-Exports/
-Icons/
+/savegame.bin
+/Exports/
+/Icons/
