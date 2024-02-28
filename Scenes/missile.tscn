@@ -42,8 +42,6 @@ frame = 1
 frame_progress = 0.00316248
 flip_h = true
 
-[node name="SpawnFireSound" type="AudioStreamPlayer2D" parent="."]
-
 [node name="PlayerDetection" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2

@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="Obstacles" load_steps=2 format=3 uid="uid://b0eeg1aevaua4"]
+[gd_resource type="Resource" script_class="Obstacles" load_steps=3 format=3 uid="uid://b0eeg1aevaua4"]
 
+[ext_resource type="PackedScene" uid="uid://ca2aakjbasmn2" path="res://Scenes/spinner.tscn" id="1_5aqi8"]
 [ext_resource type="Script" path="res://obstacles.gd" id="2_btsuv"]
 
 [resource]
 script = ExtResource("2_btsuv")
-name = "screen edge bouncer"
+name = "Spinner"
+scene = ExtResource("1_5aqi8")

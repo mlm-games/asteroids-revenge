@@ -83,13 +83,13 @@ offset_bottom = 934.0
 label_settings = ExtResource("2_8bg75")
 
 [node name="PressAnyKeyLabel" type="Label" parent="."]
-visible = false
 offset_left = 18.0
 offset_top = 993.0
 offset_right = 633.0
 offset_bottom = 1140.0
 theme_override_font_sizes/font_size = 20
-text = "Press any key
+text = "Press 
+any key
  to restart"
 label_settings = ExtResource("3_6pdgi")
 horizontal_alignment = 1

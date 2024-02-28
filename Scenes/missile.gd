@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
  
-#TODO: Forcefield powerup? like setting speed to -ve in direction * speed
+#TODO: Missile only Forcefield powerup? like setting speed to -ve in direction * speed
 #@export var health:int = 15
 
 var follow:=false
@@ -16,12 +16,11 @@ func _ready():
 func _process(delta):
 	velocity = Vector2(0,randf_range(-speed,-speed*5))
 	var direction = global_position.direction_to(player.global_position)
-	var angle = direction.angle_to(Vector2.RIGHT)
+	var angle = 	direction.angle_to(Vector2.RIGHT)
 	if follow:
 		if !%LockOnSound.playing:
 				%LockOnSound.play()
 		velocity.x = direction.x * speed
-		#print(angle)
 		if angle > PI/2:
 			rotation = max(deg_to_rad(-120), lerp_angle(rotation,angle,delta/1.5))
 		elif angle > 0:
