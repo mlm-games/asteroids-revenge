@@ -3,7 +3,7 @@ extends CanvasLayer
 var called:bool = false
 
 func _process(_delta):
-	print(%BulletsBar.value)
+	
 	if called == true:
 		forever_input_checker()
 

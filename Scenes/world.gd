@@ -21,9 +21,6 @@ func take_life():
 		return  # Early exit after emitting game over
 
 
-func _ready():
-	
-	GameState.loadgame()
 
 func _process(_delta):
 	%HUD/BulletsBar.value = %PlayerRock.bullets_fired
@@ -52,7 +49,7 @@ func _on_player_spaceship_game_over():
 	%PlayerRock.hide()
 	%Enemies.hide()
 	%HUD.game_over(score)
-	GameState.savegame()
+	GameState.save_game()
 	particles_spawn_count = randi_range(2,4)
 	#the small particles after dying
 	for i in range(particles_spawn_count):

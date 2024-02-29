@@ -2,8 +2,6 @@ extends CharacterBody2D
 
 @export var speed : float
 
-var screen_size = get_viewport_rect().end
-
 func _ready() -> void:
 	rotation = PI/4
 
@@ -15,7 +13,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	print(screen_size)
 	if velocity.x > 0:
 		rotation += 3*PI/2
 	else:

@@ -6,11 +6,12 @@ var lives:int = 3
 var hard_mode := false
 
 #region Saving and loading
-
+func _ready() -> void:
+	load_game()
 
 const SavePath = "user://savegame.save"
 
-func savegame():
+func save_game():
 	var save_file = FileAccess.open(SavePath ,FileAccess.WRITE)
 	var data: Dictionary = {
 		"highscore": highscore,
@@ -20,7 +21,7 @@ func savegame():
 	var jstr = JSON.stringify(data)
 	save_file.store_line(jstr)
 
-func loadgame():
+func load_game():
 	var save_file = FileAccess.open(SavePath ,FileAccess.READ)
 	if FileAccess.file_exists(SavePath):                               #you can also put '== true:' near end
 		if not save_file.eof_reached():

@@ -5,7 +5,7 @@ func _ready() -> void:
 	GameState.lives = 3
 	if GameState.highscore > 700:
 		$HardModeButton.show()
-		$HurtLabel.hide()
+		$HintLabel.hide()
 
 
 func _on_start_button_pressed():
