@@ -24,8 +24,8 @@ func shoot():
 	#Here we dont know the exact value of rotation as its spinning, so tweens should be used.
 	%AnimationPlayer.play("fire")
 	var rock_bullet = rock_bullet_scene.instantiate()
-	rock_bullet.position = %Sprite2D.position + Vector2(0,50) 
-	add_child(rock_bullet)
+	rock_bullet.global_position = %Sprite2D.global_position + Vector2(0,50) 
+	get_node("/root").add_child(rock_bullet)
 	bullets_fired+=1
 	if bullets_fired > 5:
 		#Player gets hit for every 5 bullets he fires
