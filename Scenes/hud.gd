@@ -2,10 +2,13 @@ extends CanvasLayer
 
 var called:bool = false
 
-func _process(delta):
+func _process(_delta):
+	print(%BulletsBar.value)
 	if called == true:
 		forever_input_checker()
 
+func update_lives(lives):
+	$LivesLabel.text = "Lives: " + str(lives)
 
 func update_score(score,highscore,lowestscore) -> void:
 	$ScoreLabel.text = str(score)

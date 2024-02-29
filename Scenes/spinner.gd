@@ -8,5 +8,4 @@ func _ready():
 	scale = Vector2(2.5,2.5)
 
 func _process(delta):
-	%Sprite2D.rotation += delta * 20
 	linear_velocity = velocity

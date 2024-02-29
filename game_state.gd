@@ -2,8 +2,8 @@ extends Node
 
 var highscore :int= 0
 var lowestscore :int= 0
-
-
+var lives:int = 3
+var hard_mode := false
 
 #region Saving and loading
 

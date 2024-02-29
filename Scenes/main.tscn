@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dh74b3h6q3026"]
+[gd_scene load_steps=10 format=3 uid="uid://dh74b3h6q3026"]
 
 [ext_resource type="Script" path="res://Scenes/Main.gd" id="1_0lgb2"]
 [ext_resource type="Texture2D" uid="uid://c33xrciyt6ilb" path="res://Art and Sound/bg_1_1.png" id="2_as2ci"]
 [ext_resource type="FontFile" uid="uid://by86tftjfcedw" path="res://Art and Sound/kenney_space-shooter-redux/Bonus/kenvector_future_thin.ttf" id="3_k5igf"]
+[ext_resource type="LabelSettings" uid="uid://cnoygoxh0kgme" path="res://Resources/small_textstyle.tres" id="4_xs5df"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6uu41"]
 
@@ -46,6 +47,19 @@ text = "Asteriod's Revenge"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="HintLabel" type="Label" parent="."]
+offset_left = 6.0
+offset_top = 182.0
+offset_right = 645.0
+offset_bottom = 305.0
+theme_override_fonts/font = ExtResource("3_k5igf")
+theme_override_font_sizes/font_size = 48
+text = "Reach a highscore of  700
+to unlock frenzy mode"
+label_settings = ExtResource("4_xs5df")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="StartButton" type="Button" parent="."]
 offset_left = 250.0
 offset_top = 656.0
@@ -57,15 +71,28 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_6uu41")
 shortcut = SubResource("Shortcut_f7s2m")
 text = "Play"
 
+[node name="HardModeButton" type="Button" parent="."]
+visible = false
+offset_left = 163.0
+offset_top = 754.0
+offset_right = 485.0
+offset_bottom = 835.0
+theme_override_fonts/font = ExtResource("3_k5igf")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_6uu41")
+shortcut = SubResource("Shortcut_f7s2m")
+text = "Frenzy mode"
+
 [node name="ExitButton" type="Button" parent="."]
 offset_left = 245.0
-offset_top = 781.0
+offset_top = 847.0
 offset_right = 398.0
-offset_bottom = 862.0
+offset_bottom = 928.0
 theme = SubResource("Theme_hsrux")
 theme_type_variation = &"FlatButton"
 text = "Quit
 "
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="HardModeButton" to="." method="_on_hard_mode_button_pressed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

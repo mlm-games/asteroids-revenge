@@ -18,7 +18,7 @@ func _process(_delta):
 
 
 
-#todo: Collision bouncing in the direction of collision direction
+
 
 #For future use,
 #if move_and_collide(Vector2(0,speed*delta)):

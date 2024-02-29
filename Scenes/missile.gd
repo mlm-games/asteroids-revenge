@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
  
-#TODO: Missile only Forcefield powerup? like setting speed to -ve in direction * speed
 #@export var health:int = 15
 
 var follow:=false
@@ -46,7 +45,7 @@ func _on_player_detection_body_exited(body: Node2D) -> void:
 
 
 
-#region comments
+#region irrelevent code
 
 
 #Irrelevant code 
@@ -55,7 +54,7 @@ func _on_player_detection_body_exited(body: Node2D) -> void:
 	#look_at(player.global_position)
 
 
-#todo: Collision bouncing in the direction of collision direction
+
 
 #For future use,
 #if move_and_collide(Vector2(0,speed*delta)):
