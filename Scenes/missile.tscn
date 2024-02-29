@@ -63,7 +63,7 @@ shape = SubResource("CapsuleShape2D_h5ea0")
 [node name="LockOnSound" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("5_nh2ky")
-volume_db = -10.0
+volume_db = -16.66
 pitch_scale = 0.5
 
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]

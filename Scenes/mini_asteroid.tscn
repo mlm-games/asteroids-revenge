@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdv8udonykbs1"]
+
+[ext_resource type="Texture2D" uid="uid://dtt2u77e0dsmn" path="res://Art and Sound/kenney_space-shooter-redux/PNG/Meteors/meteorBrown_tiny2.png" id="1_drv2d"]
+[ext_resource type="Script" path="res://Scenes/mini_asteroid.gd" id="2_5mkni"]
+
+[node name="MiniAsteroid" type="Sprite2D"]
+texture_filter = 1
+position = Vector2(-71, 23)
+scale = Vector2(0.54, 0.54)
+texture = ExtResource("1_drv2d")
+script = ExtResource("2_5mkni")

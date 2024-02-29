@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dw1xhin6im8kv"]
+[gd_scene load_steps=10 format=3 uid="uid://dw1xhin6im8kv"]
 
 [ext_resource type="Script" path="res://Scenes/hud.gd" id="1_ocri0"]
 [ext_resource type="LabelSettings" uid="uid://bj4owgofe5ayt" path="res://Resources/textstyle.tres" id="2_8bg75"]
 [ext_resource type="LabelSettings" uid="uid://cnoygoxh0kgme" path="res://Resources/small_textstyle.tres" id="3_6pdgi"]
 [ext_resource type="PackedScene" uid="uid://c7j5jqynag4uw" path="res://transition.tscn" id="3_j61ry"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/joystick/virtual_joystick.tscn" id="5_vxcta"]
+[ext_resource type="Texture2D" uid="uid://b7fpmcg7ian2w" path="res://Art and Sound/missile/spr_missile.png" id="6_o465q"]
 
 [sub_resource type="Animation" id="Animation_c728u"]
 length = 0.001
@@ -83,6 +84,7 @@ offset_bottom = 934.0
 label_settings = ExtResource("2_8bg75")
 
 [node name="PressAnyKeyLabel" type="Label" parent="."]
+visible = false
 offset_left = 18.0
 offset_top = 993.0
 offset_right = 633.0
@@ -113,3 +115,24 @@ action_left = "left"
 action_right = "right"
 action_up = "up"
 action_down = "down"
+
+[node name="LivesLabel" type="Label" parent="."]
+offset_right = 138.0
+offset_bottom = 70.0
+text = "Lives: 3"
+label_settings = ExtResource("3_6pdgi")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BulletsBar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = 152.0
+offset_top = 8.0
+offset_right = 552.0
+offset_bottom = 108.0
+max_value = 5.0
+value = 2.0
+fill_mode = 1
+texture_progress = ExtResource("6_o465q")
+tint_under = Color(1, 1, 1, 0.270588)
+tint_progress = Color(0.717647, 0.682353, 0.384314, 1)
