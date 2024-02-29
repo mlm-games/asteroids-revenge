@@ -1,0 +1,6 @@
+Changes- 
+
+. Added frenzy mode
+. added new animations for player
+. The player can now shoot (but takes damage every 5 bullets he shoots)
+. Player has 3 lives now instead of 1 
