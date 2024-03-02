@@ -14,6 +14,9 @@ func _physics_process(delta):
 	position.x = sin(time*frequency)*amplitude + random_offset
 	velocity = direction * speed
 	# here, -= gives changes spring movement in left (in angular way)
-	velocity.y += sin(time*frequency)*amplitude * 1.5
+	if random_offset > 200:
+		velocity.y -= sin(time*frequency)*amplitude * 1.5
+	else:
+		velocity.y += sin(time*frequency)*amplitude * 1.5
 		
 	move_and_slide()

@@ -67,7 +67,7 @@ func _on_player_spaceship_game_over():
 
 
 func score_counter() -> void:
-	score = (%PlayerRock.global_position.y - 583)*0.05 + 600
+	score = (%PlayerRock.global_position.y - 583)*0.05
 	highscore = max(highscore,score)
 	lowestscore = min(lowestscore,score)
 	%HUD.update_score(score,highscore,lowestscore)
@@ -122,8 +122,10 @@ func score_dependencies_hard_mode():
 			spawntime = Vector2(0.3,0.6)
 			maxobs = 4
 		600:
+			spawntime = Vector2(0.4,0.7)
 			maxobs = 5
 		700:
+			spawntime = Vector2(0.4, 0.6)
 			maxobs = 6
 
 

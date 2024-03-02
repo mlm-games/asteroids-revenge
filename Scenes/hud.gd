@@ -3,6 +3,8 @@ extends CanvasLayer
 var called:bool = false
 
 func _process(_delta):
+	if %BulletsBar.value == 5:
+		%AnimationPlayer.play("fullBar")
 	
 	if called == true:
 		forever_input_checker()
@@ -28,7 +30,7 @@ func game_over(score) -> void:
 	$DeathLabel.show()
 	await get_tree().create_timer(0.8).timeout
 	called = true
-	$AnimationPlayer.play("showText")
+	%AnimationPlayer.play("showText")
 	
 func forever_input_checker() -> void:
 	$PressAnyKeyLabel.show()
