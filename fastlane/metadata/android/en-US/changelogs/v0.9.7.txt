@@ -1,4 +1,4 @@
 ##Changes
 
 - Added a help button in the home screen
-- Made theanimation for the missile more clear when it is full (when the next bullet hurts you)
+- Made the animation for the missile more clear when it is full (when the next bullet hurts you)

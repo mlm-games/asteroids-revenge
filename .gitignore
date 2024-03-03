@@ -3,5 +3,5 @@
 
 # Other ignores
 /savegame.bin
-Exports/
-Icons/
+exports/
+icons/

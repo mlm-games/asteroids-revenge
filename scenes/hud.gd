@@ -37,4 +37,4 @@ func _unhandled_input(_event: InputEvent) -> void:
 		Transition.transition("fadeToBlack")
 		await Transition.faded_to_black
 		$PressAnyKeyLabel.hide()
-		get_tree().call_deferred("change_scene_to_file", "res://Scenes/main.tscn")
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/main.tscn")

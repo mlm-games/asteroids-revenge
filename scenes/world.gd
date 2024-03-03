@@ -32,7 +32,7 @@ func _process(_delta):
 
 func _on_spawn_timer_timeout():
 	%SpawnTimer.wait_time = randf_range(spawntime.x,spawntime.y)
-	var obstacle:Obstacles = load("res://Resources/obstacle" + str(randi_range(minobs,maxobs)) + ".tres")
+	var obstacle:Obstacles = load("res://resources/obstacle" + str(randi_range(minobs,maxobs)) + ".tres")
 	var projectile_scene = obstacle.scene.instantiate()
 	var projectile_scene_spawn_location = %PlayerRock/ProjectilePath/ProjectileSpawnLocation
 	projectile_scene_spawn_location.progress_ratio = randf()
@@ -54,7 +54,7 @@ func _on_player_spaceship_game_over():
 	particles_spawn_count = randi_range(2,4)
 	#the small particles after dying
 	for i in range(particles_spawn_count):
-		var mini_asteroid = load("res://Scenes/mini_asteroid.tscn").instantiate()
+		var mini_asteroid = load("res://scenes/mini_asteroid.tscn").instantiate()
 		var random_offset = Vector2(randf()*20,randf()*20)  # Random offset around player
 		mini_asteroid.global_position = %PlayerRock.global_position + random_offset
 		get_tree().current_scene.add_child(mini_asteroid)

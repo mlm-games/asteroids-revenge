@@ -11,7 +11,7 @@ func _ready() -> void:
 func _on_start_button_pressed():
 	Transition.transition("fadeToBlack")
 	await Transition.faded_to_black
-	get_tree().change_scene_to_file("res://Scenes/world.tscn")
+	get_tree().change_scene_to_file("res://scenes/world.tscn")
 
 
 
@@ -26,8 +26,8 @@ func _on_hard_mode_button_pressed() -> void:
 	Transition.transition("fadeToBlack")
 	await Transition.faded_to_black
 	GameState.hard_mode = true
-	get_tree().change_scene_to_file("res://Scenes/world.tscn")
+	get_tree().change_scene_to_file("res://scenes/world.tscn")
 
 
 func _on_help_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/tutorial.tscn")
+	get_tree().change_scene_to_file("res://scenes/tutorial.tscn")
