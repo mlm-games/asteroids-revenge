@@ -1,0 +1,15 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://vdypn6ym62cq"]
+
+[ext_resource type="FontFile" uid="uid://by86tftjfcedw" path="res://art-and-sound/kenney_space-shooter-redux/Bonus/kenvector_future_thin.ttf" id="1_futra"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwy38"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[resource]
+default_font = ExtResource("1_futra")
+default_font_size = 40
+/styles/stylebox_custom = SubResource("StyleBoxFlat_wwy38")

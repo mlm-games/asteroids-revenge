@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://dmhhmvlxjb4g4"]
+
+[ext_resource type="Texture2D" uid="uid://c33xrciyt6ilb" path="res://art-and-sound/bg_1_1.png" id="1_nuoml"]
+[ext_resource type="LabelSettings" uid="uid://bj4owgofe5ayt" path="res://resources/textstyle.tres" id="1_u60ei"]
+[ext_resource type="Script" path="res://scenes/tutorial.gd" id="1_whia5"]
+[ext_resource type="Theme" uid="uid://vdypn6ym62cq" path="res://scenes/main-theme.tres" id="3_e3krh"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_vm740"]
+action = &"ui_cancel"
+
+[sub_resource type="Shortcut" id="Shortcut_u3xp4"]
+events = [SubResource("InputEventAction_vm740")]
+
+[node name="Tutorial" type="Node2D"]
+script = ExtResource("1_whia5")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 648.0
+offset_bottom = 1152.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_nuoml")
+
+[node name="ControlsLabel" type="Label" parent="."]
+offset_right = 648.0
+offset_bottom = 1152.0
+text = "Controls 
+
+- space to shoot
+
+- Arrow keys:
+       to move
+
+
+
+for touchscreen, 
+
+-joystick to move
+
+-bottom right 
+   button to fire"
+label_settings = ExtResource("1_u60ei")
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="."]
+offset_left = 505.0
+offset_top = 4.0
+offset_right = 643.0
+offset_bottom = 61.0
+theme = ExtResource("3_e3krh")
+shortcut = SubResource("Shortcut_u3xp4")
+text = "back"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

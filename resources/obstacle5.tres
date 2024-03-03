@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Obstacles" load_steps=3 format=3 uid="uid://do83l7e6qx3kk"]
+
+[ext_resource type="PackedScene" uid="uid://3yhstoakw6vp" path="res://scenes/curve_laser.tscn" id="1_6anbh"]
+[ext_resource type="Script" path="res://scenes/obstacles.gd" id="2_cx8wb"]
+
+[resource]
+script = ExtResource("2_cx8wb")
+name = "curve_laser"
+scene = ExtResource("1_6anbh")

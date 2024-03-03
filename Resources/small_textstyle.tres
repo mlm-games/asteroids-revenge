@@ -1,8 +1,0 @@
-[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cnoygoxh0kgme"]
-
-[ext_resource type="FontFile" uid="uid://5u8hgsjkihsm" path="res://Art and Sound/kenney_space-shooter-redux/Bonus/kenvector_future.ttf" id="1_5qqtq"]
-
-[resource]
-font = ExtResource("1_5qqtq")
-font_size = 24
-font_color = Color(0.784314, 0.784314, 0.784314, 1)

@@ -1,0 +1,113 @@
+[gd_scene load_steps=9 format=3 uid="uid://cxi3stw7wrvli"]
+
+[ext_resource type="Script" path="res://scenes/player_rock.gd" id="1_kccwu"]
+[ext_resource type="Texture2D" uid="uid://fv4u676rvcc6" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Meteors/meteorBrown_big1.png" id="2_ctg6k"]
+[ext_resource type="PackedScene" uid="uid://divaw71qkw2lp" path="res://scenes/asteroid_bullet.tscn" id="2_m20jj"]
+[ext_resource type="AudioStream" uid="uid://bdri2e7vh3reo" path="res://art-and-sound/launches/rlaunch.wav" id="3_xgo6l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4pdcd"]
+radius = 57.85
+
+[sub_resource type="Animation" id="Animation_s6ef7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer:speed_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_hy6if"]
+resource_name = "fire"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer:speed_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [5.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4lbyr"]
+_data = {
+"RESET": SubResource("Animation_s6ef7"),
+"fire": SubResource("Animation_hy6if")
+}
+
+[node name="PlayerRock" type="CharacterBody2D"]
+position = Vector2(-1.14441e-05, 2.99994)
+scale = Vector2(0.85, 0.85)
+collision_layer = 2
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_kccwu")
+rock_bullet_scene = ExtResource("2_m20jj")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(5.88247, -1.17646)
+scale = Vector2(1.63075, 1.68067)
+texture = ExtResource("2_ctg6k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.706, -8.2353)
+shape = SubResource("CircleShape2D_4pdcd")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+scale = Vector2(1.17647, 1.17647)
+stream = ExtResource("3_xgo6l")
+volume_db = -1.055
+pitch_scale = 0.2
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4.706, -8.23529)
+shape = SubResource("CircleShape2D_4pdcd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_4lbyr")
+}
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

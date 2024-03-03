@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="Obstacles" load_steps=2 format=3 uid="uid://b886ip52554lx"]
-
-[ext_resource type="Script" path="res://obstacles.gd" id="1_0sjje"]
-
-[resource]
-script = ExtResource("1_0sjje")
-name = "spring_laser"

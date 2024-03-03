@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://ca2aakjbasmn2"]
+
+[ext_resource type="Script" path="res://scenes/spinner.gd" id="1_5vdxy"]
+[ext_resource type="Texture2D" uid="uid://ixhjjgwytprq" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Lasers/laserRed11.png" id="2_56gue"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jn2vx"]
+radius = 41.1096
+
+[sub_resource type="Animation" id="Animation_f14p1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5708]
+}
+
+[sub_resource type="Animation" id="Animation_i4g14"]
+resource_name = "spin"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tmjvq"]
+_data = {
+"RESET": SubResource("Animation_f14p1"),
+"spin": SubResource("Animation_i4g14")
+}
+
+[node name="Spinner" type="RigidBody2D"]
+position = Vector2(383, 944)
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_5vdxy")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.499996, 2.49999)
+rotation = 1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("2_56gue")
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jn2vx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tmjvq")
+}
+autoplay = "spin"
+speed_scale = 3.0

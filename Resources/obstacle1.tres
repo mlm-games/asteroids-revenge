@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="Obstacles" load_steps=3 format=3 uid="uid://dyx32edikm2qj"]
-
-[ext_resource type="PackedScene" uid="uid://c404agaryynkx" path="res://Scenes/laser.tscn" id="1_jwar8"]
-[ext_resource type="Script" path="res://obstacles.gd" id="1_s5xva"]
-
-[resource]
-script = ExtResource("1_s5xva")
-name = "laser"
-scene = ExtResource("1_jwar8")
