@@ -1,9 +1,0 @@
-Changes- 
-
-. Added 2 new enemies - spring laser and curve laser (spring laser being frenzy exclusive)
-. Bullets now move independent to player
-. Some enemies now have different behavior based on normal and frenzy mode
-
-Fixes-
- 
-. Improved performance due to less overload by function calls
