@@ -2,9 +2,6 @@ extends Control
 
 const SETTINGS_PATH = "user://settings.cfg"
 
-func _process(delta: float) -> void:
-	pass
-
 func _input(event: InputEvent) -> void:
 	update_labels()
 
@@ -61,11 +58,41 @@ func _on_back_button_pressed() -> void:
 func _on_joystick_check_box_toggled(toggled_on: bool) -> void:
 	GameState.joystick_is_visible = toggled_on
 	if toggled_on:
-		$VBoxContainer/Sound.text = "Enabled"
+		$VBoxContainer2/JoystickCheckBox.text = "Enabled"
 	else:
-		$VBoxContainer/Sound.text = "Disabled"
+		$VBoxContainer2/JoystickCheckBox.text = "Disabled"
 
 
 
 func _on_check_button_toggled(toggled_on: bool) -> void:
 	GameState.fire_button_is_visible = toggled_on
+	if toggled_on:
+		$VBoxContainer2/CheckButton.text = "Enabled"
+	else:
+		$VBoxContainer2/CheckButton.text = "Disabled"
+
+#region Text Size code
+#func _on_option_button_item_selected(index: int) -> void:
+#	GameState.textsize = GameState.TEXT_SIZES[index]
+	
+	
+
+
+
+#func resize_text_controls(size=null):
+#	if size == null:
+#		size = GameState.load().text_size
+#	var alt_theme = null
+#	if size == Consts.TextSizes.BIG:
+#		alt_theme = load("res://src/ui/theme_big.tres")
+#	elif size == Consts.TextSizes.HUGE:
+#		alt_theme = load("res://src/ui/theme_really_big.tres")
+#	else:
+#		# If the theme has never been touched, we don't have to force load from disk.
+#		# We could detect that by connecting to Theme.changed.
+#		alt_theme = ResourceLoader.load("res://src/ui/theme.tres", "", ResourceLoader.CACHE_MODE_IGNORE)
+#
+#	var theme = ThemeDB.get_project_theme()
+#	theme.merge_with(alt_theme)
+
+#endregion

@@ -88,21 +88,6 @@ offset_right = 408.0
 offset_bottom = 26.0
 theme = ExtResource("4_w4twb")
 
-[node name="TextSize" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "Text size:                 "
-label_settings = ExtResource("2_sy1r1")
-horizontal_alignment = 1
-
-[node name="OptionButton" type="OptionButton" parent="VBoxContainer/TextSize"]
-layout_mode = 2
-offset_left = 371.0
-offset_top = -1.0
-offset_right = 387.0
-offset_bottom = 11.0
-scale = Vector2(2.52, 2.52)
-theme = ExtResource("4_w4twb")
-
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 0
 offset_top = 369.0
@@ -152,9 +137,28 @@ position = Vector2(489, 998)
 scale = Vector2(0.61, 0.61)
 texture_normal = ExtResource("4_wxjj8")
 
+[node name="TextSize" type="Label" parent="."]
+visible = false
+layout_mode = 2
+offset_top = 272.0
+offset_right = 648.0
+offset_bottom = 299.0
+text = "Text size:                 "
+label_settings = ExtResource("2_sy1r1")
+horizontal_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="TextSize"]
+visible = false
+layout_mode = 2
+offset_left = 355.0
+offset_top = -1.0
+offset_right = 374.0
+offset_bottom = 11.0
+scale = Vector2(2.52, 2.52)
+theme = ExtResource("4_w4twb")
+
 [connection signal="pressed" from="VBoxContainer/Music/MusicButton" to="." method="_on_music_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Sound/SoundButton" to="." method="_on_sound_button_pressed"]
-[connection signal="item_selected" from="VBoxContainer/TextSize/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="toggled" from="VBoxContainer2/JoystickCheckBox" to="." method="_on_joystick_check_box_toggled"]
 [connection signal="toggled" from="VBoxContainer2/CheckButton" to="." method="_on_check_button_toggled"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

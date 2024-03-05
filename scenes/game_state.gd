@@ -6,8 +6,8 @@ var lives:int = 3
 var hard_mode := false
 var sound_effects := true
 var music := true
-var textsize:= 1
-const TEXT_SIZES: Array = ["SMALL","BIG","VERY BIG"]
+#var textsize:= 1
+#const TEXT_SIZES: Array = ["SMALL","BIG","VERY BIG"]
 var fire_button_is_visible := true
 var joystick_is_visible := true
 
@@ -23,8 +23,8 @@ func save_game():
 	var save_file = FileAccess.open(SavePath ,FileAccess.WRITE)
 	var data: Dictionary = {
 		"highscore": highscore,
-		"lowestscore": lowestscore,
-		"textsize": textsize
+		"lowestscore": lowestscore
+#		"textsize": textsize
 	}
 	
 	var jstr := JSON.stringify(data)
@@ -38,7 +38,7 @@ func load_game():
 			if current_line:
 				highscore = current_line["highscore"]
 				lowestscore = current_line["lowestscore"]
-				textsize = current_line["textsize"]
+				#textsize = current_line["textsize"]
 
 
 #endregion
