@@ -2,6 +2,10 @@ extends CanvasLayer
 
 var called:bool = false
 
+func _ready() -> void:
+	$"Virtual Joystick".visible = GameState.joystick_is_visible
+	$FireButton.visible = GameState.fire_button_is_visible
+
 func _process(_delta):
 	if %BulletsBar.value == 5:
 		%AnimationPlayer.play("fullBar")

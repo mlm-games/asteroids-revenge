@@ -3,7 +3,8 @@ extends Node2D
 #You are a spaceship travelling along an asteriod belt trying to find what seems to be an anomaly,You get switched up into an asteriod but can move like an spaceship, when you try to reach back to your spacemates, they cant hear you and uh oh, looks like a fleet is firing at your asteriod belt. Will you live to tell your tale another day?
 #TODO: Collision bouncing in the direction of collision direction for the nextgame
 # (Hard mode, enable collision between enemies), see the heartbeast video for making the sawblades balloon game (Collision bouncing in the direction of collision direction)
-#TODO: Missile only Forcefield powerup? like setting speed to -ve in direction * speed
+#TODO: Missile only Forcefield powerup? like setting speed to -ve in direction * speed (easy mode? like in libre-memory-game)
+
 
 var score := 0
 var minobs:= 1
@@ -12,6 +13,7 @@ var spawntime = Vector2(0.5,1.5)
 var highscore = GameState.highscore
 var lowestscore = GameState.lowestscore
 var particles_spawn_count:int
+
 
 func take_life():
 	GameState.lives -= 1

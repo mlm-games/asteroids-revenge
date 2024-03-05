@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dh74b3h6q3026"]
+[gd_scene load_steps=10 format=3 uid="uid://dh74b3h6q3026"]
 
 [ext_resource type="Script" path="res://scenes/Main.gd" id="1_0lgb2"]
 [ext_resource type="Texture2D" uid="uid://c33xrciyt6ilb" path="res://art-and-sound/bg_1_1.png" id="2_as2ci"]
 [ext_resource type="FontFile" uid="uid://by86tftjfcedw" path="res://art-and-sound/kenney_space-shooter-redux/Bonus/kenvector_future_thin.ttf" id="3_k5igf"]
 [ext_resource type="LabelSettings" uid="uid://cnoygoxh0kgme" path="res://resources/small_textstyle.tres" id="4_xs5df"]
 [ext_resource type="Theme" uid="uid://vdypn6ym62cq" path="res://scenes/main-theme.tres" id="5_1ccwn"]
+[ext_resource type="Texture2D" uid="uid://drwhk2fn0x6rj" path="res://art-and-sound/kenney_space-shooter-redux/wrench.png" id="6_3qcx3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6uu41"]
 
@@ -38,9 +39,9 @@ vertical_alignment = 1
 
 [node name="HintLabel" type="Label" parent="."]
 offset_left = 6.0
-offset_top = 182.0
+offset_top = 740.0
 offset_right = 645.0
-offset_bottom = 305.0
+offset_bottom = 863.0
 theme_override_fonts/font = ExtResource("3_k5igf")
 theme_override_font_sizes/font_size = 48
 text = "Reach a highscore of  700
@@ -72,6 +73,7 @@ shortcut = SubResource("Shortcut_f7s2m")
 text = "Help"
 
 [node name="HardModeButton" type="Button" parent="."]
+visible = false
 offset_left = 163.0
 offset_top = 767.0
 offset_right = 485.0
@@ -92,7 +94,13 @@ theme_type_variation = &"FlatButton"
 text = "Quit
 "
 
+[node name="SettingsButton" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.827451)
+position = Vector2(546, 1054)
+texture_normal = ExtResource("6_3qcx3")
+
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="HelpButton" to="." method="_on_help_button_pressed"]
 [connection signal="pressed" from="HardModeButton" to="." method="_on_hard_mode_button_pressed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_touch_screen_button_pressed"]
