@@ -1,8 +1,8 @@
-Source code for the game asteroid's revenge,
+## Source code for the game asteroid's revenge
 
-<a href="https://simondalvai.itch.io/ball2box" target="_blank"><img src="https://static.itch.io/images/badge-color.svg" alt="Available on itch.io" height="50px" ></a>
+<a href="https://ragebreaker.itch.io/" target="_blank"><img src="https://static.itch.io/images/badge-color.svg" alt="Available on itch.io" height="50px" ></a>
 
-
+## Screenshots
 <div>
   <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.png" alt="1" width="300"/>
   
