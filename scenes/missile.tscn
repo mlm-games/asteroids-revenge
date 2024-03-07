@@ -65,6 +65,7 @@ unique_name_in_owner = true
 stream = ExtResource("5_nh2ky")
 volume_db = -16.66
 pitch_scale = 0.5
+bus = &"SoundEffects"
 
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
 [connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]

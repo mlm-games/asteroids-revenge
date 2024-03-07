@@ -75,13 +75,13 @@ position = Vector2(351, 3)
 scale = Vector2(75, 22)
 texture_normal = SubResource("PlaceholderTexture2D_jp5el")
 
-[node name="Sound" type="Label" parent="VBoxContainer"]
+[node name="SoundEffects" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Sound: on"
 label_settings = ExtResource("2_sy1r1")
 horizontal_alignment = 1
 
-[node name="SoundButton" type="Button" parent="VBoxContainer/Sound"]
+[node name="SoundEffectsButton" type="Button" parent="VBoxContainer/SoundEffects"]
 layout_mode = 0
 offset_left = 352.0
 offset_right = 408.0
@@ -158,7 +158,7 @@ scale = Vector2(2.52, 2.52)
 theme = ExtResource("4_w4twb")
 
 [connection signal="pressed" from="VBoxContainer/Music/MusicButton" to="." method="_on_music_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Sound/SoundButton" to="." method="_on_sound_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SoundEffects/SoundEffectsButton" to="." method="_on_sound_effects_button_pressed"]
 [connection signal="toggled" from="VBoxContainer2/JoystickCheckBox" to="." method="_on_joystick_check_box_toggled"]
 [connection signal="toggled" from="VBoxContainer2/CheckButton" to="." method="_on_check_button_toggled"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

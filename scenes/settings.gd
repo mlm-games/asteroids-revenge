@@ -2,7 +2,7 @@ extends Control
 
 const SETTINGS_PATH = "user://settings.cfg"
 
-func _input(event: InputEvent) -> void:
+func _process(delta: float) -> void:
 	update_labels()
 
 func save_settings():
@@ -32,17 +32,19 @@ func load_settings():
 
 func _on_music_button_pressed() -> void:
 	GameState.music = !GameState.music
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), !GameState.music)
 
 
-func _on_sound_button_pressed() -> void:
+func _on_sound_effects_button_pressed() -> void:
 	GameState.sound_effects = !GameState.sound_effects
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("SoundEffects"), !GameState.sound_effects)
 
 
 func update_labels():
 	if GameState.sound_effects:
-		$VBoxContainer/Sound.text = "Sound: ON"
+		$VBoxContainer/SoundEffects.text = "Sound: ON"
 	else:
-		$VBoxContainer/Sound.text = "Sound: OFF"
+		$VBoxContainer/SoundEffects.text = "Sound: OFF"
 	
 	if GameState.music:
 		$VBoxContainer/Music.text = "Music: ON"

@@ -59,6 +59,7 @@ position = Vector2(-407.059, -685.882)
 scale = Vector2(1.17647, 1.17647)
 stream = SubResource("AudioStreamOggVorbis_vop8t")
 autoplay = true
+bus = &"Music"
 
 [node name="ProjectilePath" type="Path2D" parent="PlayerRock"]
 position = Vector2(-400, -668.235)
@@ -77,6 +78,7 @@ scale = Vector2(1.17647, 1.17647)
 stream = ExtResource("5_7x11b")
 volume_db = -9.915
 pitch_scale = 2.9
+bus = &"SoundEffects"
 
 [node name="HUD" parent="." instance=ExtResource("5_c0pkx")]
 unique_name_in_owner = true
