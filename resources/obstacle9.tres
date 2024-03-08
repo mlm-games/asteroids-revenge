@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Obstacles" load_steps=3 format=3 uid="uid://eqpersxajljh"]
+
+[ext_resource type="PackedScene" uid="uid://dvu3jp0umjhwm" path="res://scenes/cloaking_laser.tscn" id="1_ef0dr"]
+[ext_resource type="Script" path="res://scenes/obstacles.gd" id="2_pqe41"]
+
+[resource]
+script = ExtResource("2_pqe41")
+name = "cloaking_laser"
+scene = ExtResource("1_ef0dr")

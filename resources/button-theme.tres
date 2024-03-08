@@ -1,0 +1,26 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://bmy6kos4l110s"]
+
+[ext_resource type="FontFile" uid="uid://5u8hgsjkihsm" path="res://art-and-sound/kenney_space-shooter-redux/Bonus/kenvector_future.ttf" id="1_tli68"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwy38"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yq41d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ugsr"]
+bg_color = Color(0.807843, 0.509804, 0.454902, 0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[resource]
+default_font = ExtResource("1_tli68")
+default_font_size = 34
+/styles/stylebox_custom = SubResource("StyleBoxFlat_wwy38")
+Button/styles/hover = SubResource("StyleBoxEmpty_yq41d")
+Button/styles/normal = SubResource("StyleBoxFlat_8ugsr")

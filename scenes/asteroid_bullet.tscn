@@ -26,7 +26,7 @@ stream = ExtResource("4_ec5l3")
 volume_db = -3.11
 pitch_scale = 1.44
 autoplay = true
-attenuation = 2.37841
+bus = &"SoundEffects"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

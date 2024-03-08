@@ -1,0 +1,93 @@
+[gd_scene load_steps=8 format=3 uid="uid://bs2yljcysk56h"]
+
+[ext_resource type="Script" path="res://scenes/scaling_laser.gd" id="1_xijea"]
+[ext_resource type="Texture2D" uid="uid://dne1mu7gwf7c8" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Lasers/laserGreen15.png" id="2_nw3yi"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_67f50"]
+radius = 5.0
+height = 42.0
+
+[sub_resource type="Animation" id="Animation_od3u4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0yhar"]
+resource_name = "scale-right"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.3, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(10, 4), Vector2(10, 4), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8pixu"]
+resource_name = "scale-up"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.3, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(4, 10), Vector2(4, 10), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hb0tr"]
+_data = {
+"RESET": SubResource("Animation_od3u4"),
+"scale-right": SubResource("Animation_0yhar"),
+"scale-up": SubResource("Animation_8pixu")
+}
+
+[node name="ScalingLaser" type="CharacterBody2D"]
+position = Vector2(295, 881)
+collision_mask = 0
+motion_mode = 1
+platform_on_leave = 2
+platform_floor_layers = 4294967292
+script = ExtResource("1_xijea")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_nw3yi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_67f50")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_67f50")
+
+[node name="ScaleTimer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_hb0tr")
+}
+
+[connection signal="timeout" from="ScaleTimer" to="." method="_on_scale_timer_timeout"]

@@ -2,6 +2,10 @@ extends CanvasLayer
 
 var called:bool = false
 
+func _ready() -> void:
+	$"Virtual Joystick".visible = GameState.joystick_is_visible
+	$FireButton.visible = GameState.fire_button_is_visible
+
 func _process(_delta):
 	if %BulletsBar.value == 5:
 		%AnimationPlayer.play("fullBar")
@@ -34,7 +38,6 @@ func game_over(score) -> void:
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_anything_pressed() && called:
 		called = false
-		Transition.transition("fadeToBlack")
-		await Transition.faded_to_black
+		Transition.change_scene_with_transition("res://scenes/main.tscn")
 		$PressAnyKeyLabel.hide()
-		get_tree().call_deferred("change_scene_to_file", "res://scenes/main.tscn")
+
