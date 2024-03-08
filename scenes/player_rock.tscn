@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxi3stw7wrvli"]
+[gd_scene load_steps=10 format=3 uid="uid://cxi3stw7wrvli"]
 
 [ext_resource type="Script" path="res://scenes/player_rock.gd" id="1_kccwu"]
 [ext_resource type="Texture2D" uid="uid://fv4u676rvcc6" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Meteors/meteorBrown_big1.png" id="2_ctg6k"]
@@ -34,6 +34,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_hy6if"]
 resource_name = "fire"
@@ -62,14 +74,30 @@ tracks/1/keys = {
 "values": [0.0, 6.28319]
 }
 
+[sub_resource type="Animation" id="Animation_elrae"]
+resource_name = "hit-effects"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4lbyr"]
 _data = {
 "RESET": SubResource("Animation_s6ef7"),
-"fire": SubResource("Animation_hy6if")
+"fire": SubResource("Animation_hy6if"),
+"hit-effects": SubResource("Animation_elrae")
 }
 
-[node name="PlayerRock" type="CharacterBody2D"]
-position = Vector2(-1.14441e-05, 2.99994)
+[node name="PlayerRock" type="CharacterBody2D" groups=["Player"]]
 scale = Vector2(0.85, 0.85)
 collision_layer = 2
 collision_mask = 0
@@ -98,6 +126,7 @@ pitch_scale = 0.2
 bus = &"SoundEffects"
 
 [node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -110,5 +139,11 @@ libraries = {
 "": SubResource("AnimationLibrary_4lbyr")
 }
 
+[node name="InvincibilityTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

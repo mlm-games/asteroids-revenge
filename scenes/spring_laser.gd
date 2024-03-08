@@ -10,7 +10,7 @@ var time = 0
 
 func _physics_process(delta):
 	time += delta
-	position.x = sin(time*frequency)*amplitude + random_offset
+	position.x = sin(time*frequency)*amplitude #+ random_offset
 	velocity = direction * speed
 	# here, -= gives changes spring movement in left (in angular way)
 	if random_offset > 200:

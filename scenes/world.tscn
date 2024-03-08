@@ -44,15 +44,7 @@ unique_name_in_owner = true
 
 [node name="PlayerRock" parent="." instance=ExtResource("1_u7ba8")]
 unique_name_in_owner = true
-position = Vector2(346, 583)
-
-[node name="Camera2D2" type="Camera2D" parent="PlayerRock"]
-scale = Vector2(1.17647, 1.17647)
-offset = Vector2(0, 450)
-limit_left = 0
-limit_right = 648
-position_smoothing_enabled = true
-position_smoothing_speed = 7.0
+position = Vector2(346, 0)
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="PlayerRock"]
 position = Vector2(-407.059, -685.882)
@@ -82,6 +74,15 @@ bus = &"SoundEffects"
 
 [node name="HUD" parent="." instance=ExtResource("5_c0pkx")]
 unique_name_in_owner = true
+
+[node name="Camera2D2" type="Camera2D" parent="."]
+unique_name_in_owner = true
+offset = Vector2(0, -100)
+anchor_mode = 0
+limit_left = 0
+limit_right = 648
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="game_over" from="PlayerRock" to="." method="_on_player_spaceship_game_over"]

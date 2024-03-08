@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dwik1k1a4d85w"]
+[gd_scene load_steps=8 format=3 uid="uid://dwik1k1a4d85w"]
 
 [ext_resource type="Script" path="res://scenes/settings.gd" id="1_ch03l"]
 [ext_resource type="Texture2D" uid="uid://c33xrciyt6ilb" path="res://art-and-sound/bg_1_1.png" id="1_l14kl"]
@@ -6,35 +6,17 @@
 [ext_resource type="LabelSettings" uid="uid://bj4owgofe5ayt" path="res://resources/textstyle.tres" id="3_38bei"]
 [ext_resource type="Theme" uid="uid://vdypn6ym62cq" path="res://scenes/main-theme.tres" id="4_w4twb"]
 [ext_resource type="Texture2D" uid="uid://iqxgljh1hu37" path="res://art-and-sound/backarrow.png" id="4_wxjj8"]
-[ext_resource type="FontFile" uid="uid://by86tftjfcedw" path="res://art-and-sound/kenney_space-shooter-redux/Bonus/kenvector_future_thin.ttf" id="6_dtyca"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jp5el"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwy38"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ugsr"]
-bg_color = Color(0.807843, 0.509804, 0.454902, 0)
-
-[sub_resource type="Theme" id="Theme_7vbxa"]
-default_font = ExtResource("6_dtyca")
-default_font_size = 20
-/styles/stylebox_custom = SubResource("StyleBoxFlat_wwy38")
-Button/styles/normal = SubResource("StyleBoxFlat_8ugsr")
-
-[sub_resource type="Theme" id="Theme_gvgvi"]
-default_font = ExtResource("6_dtyca")
-default_font_size = 20
-/styles/stylebox_custom = SubResource("StyleBoxFlat_wwy38")
-Button/styles/normal = SubResource("StyleBoxFlat_8ugsr")
-
 [node name="Settings" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_w4twb")
 script = ExtResource("1_ch03l")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -46,9 +28,14 @@ size_flags_vertical = 4
 texture = ExtResource("1_l14kl")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_right = 650.0
-offset_bottom = 187.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -137.0
+offset_right = 137.0
+offset_bottom = 121.0
+grow_horizontal = 2
 
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2
@@ -61,7 +48,8 @@ horizontal_alignment = 1
 layout_mode = 0
 offset_top = 210.0
 offset_right = 648.0
-offset_bottom = 890.0
+offset_bottom = 802.0
+theme_override_constants/separation = 40
 
 [node name="Music" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -75,62 +63,22 @@ position = Vector2(351, 3)
 scale = Vector2(75, 22)
 texture_normal = SubResource("PlaceholderTexture2D_jp5el")
 
-[node name="SoundEffects" type="Label" parent="VBoxContainer"]
+[node name="SoundEffectsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Sound: on"
-label_settings = ExtResource("2_sy1r1")
-horizontal_alignment = 1
-
-[node name="SoundEffectsButton" type="Button" parent="VBoxContainer/SoundEffects"]
-layout_mode = 0
-offset_left = 352.0
-offset_right = 408.0
-offset_bottom = 26.0
 theme = ExtResource("4_w4twb")
+text = "Sound:0n"
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_top = 369.0
-offset_right = 650.0
-offset_bottom = 556.0
-
-[node name="Controls" type="Label" parent="MarginContainer2"]
+[node name="JoystickButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "       Control options      "
-label_settings = ExtResource("3_38bei")
-horizontal_alignment = 1
+theme = ExtResource("4_w4twb")
+toggle_mode = true
+text = "Joystick: Enabled"
 
-[node name="VBoxContainer2" type="GridContainer" parent="."]
-layout_mode = 0
-offset_left = 6.0
-offset_top = 525.0
-offset_right = 650.0
-offset_bottom = 851.0
-columns = 2
-
-[node name="ShowJoystickLabel" type="Label" parent="VBoxContainer2"]
+[node name="FireTouchButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "                     Show joystick: "
-label_settings = ExtResource("2_sy1r1")
-horizontal_alignment = 2
-
-[node name="JoystickCheckBox" type="CheckBox" parent="VBoxContainer2"]
-layout_mode = 2
-theme = SubResource("Theme_7vbxa")
-button_pressed = true
-text = "Enabled"
-
-[node name="ShowFireButtonLabel" type="Label" parent="VBoxContainer2"]
-layout_mode = 2
-text = "Show fire button: "
-label_settings = ExtResource("2_sy1r1")
-horizontal_alignment = 2
-
-[node name="CheckButton" type="CheckButton" parent="VBoxContainer2"]
-layout_mode = 2
-theme = SubResource("Theme_gvgvi")
-button_pressed = true
-text = "Enabled"
+theme = ExtResource("4_w4twb")
+toggle_mode = true
+text = "Fire button: enabled"
 
 [node name="BackButton" type="TouchScreenButton" parent="."]
 position = Vector2(489, 998)
@@ -157,8 +105,21 @@ offset_bottom = 11.0
 scale = Vector2(2.52, 2.52)
 theme = ExtResource("4_w4twb")
 
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+offset_left = -2.0
+offset_top = 525.0
+offset_right = 645.0
+offset_bottom = 800.0
+text = "(Note, you can still use them
+ once disabled when you tap 
+where they were visible 
+previously)"
+label_settings = ExtResource("2_sy1r1")
+horizontal_alignment = 1
+
 [connection signal="pressed" from="VBoxContainer/Music/MusicButton" to="." method="_on_music_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/SoundEffects/SoundEffectsButton" to="." method="_on_sound_effects_button_pressed"]
-[connection signal="toggled" from="VBoxContainer2/JoystickCheckBox" to="." method="_on_joystick_check_box_toggled"]
-[connection signal="toggled" from="VBoxContainer2/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="pressed" from="VBoxContainer/SoundEffectsButton" to="." method="_on_sound_effects_button_pressed"]
+[connection signal="toggled" from="VBoxContainer/JoystickButton" to="." method="_on_joystick_button_toggled"]
+[connection signal="toggled" from="VBoxContainer/FireTouchButton" to="." method="_on_fire_touch_button_toggled"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

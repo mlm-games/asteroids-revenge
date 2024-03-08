@@ -11,7 +11,10 @@ func _ready():
 	white_rect.visible = false
 
 
-
+func change_scene_with_transition(scene_path):
+	transition("fadeToBlack")
+	await faded_to_black
+	get_tree().change_scene_to_file(scene_path)
 
 func transition(anim_name):
 	match anim_name:

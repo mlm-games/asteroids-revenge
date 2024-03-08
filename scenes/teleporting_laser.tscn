@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpi3vc7duphvu"]
+
+[ext_resource type="Script" path="res://scenes/teleporting_laser.gd" id="1_q8nku"]
+[ext_resource type="Texture2D" uid="uid://ceqkxqaxqitxh" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Lasers/laserRed08.png" id="2_yoeyy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d4k68"]
+radius = 12.0
+
+[sub_resource type="Animation" id="Animation_34cm0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_oovk8"]
+resource_name = "fade-in"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5o61f"]
+resource_name = "fade-out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_70coy"]
+_data = {
+"RESET": SubResource("Animation_34cm0"),
+"fade-in": SubResource("Animation_oovk8"),
+"fade-out": SubResource("Animation_5o61f")
+}
+
+[node name="TeleportingLaser" type="CharacterBody2D"]
+collision_mask = 0
+motion_mode = 1
+platform_on_leave = 2
+platform_floor_layers = 4294967292
+script = ExtResource("1_q8nku")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_yoeyy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_d4k68")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_70coy")
+}
+
+[node name="TeleportTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="TeleportTimer" to="." method="_on_teleport_timer_timeout"]

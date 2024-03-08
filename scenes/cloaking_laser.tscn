@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://dvu3jp0umjhwm"]
+
+[ext_resource type="Script" path="res://scenes/cloaking_laser.gd" id="1_pcfxm"]
+[ext_resource type="Texture2D" uid="uid://c8cwdg6lv5rsn" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Lasers/laserBlue12.png" id="2_u7y57"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_apuwp"]
+radius = 3.0
+height = 50.0
+
+[sub_resource type="Animation" id="Animation_7yw8p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_klnbj"]
+resource_name = "cloak"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.0784314)]
+}
+
+[sub_resource type="Animation" id="Animation_05rdo"]
+resource_name = "uncloak"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uuntw"]
+_data = {
+"RESET": SubResource("Animation_7yw8p"),
+"cloak": SubResource("Animation_klnbj"),
+"uncloak": SubResource("Animation_05rdo")
+}
+
+[node name="CloakingLaser" type="CharacterBody2D"]
+position = Vector2(285, 766)
+collision_mask = 0
+motion_mode = 1
+platform_on_leave = 2
+platform_floor_layers = 4294967292
+script = ExtResource("1_pcfxm")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_u7y57")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_apuwp")
+
+[node name="CloakTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.3
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_uuntw")
+}
+
+[connection signal="timeout" from="CloakTimer" to="." method="_on_cloak_timer_timeout"]

@@ -38,7 +38,6 @@ func game_over(score) -> void:
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_anything_pressed() && called:
 		called = false
-		Transition.transition("fadeToBlack")
-		await Transition.faded_to_black
+		Transition.change_scene_with_transition("res://scenes/main.tscn")
 		$PressAnyKeyLabel.hide()
-		get_tree().call_deferred("change_scene_to_file", "res://scenes/main.tscn")
+
