@@ -72,9 +72,8 @@ bus = &"SoundEffects"
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("6_x0jl0")
 
-[node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+[node name="Follow" type="Node" parent="StateMachine"]
 script = ExtResource("7_wdnnf")
-enemy = NodePath("../..")
 
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
 [connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
