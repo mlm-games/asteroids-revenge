@@ -1,3 +1,9 @@
+## v0.10.2 Changes 
+
+- Enemies now appear in a different order in frenzy mode
+- showed a hint to hard mode
+- Reduced the difficulty of some lasers's behavior
+
 ## v0.10.1 Changes
 
 - Added BGM for boss and main menu
