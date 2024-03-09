@@ -15,7 +15,7 @@ func _process(_delta):
 func update_lives(lives):
 	$LivesLabel.text = "Lives: " + str(lives)
 
-func update_score(score,highscore,lowestscore) -> void:
+func update_score(score, highscore, lowestscore) -> void:
 	$ScoreLabel.text = str(score)
 	if score > 0:
 		$HighscoreLabel.text = "Highscore

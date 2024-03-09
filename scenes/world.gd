@@ -13,6 +13,10 @@ var particles_spawn_count: int
 
 @onready var boss_spawn_node = %Camera2D2
 
+func _ready() -> void:
+	if GameState.hard_mode:
+		$HardModeLabel.show()
+
 
 func take_life():
 	GameState.lives -= 1
@@ -76,7 +80,7 @@ func score_counter() -> void:
 	score = (%PlayerRock.position.y)*0.05
 	GameState.highscore = max(GameState.highscore,score)
 	GameState.lowestscore = min(GameState.lowestscore,score)
-	%HUD.update_score(score,highscore,lowestscore)
+	%HUD.update_score(score,GameState.highscore,GameState.lowestscore)
 
 func score_dependencies():
 	var abs_score = abs(score)
