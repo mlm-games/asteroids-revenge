@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://basjlr2ltfo70"]
+[gd_scene load_steps=11 format=3 uid="uid://basjlr2ltfo70"]
 
 [ext_resource type="Script" path="res://scenes/boss_spaceship.gd" id="1_wffw1"]
 [ext_resource type="Script" path="res://components-and-states/state_machine.gd" id="2_3818a"]
 [ext_resource type="AudioStream" uid="uid://4mk624f2vxfm" path="res://art-and-sound/kenney_space-shooter-redux/Bonus/sfx_laser1.ogg" id="3_rvogu"]
+[ext_resource type="AudioStream" uid="uid://x2ci72ak32wa" path="res://art-and-sound/through space.ogg" id="4_eejcy"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4wv0b"]
 size = Vector2(100, 100)
@@ -69,7 +70,11 @@ script = ExtResource("1_wffw1")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 texture = SubResource("PlaceholderTexture2D_4wv0b")
+
+[node name="ApproachAnim" type="AnimationPlayer" parent="Sprite2D"]
+root_node = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 9)
@@ -92,6 +97,7 @@ wait_time = 1.5
 autostart = true
 
 [node name="IdleTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 5.676
 autostart = true
 
@@ -112,6 +118,11 @@ unique_name_in_owner = true
 stream = ExtResource("3_rvogu")
 volume_db = -10.0
 bus = &"SoundEffects"
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_eejcy")
+autoplay = true
+bus = &"Music"
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]

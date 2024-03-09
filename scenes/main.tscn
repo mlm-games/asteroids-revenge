@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dh74b3h6q3026"]
+[gd_scene load_steps=11 format=3 uid="uid://dh74b3h6q3026"]
 
 [ext_resource type="Script" path="res://scenes/Main.gd" id="1_0lgb2"]
 [ext_resource type="Texture2D" uid="uid://c33xrciyt6ilb" path="res://art-and-sound/bg_1_1.png" id="2_as2ci"]
@@ -6,6 +6,7 @@
 [ext_resource type="LabelSettings" uid="uid://cnoygoxh0kgme" path="res://resources/small_textstyle.tres" id="4_xs5df"]
 [ext_resource type="Theme" uid="uid://bmy6kos4l110s" path="res://resources/button-theme.tres" id="5_mt70k"]
 [ext_resource type="Texture2D" uid="uid://drwhk2fn0x6rj" path="res://art-and-sound/kenney_space-shooter-redux/wrench.png" id="6_3qcx3"]
+[ext_resource type="AudioStream" uid="uid://dyysuucwb4xhm" path="res://art-and-sound/OutThere.ogg" id="7_62cej"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6uu41"]
 
@@ -94,6 +95,11 @@ text = "Quit
 modulate = Color(1, 1, 1, 0.827451)
 position = Vector2(546, 1054)
 texture_normal = ExtResource("6_3qcx3")
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_62cej")
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="HelpButton" to="." method="_on_help_button_pressed"]

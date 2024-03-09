@@ -27,6 +27,7 @@ func _process(_delta):
 	if boss_spawn_node.get_child_count() == 0:
 		if %SpawnTimer.is_stopped() && %PlayerRock.visible:
 				%SpawnTimer.start()
+				%PlayerRock/BGM.play()
 	%HUD/BulletsBar.value = 5 - %PlayerRock.bullets_fired
 	%Camera2D2.global_position.y = %PlayerRock.global_position.y
 	score_counter()
@@ -56,7 +57,6 @@ func _on_player_spaceship_game_over():
 	%PlayerRock.hide()
 	get_tree().call_group("enemies", "queue_free")
 	%HUD.game_over(score)
-	GameState.save_game()
 	particles_spawn_count = randi_range(2,4)
 	#the small particles after dying
 	for i in range(particles_spawn_count):
@@ -114,6 +114,7 @@ func score_dependencies():
 				boss.position.x = boss_spawn_node.position.x
 				boss_spawn_node.add_child(boss)
 				%SpawnTimer.stop()
+				%PlayerRock/BGM.stop()
 			
 
 func score_dependencies_hard_mode():

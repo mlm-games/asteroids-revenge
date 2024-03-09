@@ -1,3 +1,9 @@
+## v0.10.1 Changes
+
+- Added BGM for boss and main menu
+- Press any key to progress text now appears properly
+- Boss's projectile now expands faster
+
 ## v0.10.0 Update! 
 
 Changes- 
@@ -26,3 +32,4 @@ Previous changes were not marked here so are present
 - added new animations for player
 - The player can now shoot (but takes damage every 5 bullets he shoots)
 - Player has 3 lives now instead of 1
+

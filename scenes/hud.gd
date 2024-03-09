@@ -8,9 +8,9 @@ func _ready() -> void:
 
 func _process(_delta):
 	if %BulletsBar.value == 5:
-		%AnimationPlayer.play("fullBar")
-	elif %AnimationPlayer.current_animation == "fullBar":
-		%AnimationPlayer.stop()
+		%BulletsBar/AnimationPlayer.play("fullBar")
+	elif %BulletsBar/AnimationPlayer.current_animation == "fullBar":
+		%BulletsBar/AnimationPlayer.stop()
 
 func update_lives(lives):
 	$LivesLabel.text = "Lives: " + str(lives)
@@ -25,6 +25,7 @@ func update_score(score,highscore,lowestscore) -> void:
 		" + str(lowestscore)
 
 func game_over(score) -> void:
+	GameState.save_game()
 	Transition.transition("slightFlash")
 	if score > 0:
 		$HighscoreLabel.show()
@@ -33,11 +34,10 @@ func game_over(score) -> void:
 	$DeathLabel.show()
 	await get_tree().create_timer(0.8).timeout
 	called = true
-	%AnimationPlayer.play("showText")
+	%PressAnyKeyLabel/AnimationPlayer.play("showText")
 	
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_anything_pressed() && called:
 		called = false
 		Transition.change_scene_with_transition("res://scenes/main.tscn")
-		$PressAnyKeyLabel.hide()
 

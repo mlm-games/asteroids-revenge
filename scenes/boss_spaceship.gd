@@ -14,8 +14,8 @@ const MAX_HEALTH = 100
 
 func _ready() -> void:
 	health = MAX_HEALTH
-	$Sprite2D.texture = load("res://art-and-sound/kenney_space-shooter-redux/PNG/playerShip" +str(randi_range(1,3)) + "_" + SHAPESHIP_TYPE.pick_random() + ".png")
-	%AnimationPlayer.play("approach")
+	%Sprite2D.texture = load("res://art-and-sound/kenney_space-shooter-redux/PNG/playerShip" +str(randi_range(1,3)) + "_" + SHAPESHIP_TYPE.pick_random() + ".png")
+	%Sprite2D/ApproachAnim.play("approach")
 
 func _process(delta: float) -> void:
 	position = lerp(position, target_position, delta * 2.0)
@@ -43,8 +43,8 @@ func take_damage(damage: float) -> void:
 	health = max(health - damage, 0)
 	if health > 0:
 		var tween = create_tween()
-		tween.tween_property($Sprite2D, "modulate", Color.RED, 0.2)
-		tween.tween_property($Sprite2D, "modulate", Color.WHITE, 0.2)
+		tween.tween_property(%Sprite2D, "modulate", Color.RED, 0.2)
+		tween.tween_property(%Sprite2D, "modulate", Color.WHITE, 0.2)
 	else:
 		GameState.boss_defeated = true
 		queue_free()
@@ -54,5 +54,5 @@ func take_damage(damage: float) -> void:
 
 
 func _on_idle_timer_timeout() -> void:
-	$IdleTimer.wait_time = randf_range(idle_duration_range.x,idle_duration_range.y)
+	%IdleTimer.wait_time = randf_range(idle_duration_range.x,idle_duration_range.y)
 	target_position = Vector2(randf_range(horizontal_range.x, horizontal_range.y),800)

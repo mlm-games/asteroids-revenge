@@ -1,0 +1,5 @@
+## v0.10.1 Changes
+
+- Added BGM for boss and main menu
+- Press any key to progress text now appears properly
+- Scaling laser now expands faster
