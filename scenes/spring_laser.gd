@@ -12,6 +12,7 @@ func _physics_process(delta):
 	time += delta
 	position.x = sin(time*frequency)*amplitude #+ random_offset
 	velocity = direction * speed
+	#$Sprite2D.rotation = lerp($Sprite2D.rotation, position.normalized().angle(), delta)
 	# here, -= gives changes spring movement in left (in angular way)
 	if random_offset > 200:
 		velocity.y -= sin(time*frequency)*amplitude * 1.5

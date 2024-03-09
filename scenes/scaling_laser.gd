@@ -11,11 +11,14 @@ func _physics_process(_delta):
 
 func _on_scale_timer_timeout() -> void:
 	if scale_up:
+		%AnimationPlayer.speed_scale = 2
 		%AnimationPlayer.play("scale-up")
 		scale_up = false
 	elif GameState.hard_mode:
+		%AnimationPlayer.speed_scale = 3
 		%AnimationPlayer.play("scale-right")
 		scale_up = true
 		#move up and down to dodge
 	else:
 		scale_up = true
+

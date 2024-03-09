@@ -16,8 +16,9 @@ func _on_cloak_timer_timeout() -> void:
 	if !cloaked:
 		%AnimationPlayer.play("cloak")
 		%CloakTimer.wait_time = 5
-#		if GameState.hard_mode:
-#			pass
+		if GameState.hard_mode:
+			await %AnimationPlayer.animation_finished
+			$Sprite2D.modulate = Color.TRANSPARENT
 #		else:
 #			cloaked = true
 #	else:

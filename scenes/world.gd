@@ -134,15 +134,32 @@ func score_dependencies_hard_mode():
 			spawntime = Vector2(0.4,0.75)
 		400:
 			spawntime = Vector2(0.4,0.65)
+			obstacle_type.x = 4
+			obstacle_type.y = 4
 		500:
 			spawntime = Vector2(0.3,0.6)
-			obstacle_type.y = 4
+			obstacle_type.x = 1
 		600:
 			spawntime = Vector2(0.4,0.7)
+			obstacle_type.x = 5
 			obstacle_type.y = 5
 		700:
 			spawntime = Vector2(0.4, 0.6)
+			obstacle_type.x = 1
+		800:
+			obstacle_type.x = 6
 			obstacle_type.y = 6
+		900:
+			obstacle_type.x = 1
+		1000:
+			if boss_spawn_node.get_child_count() == 0:
+				var boss = load("res://scenes/boss_spaceship.tscn").instantiate()
+				boss.position.x = boss_spawn_node.position.x
+				boss_spawn_node.add_child(boss)
+				%SpawnTimer.stop()
+				%PlayerRock/BGM.stop()
+			
+			
 
 
 func _on_player_rock_hit() -> void:
