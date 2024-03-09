@@ -1,3 +1,12 @@
+## v0.10.0 Update! 
+
+Changes- 
+
+- Added a new boss to beat for frenzy mode
+- added a new style to asteroid in frenzy mode
+- Many improvements with performance and fixed settings not saving properly
+- Many more changes to play and find...
+
 ## v0.9.7 Changes
 
 - Added a help button in the home screen
