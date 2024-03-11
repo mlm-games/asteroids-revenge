@@ -12,7 +12,6 @@
 </div>
 
 ## Table of contents
-- [Ball2Box](#ball2box)
   - [Table of contents](#table-of-contents)
   - [Ideas or help](#ideas-or-help)
   - [Licenses](#licenses)
