@@ -17,7 +17,6 @@
   - [Licenses](#licenses)
     - [Audio](#audio)
     - [2D assets](#2d-assets)
-    - [Font](#font)
    
   
 ## Ideas or help
