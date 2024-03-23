@@ -39,8 +39,7 @@ Space Shooter Redux Pack
 Copyright: kenney.nl - https://kenney.nl/assets/space-shooter-redux
 License: [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/)
 
-Missile - by samoliver 
-https://opengameart.org/content/missile-0
+Missile - by samoliver - https://opengameart.org/content/missile-0
 
  <!--img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" height="75"-->
  <!--img src="https://img.shields.io/f-droid/v/APP.ID.svg?logo=F-Droid"-->
