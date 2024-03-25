@@ -4,8 +4,5 @@ var speed = 100.0
 
 var velocity = Vector2(0,randf_range(-speed,-speed*2.5))
 
-func _ready():
-	scale = Vector2(2.5,2.5)
-
 func _process(delta):
 	linear_velocity = velocity

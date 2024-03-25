@@ -13,15 +13,15 @@ func _process(_delta):
 		%BulletsBar/AnimationPlayer.stop()
 
 func update_lives(lives):
-	$LivesLabel.text = "Lives: " + str(lives)
+	$LivesLabel.text = tr("GAME_CHARACTER_LIVES") + ": " + str(lives)
 
 func update_score(score, highscore, lowestscore) -> void:
 	$ScoreLabel.text = str(score)
 	if score > 0:
-		$HighscoreLabel.text = "Highscore
+		$HighscoreLabel.text = tr("GAME_OBJECTIVE_HIGH_SCORE") + "
 		" + str(highscore)
 	elif score < 0:
-		$LowestScoreLabel.text = "Lowest score 
+		$LowestScoreLabel.text = tr("GAME_OBJECTIVE_LOWEST_SCORE") + "
 		" + str(lowestscore)
 
 func game_over(score) -> void:

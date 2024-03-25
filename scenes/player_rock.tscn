@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bdri2e7vh3reo" path="res://art-and-sound/launches/rlaunch.wav" id="3_xgo6l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4pdcd"]
-radius = 57.85
+radius = 56.0
 
 [sub_resource type="Animation" id="Animation_s6ef7"]
 length = 0.001
@@ -108,12 +108,11 @@ metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(5.88247, -1.17646)
 scale = Vector2(1.63075, 1.68067)
 texture = ExtResource("2_ctg6k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(4.706, -8.2353)
+position = Vector2(0, -10)
 shape = SubResource("CircleShape2D_4pdcd")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
@@ -130,7 +129,7 @@ unique_name_in_owner = true
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(4.706, -8.23529)
+position = Vector2(0, -10)
 shape = SubResource("CircleShape2D_4pdcd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -12,7 +12,6 @@ config_version=5
 
 config/name="Asteroid's Revenge!"
 config/description="The asteriods have had enough of your attacks of their belt, you being a special asteriod coming from billions of ligt years away are here to take revenge for millions of asteriods inthe solar system that have been slain with any pity by those nasty Spaceships and will destroy them all! Can you defeat the Spaceships? "
-config/version="0.10.1"
 config/tags=PackedStringArray("done")
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
@@ -66,6 +65,10 @@ fire={
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://locale/translations.ar.translation", "res://locale/translations.bg.translation", "res://locale/translations.br.translation", "res://locale/translations.bs.translation", "res://locale/translations.cs.translation", "res://locale/translations.da.translation", "res://locale/translations.de.translation", "res://locale/translations.el.translation", "res://locale/translations.en.translation", "res://locale/translations.es.translation", "res://locale/translations.fi.translation", "res://locale/translations.fr.translation", "res://locale/translations.he.translation", "res://locale/translations.hu.translation", "res://locale/translations.it.translation", "res://locale/translations.ja.translation", "res://locale/translations.ko.translation", "res://locale/translations.lzh.translation", "res://locale/translations.nb.translation", "res://locale/translations.nl.translation", "res://locale/translations.pl.translation", "res://locale/translations.pt.translation", "res://locale/translations.ro.translation", "res://locale/translations.ru.translation", "res://locale/translations.sv.translation", "res://locale/translations.th.translation", "res://locale/translations.tr.translation", "res://locale/translations.zh.translation")
 
 [layer_names]
 

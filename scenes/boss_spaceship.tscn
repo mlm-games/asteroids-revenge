@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://basjlr2ltfo70"]
+[gd_scene load_steps=10 format=3 uid="uid://basjlr2ltfo70"]
 
 [ext_resource type="Script" path="res://scenes/boss_spaceship.gd" id="1_wffw1"]
-[ext_resource type="Script" path="res://components-and-states/state_machine.gd" id="2_3818a"]
 [ext_resource type="AudioStream" uid="uid://4mk624f2vxfm" path="res://art-and-sound/kenney_space-shooter-redux/Bonus/sfx_laser1.ogg" id="3_rvogu"]
 [ext_resource type="AudioStream" uid="uid://x2ci72ak32wa" path="res://art-and-sound/through space.ogg" id="4_eejcy"]
 
@@ -100,9 +99,6 @@ autostart = true
 unique_name_in_owner = true
 wait_time = 5.676
 autostart = true
-
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource("2_3818a")
 
 [node name="BossHealthBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true

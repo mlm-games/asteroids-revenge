@@ -14,7 +14,7 @@ var music := true
 var fire_button_is_visible := true
 var joystick_is_visible := true
 var boss_defeated = false
-
+var locale : String = "en"
 
 
 #region Saving and loading
@@ -35,6 +35,7 @@ func save_game():
 		"fire_button_is_visible": fire_button_is_visible,
 		"joystick_is_visible": joystick_is_visible,
 		"boss_defeated": boss_defeated,
+		"locale": locale,
 	}
 	
 	var jstr := JSON.stringify(data)
@@ -53,4 +54,5 @@ func load_game():
 				fire_button_is_visible = current_line["fire_button_is_visible"]
 				joystick_is_visible = current_line["joystick_is_visible"]
 				boss_defeated = current_line["boss_defeated"]
+				locale = current_line["locale"]
 #endregion

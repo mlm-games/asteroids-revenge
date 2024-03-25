@@ -4,8 +4,8 @@ func _ready() -> void:
 	GameState.hard_mode = false
 	GameState.lives = 3
 	if GameState.boss_defeated:
-		$HardModeButton.show()
-		$HintLabel.hide()
+		%HardModeButton.show()
+		%HintLabel.hide()
 
 
 func _on_start_button_pressed():

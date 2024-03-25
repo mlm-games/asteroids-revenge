@@ -92,7 +92,7 @@ show_behind_parent = true
 offset_top = 225.0
 offset_right = 648.0
 offset_bottom = 261.0
-text = "Go up for a harder mode"
+text = "GAME_HARD_MODE_HINT_LABEL"
 label_settings = ExtResource("6_wor0t")
 horizontal_alignment = 1
 

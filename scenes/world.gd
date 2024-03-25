@@ -10,10 +10,12 @@ var spawntime = Vector2(0.5, 1.5)
 var highscore = GameState.highscore
 var lowestscore = GameState.lowestscore
 var particles_spawn_count: int
+var initial_lives := 3
 
 @onready var boss_spawn_node = %Camera2D2
 
 func _ready() -> void:
+	%HUD.update_lives(initial_lives)
 	if GameState.hard_mode:
 		$HardModeLabel.show()
 
@@ -60,6 +62,7 @@ func _on_player_spaceship_game_over():
 	%PlayerRock/CollisionShape2D.set_deferred("disabled", true)
 	%PlayerRock.hide()
 	get_tree().call_group("enemies", "queue_free")
+	get_tree().call_group("Boss", "queue_free")
 	%HUD.game_over(score)
 	particles_spawn_count = randi_range(2,4)
 	#the small particles after dying

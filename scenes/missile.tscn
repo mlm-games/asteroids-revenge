@@ -1,12 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://b1jnd5ggcbf08"]
+[gd_scene load_steps=9 format=3 uid="uid://b1jnd5ggcbf08"]
 
 [ext_resource type="Script" path="res://scenes/missile.gd" id="1_4mw41"]
 [ext_resource type="Texture2D" uid="uid://b7fpmcg7ian2w" path="res://art-and-sound/missile/spr_missile.png" id="2_81876"]
 [ext_resource type="Texture2D" uid="uid://bystdxxd5iufl" path="res://art-and-sound/missile/smoke/spr_smoke_strip17trail.png" id="2_ubjnc"]
 [ext_resource type="Texture2D" uid="uid://v5pxpcg2cih2" path="res://art-and-sound/missile/smoke/spr_smoke_strip24.png" id="3_rlo0n"]
 [ext_resource type="AudioStream" uid="uid://dxnng5jikqdr2" path="res://art-and-sound/missile_target_locked.ogg" id="5_nh2ky"]
-[ext_resource type="Script" path="res://components-and-states/state_machine.gd" id="6_x0jl0"]
-[ext_resource type="Script" path="res://components-and-states/enemy_follow.gd" id="7_wdnnf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pijoj"]
 animations = [{
@@ -68,12 +66,6 @@ stream = ExtResource("5_nh2ky")
 volume_db = -16.66
 pitch_scale = 0.5
 bus = &"SoundEffects"
-
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource("6_x0jl0")
-
-[node name="Follow" type="Node" parent="StateMachine"]
-script = ExtResource("7_wdnnf")
 
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
 [connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]

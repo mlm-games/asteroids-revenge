@@ -34,62 +34,10 @@ offset_right = 642.0
 offset_bottom = 132.0
 theme_override_fonts/font = ExtResource("3_k5igf")
 theme_override_font_sizes/font_size = 48
-text = "Asteriod's Revenge"
+text = "GAME_TITLE"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="HintLabel" type="Label" parent="."]
-offset_top = 740.0
-offset_right = 645.0
-offset_bottom = 863.0
-theme_override_fonts/font = ExtResource("3_k5igf")
-theme_override_font_sizes/font_size = 48
-text = "Beat the boss to unlock frenzy mode"
-label_settings = ExtResource("4_xs5df")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="StartButton" type="Button" parent="."]
-offset_left = 250.0
-offset_top = 656.0
-offset_right = 403.0
-offset_bottom = 737.0
-theme_override_fonts/font = ExtResource("3_k5igf")
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxTexture_6uu41")
-shortcut = SubResource("Shortcut_f7s2m")
-text = "Play"
-
-[node name="HelpButton" type="Button" parent="."]
-offset_left = 250.0
-offset_top = 888.0
-offset_right = 403.0
-offset_bottom = 969.0
-theme_override_fonts/font = ExtResource("3_k5igf")
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxTexture_6uu41")
-text = "Help"
-
-[node name="HardModeButton" type="Button" parent="."]
-visible = false
-offset_left = 163.0
-offset_top = 767.0
-offset_right = 485.0
-offset_bottom = 848.0
-theme_override_fonts/font = ExtResource("3_k5igf")
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxTexture_6uu41")
-shortcut = SubResource("Shortcut_f7s2m")
-text = "Frenzy mode"
-
-[node name="ExitButton" type="Button" parent="."]
-offset_left = 245.0
-offset_top = 1011.0
-offset_right = 398.0
-offset_bottom = 1092.0
-theme = ExtResource("5_mt70k")
-text = "Quit
-"
+autowrap_mode = 3
 
 [node name="SettingsButton" type="TouchScreenButton" parent="."]
 modulate = Color(1, 1, 1, 0.827451)
@@ -101,8 +49,61 @@ stream = ExtResource("7_62cej")
 autoplay = true
 bus = &"Music"
 
-[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="HelpButton" to="." method="_on_help_button_pressed"]
-[connection signal="pressed" from="HardModeButton" to="." method="_on_hard_mode_button_pressed"]
-[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_direction = 1
+offset_top = 426.0
+offset_right = 648.0
+offset_bottom = 1054.0
+alignment = 1
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_k5igf")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_6uu41")
+shortcut = SubResource("Shortcut_f7s2m")
+text = "MENU_LABEL_PLAY"
+
+[node name="HintLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_k5igf")
+theme_override_font_sizes/font_size = 48
+text = "GAME_HINT"
+label_settings = ExtResource("4_xs5df")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HardModeButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_k5igf")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_6uu41")
+shortcut = SubResource("Shortcut_f7s2m")
+text = "GAME_FRENZY_MODE"
+
+[node name="HelpButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_k5igf")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_6uu41")
+text = "MENU_MODE_HELP"
+
+[node name="ExitButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme = ExtResource("5_mt70k")
+text = "MENU_LABEL_QUIT"
+
 [connection signal="pressed" from="SettingsButton" to="." method="_on_touch_screen_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HardModeButton" to="." method="_on_hard_mode_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HelpButton" to="." method="_on_help_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
