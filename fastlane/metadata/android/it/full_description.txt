@@ -1,0 +1,18 @@
+È un gioco senza fine in cui giocherai nei panni di un asteroide soprannaturale che è stanco del genocidio causato dalle astronavi provenienti dalla Terra e vuole distruggere il pianeta facendo un kamikaze
+
+Caratteristiche :
+
+     . Può essere scaricato su Windows e Linux (e anche su OSX ma serve qualcuno che lo provi)
+     . Facile da avviare con controlli minimi (solo un joystick)
+     . Tempo di gioco molto breve (può essere giocato facilmente tra piccole pause)
+     . Fonte aperta
+     . Completamente gratuito senza pubblicità
+    
+
+Made with (indovina il motore- è presente tra i primi 3 motori con più progetti su itch.io)
+
+Questa è solo un'idea che ho avuto dopo aver visto troppi giochi in cui le astronavi dei giocatori abbattono asteroidi innocui. Ho pensato che si sarebbero vendicati e ho deciso di farci un gioco.
+
+
+Versione Web (funziona su dispositivi mobili):
+https://ragebreaker.itch.io/asteroids-revenge

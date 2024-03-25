@@ -1,0 +1,18 @@
+Es ist ein endloses Spiel, in dem Sie in die Rolle eines übernatürlichen Asteroiden schlüpfen, der den Völkermord durch die Raumschiffe von der Erde satt hat und den Planeten durch einen Kamikaze zerstören möchte
+
+Merkmale :
+
+     . Kann unter Windows und Linux heruntergeladen werden (und auch unter OSX, aber ich brauche jemanden, der es ausprobiert)
+     . Einfacher Start mit minimaler Steuerung (nur ein Joystick)
+     . Sehr kurze Spielzeit (kann problemlos zwischen kleinen Pausen gespielt werden)
+     . Open Source
+     . Völlig kostenlos und ohne Werbung
+    
+
+Hergestellt mit (erraten Sie die Engine – sie gehört zu den Top 3 Engines mit den meisten Projekten auf itch.io)
+
+Das ist nur eine Idee, die mir kam, nachdem ich viel zu viele Spiele gesehen hatte, in denen die Raumschiffe der Spieler harmlose Asteroiden abschießen. Ich dachte darüber nach, dass sie sich rächen würden, und beschloss, daraus ein Spiel zu machen.
+
+
+Webversion (läuft auf Mobilgeräten):
+https://ragebreaker.itch.io/asteroids-revenge
