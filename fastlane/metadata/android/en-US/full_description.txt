@@ -32,7 +32,7 @@ Features :
       . ROMANIAN / ROMÂNĂ
       . THAI / ภาษาไทย
       . BULGARIAN / БЪЛГАРСКИ
-      . HEBREW /עברית 
+      . עברית / HEBREW
       . العربية / ARABIC
       . BOSNIAN
 
