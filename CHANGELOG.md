@@ -1,3 +1,35 @@
+## v0.10.3 Changes
+
+- UI looks more cleaner and other minor changes to UI.
+- Added translations to the below languages:
+  - FRENCH / FRANÇAIS
+  - SPANISH / ESPAÑOL
+  - GERMAN / DEUTSCH
+  - ITALIAN / ITALIANO
+  - PORTUGUESE / PORTUGUÊS (BR)
+  - PORTUGUESE / PORTUGUÊS (PT)
+  - RUSSIAN / РУССКИЙ
+  - GREEK / ΕΛΛΗΝΙΚΑ
+  - TURKISH / TÜRKÇE
+  - DANISH / DANSK
+  - NORWEGIAN (NB) / NORSK BOKMÅL
+  - SWEDISH / SVENSKA
+  - DUTCH / NEDERLANDS
+  - POLISH / POLSKI
+  - FINNISH / SUOMI
+  - JAPANESE / 日本語
+  - SIMPLIFIED CHINESE / 简体中文
+  - TRADITIONAL CHINESE / 繁体中文
+  - KOREAN / 한국어
+  - CZECH / ČEŠTINA
+  - HUNGARIAN / MAGYAR
+  - ROMANIAN / ROMÂNĂ
+  - THAI / ภาษาไทย
+  - BULGARIAN / БЪЛГАРСКИ
+  - עברית / HEBREW
+  - العربية / ARABIC
+  - BOSNIAN
+
 ## v0.10.2 Changes 
 
 - Enemies now appear in a different order in frenzy mode
