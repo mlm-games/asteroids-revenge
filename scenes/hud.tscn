@@ -74,8 +74,7 @@ offset_left = 1.0
 offset_top = 204.0
 offset_right = 647.0
 offset_bottom = 408.0
-text = "GAME_OBJECTIVE_GAMEOVER
-"
+text = "GAME_OBJECTIVE_GAMEOVER"
 label_settings = ExtResource("2_8bg75")
 horizontal_alignment = 1
 vertical_alignment = 1

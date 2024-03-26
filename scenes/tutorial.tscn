@@ -22,6 +22,7 @@ grow_vertical = 2
 script = ExtResource("1_whia5")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
 offset_right = 648.0
 offset_bottom = 1152.0
 size_flags_horizontal = 4
