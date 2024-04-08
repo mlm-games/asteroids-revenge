@@ -15,7 +15,7 @@
       <li>Engaging sound effects</li>
     </ul>
   </description>
-  <launchable type="desktop-id">org.mlm.asteroids-revenge.desktop</launchable>
+  <launchable type="desktop-id">org.mlm.asteroids_revenge.desktop</launchable>
   <url type="homepage">https://github.com/mlm-games/asteroids-revenge</url>
   <screenshots>
     <screenshot type="default">

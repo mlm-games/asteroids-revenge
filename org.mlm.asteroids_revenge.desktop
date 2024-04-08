@@ -4,7 +4,7 @@
 Name=Asteroids Revenge
 GenericName=AsteroidsRevenge
 Comment=Beat the crooked spaceship while dodging its lasers!
-Exec=flatpak run org.mlm.asteroids_revenge
+Exec=asteroids_revenge.x86_64
 Terminal=false
 Icon=org.mlm.asteroids_revenge
 Type=Application
