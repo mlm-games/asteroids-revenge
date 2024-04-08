@@ -17,9 +17,9 @@ modules:
       - install -D godot /app/bin/godot
     sources:
       - type: archive
-        url: https://downloads.tuxfamily.org/godotengine/4.2/Godot_v4.2-stable_linux.x86_64.zip
+        url: https://github.com/godotengine/godot/releases/download/4.2.1-stable/Godot_v4.2.1-stable_linux.x86_64.zip
         sha256: d7b8670e5502f740a21178b433ec2e6678c250cb8d7a40b2934c32dfabccee58
-
+        
   - name: AsteroidsRevenge
     buildsystem: simple
     build-commands:
