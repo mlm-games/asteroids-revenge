@@ -1,4 +1,5 @@
 #!/usr/bin/env xdg-open
+
 [Desktop Entry]
 Name=Asteroids Revenge
 GenericName=AsteroidsRevenge
@@ -8,3 +9,4 @@ Terminal=false
 Icon=org.mlm.asteroids_revenge
 Type=Application
 Categories=Game;ArcadeGame;
+Name[en_US]=org.mlm.asteroids_revenge.desktop
