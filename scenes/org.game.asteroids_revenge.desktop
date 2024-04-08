@@ -7,4 +7,4 @@ Exec=flatpak run org.mlm.asteroids_revenge
 Terminal=false
 Icon=org.mlm.asteroids_revenge
 Type=Application
-Categories=Game
+Categories=Game;ArcadeGame;
