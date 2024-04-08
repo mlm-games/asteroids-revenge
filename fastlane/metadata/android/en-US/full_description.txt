@@ -2,39 +2,12 @@ It is an endless game where you play as an supernatural asteroid who is tired of
 
 Features :
 
-    . Can be downloaded on Windows and Linux (and also on OSX but need someone to try it out)
-    . Easy to start with minimal controls (just a joystick)
-    . Very short play time (can be played easily between small breaks)
-    . Open source
-    . Fully free with no ads
-    . Translations available for
-      . FRENCH / FRANÇAIS
-      . SPANISH / ESPAÑOL
-      . GERMAN / DEUTSCH
-      . ITALIAN / ITALIANO
-      . PORTUGUESE / PORTUGUÊS (BR)
-      . PORTUGUESE / PORTUGUÊS (PT)
-      . RUSSIAN / РУССКИЙ
-      . GREEK / ΕΛΛΗΝΙΚΑ
-      . TURKISH / TÜRKÇE
-      . DANISH / DANSK
-      . NORWEGIAN (NB) / NORSK BOKMÅL
-      . SWEDISH / SVENSKA
-      . DUTCH / NEDERLANDS
-      . POLISH / POLSKI
-      . FINNISH / SUOMI
-      . JAPANESE / 日本語
-      . SIMPLIFIED CHINESE / 简体中文
-      . TRADITIONAL CHINESE / 繁体中文
-      . KOREAN / 한국어
-      . CZECH / ČEŠTINA
-      . HUNGARIAN / MAGYAR
-      . ROMANIAN / ROMÂNĂ
-      . THAI / ภาษาไทย
-      . BULGARIAN / БЪЛГАРСКИ
-      . עברית / HEBREW
-      . العربية / ARABIC
-      . BOSNIAN
+	. Can be downloaded on Windows and Linux (and also on OSX but need someone to try it out)
+	. Easy to start with minimal controls (just a joystick)
+	. Very short play time (can be played easily between small breaks)
+	. Open source
+	. Fully free with no ads
+	. Translations available in more than 25 languages
 
 Made with (guess the engine- it is present among the top 3 engines with the most projects on itch.io)
 

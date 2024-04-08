@@ -23,6 +23,7 @@ func _process(delta):
 		velocity.x = direction.x * speed
 		if GameState.hard_mode:
 			rotation = lerp_angle(rotation, angle, delta * 2.0)
+			%PlayerDetection.rotation = 0
 		else:
 			if angle > PI/2:
 				rotation = max(deg_to_rad(-120), lerp_angle(rotation,angle,delta/3))

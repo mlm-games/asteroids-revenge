@@ -6,6 +6,8 @@ func _ready() -> void:
 	if GameState.boss_defeated:
 		%HardModeButton.show()
 		%HintLabel.hide()
+	GameState.save_game()
+
 
 
 func _on_start_button_pressed():

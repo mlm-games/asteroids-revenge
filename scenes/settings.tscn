@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwik1k1a4d85w"]
+[gd_scene load_steps=9 format=3 uid="uid://dwik1k1a4d85w"]
 
 [ext_resource type="Script" path="res://scenes/settings.gd" id="1_ch03l"]
 [ext_resource type="Texture2D" uid="uid://c33xrciyt6ilb" path="res://art-and-sound/bg_1_1.png" id="1_l14kl"]
@@ -6,6 +6,13 @@
 [ext_resource type="LabelSettings" uid="uid://bj4owgofe5ayt" path="res://resources/textstyle.tres" id="3_38bei"]
 [ext_resource type="Theme" uid="uid://vdypn6ym62cq" path="res://scenes/main-theme.tres" id="4_w4twb"]
 [ext_resource type="Texture2D" uid="uid://iqxgljh1hu37" path="res://art-and-sound/backarrow.png" id="4_wxjj8"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_dg25f"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_ksu4j"]
+events = [SubResource("InputEventKey_dg25f")]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -50,6 +57,7 @@ offset_bottom = 802.0
 theme_override_constants/separation = 40
 
 [node name="SoundEffectsButton" type="CheckButton" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("4_w4twb")
 text = "CREDITS_SFX"
@@ -87,10 +95,15 @@ label_settings = ExtResource("2_sy1r1")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="BackButton" type="TouchScreenButton" parent="."]
-position = Vector2(489, 998)
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 489.0
+offset_top = 993.0
+offset_right = 745.0
+offset_bottom = 1249.0
 scale = Vector2(0.61, 0.61)
-texture_normal = ExtResource("4_wxjj8")
+shortcut = SubResource("Shortcut_ksu4j")
+icon = ExtResource("4_wxjj8")
 
 [node name="TextSize" type="Label" parent="."]
 visible = false

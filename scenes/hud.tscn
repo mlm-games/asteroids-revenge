@@ -4,7 +4,7 @@
 [ext_resource type="LabelSettings" uid="uid://bj4owgofe5ayt" path="res://resources/textstyle.tres" id="2_8bg75"]
 [ext_resource type="LabelSettings" uid="uid://cnoygoxh0kgme" path="res://resources/small_textstyle.tres" id="3_6pdgi"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/joystick/virtual_joystick.tscn" id="5_vxcta"]
-[ext_resource type="Texture2D" uid="uid://b2jqwrr6pmuar" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Effects/fire03.png" id="6_gyyph"]
+[ext_resource type="Texture2D" uid="uid://0jhdq4bj5wh3" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Meteors/meteorBrown_small1.png" id="6_m0fvi"]
 [ext_resource type="Texture2D" uid="uid://b7fpmcg7ian2w" path="res://art-and-sound/missile/spr_missile.png" id="6_o465q"]
 
 [sub_resource type="Animation" id="Animation_c728u"]
@@ -63,7 +63,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7yggq"]
-size = Vector2(15, 35)
+size = Vector2(30, 30)
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_ocri0")
@@ -166,9 +166,9 @@ libraries = {
 [node name="FireButton" type="TouchScreenButton" parent="."]
 modulate = Color(1, 1, 1, 0.52549)
 texture_filter = 1
-position = Vector2(553, 956)
+position = Vector2(500, 989)
 scale = Vector2(4.515, 4.20588)
-texture_normal = ExtResource("6_gyyph")
+texture_normal = ExtResource("6_m0fvi")
 shape = SubResource("RectangleShape2D_7yggq")
 action = "fire"
 visibility_mode = 1

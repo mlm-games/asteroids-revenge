@@ -2,7 +2,7 @@ extends Node2D
 
 #You are a spaceship travelling along an asteriod belt trying to find what seems to be an anomaly,You get switched up into an asteriod but can move like an spaceship, when you try to reach back to your spacemates, they cant hear you and uh oh, looks like a fleet is firing at your asteriod belt. Will you live to tell your tale another day?
 
-#TODO: Missile only Forcefield powerup? like setting speed to -ve in direction * speed (easy mode? like in libre-memory-game)
+#HACK: Missile only Forcefield powerup? like setting speed to -ve in direction * speed (easy mode? like in libre-memory-game)
 
 var score := 0
 var obstacle_type := Vector2i(1,1)
@@ -20,13 +20,16 @@ func _ready() -> void:
 		$HardModeLabel.show()
 
 
+func _on_player_rock_hit() -> void:
+	take_life()
+
+
 func take_life():
 	GameState.lives -= 1
 	%HUD.update_lives(GameState.lives)
 	if GameState.lives <= 0:
 		_on_player_spaceship_game_over() 
 		return  # Early exit after emitting game over
-
 
 
 func _process(_delta):
@@ -79,11 +82,16 @@ func _on_player_spaceship_game_over():
 		tween.chain().tween_callback(func(): mini_asteroid.queue_free())  # Delete after fading
 
 
-func score_counter() -> void:	
+func score_counter() -> void:
 	score = (%PlayerRock.position.y)*0.05
-	GameState.highscore = max(GameState.highscore,score)
-	GameState.lowestscore = min(GameState.lowestscore,score)
-	%HUD.update_score(score,GameState.highscore,GameState.lowestscore)
+	if GameState.hard_mode:
+		GameState.frenzy_high_score = max(GameState.frenzy_high_score,score)
+		GameState.frenzy_lowest_score = min(GameState.frenzy_lowest_score,score)
+		%HUD.update_score(score,GameState.frenzy_high_score,GameState.frenzy_lowest_score)
+	else:
+		GameState.highscore = max(GameState.highscore,score)
+		GameState.lowestscore = min(GameState.lowestscore,score)
+		%HUD.update_score(score,GameState.highscore,GameState.lowestscore)
 
 func score_dependencies():
 	var abs_score = abs(score)
@@ -122,7 +130,8 @@ func score_dependencies():
 				boss_spawn_node.add_child(boss)
 				%SpawnTimer.stop()
 				%PlayerRock/BGM.stop()
-			
+		1200:
+			obstacle_type.y = 6
 
 func score_dependencies_hard_mode():
 	var abs_score = abs(score)
@@ -165,9 +174,4 @@ func score_dependencies_hard_mode():
 				boss_spawn_node.add_child(boss)
 				%SpawnTimer.stop()
 				%PlayerRock/BGM.stop()
-			
-			
 
-
-func _on_player_rock_hit() -> void:
-	take_life()

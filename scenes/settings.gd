@@ -1,9 +1,8 @@
 extends Control
 
-signal locale_changed
+#HACK: Have the sound effect bars like in pirate solitaire 
 
 @onready var language_options_button: OptionButton = %LanguageOptionsButton
-
 
 var locales := {
 	0: {"code": "en", "name": "English"},
@@ -37,6 +36,7 @@ var locales := {
 }
 
 func _ready() -> void:
+	%SoundEffectsButton.grab_focus()
 	update_buttons()
 	var locale = handle_locale_mismatch(TranslationServer.get_locale())
 	var saved_locale_index :int
@@ -89,7 +89,6 @@ func _on_language_option_button_item_selected(index: int) -> void:
 	TranslationServer.set_locale(locale)
 	update_buttons()
 	GameState.locale = locale
-	locale_changed.emit()
 
 
 

@@ -1,6 +1,5 @@
 extends Node
 
-const SETTINGS_PATH = "user://settings.cfg"
 const SAVE_PATH = "user://savegame.save"
 
 var highscore :int= 0
@@ -15,13 +14,23 @@ var fire_button_is_visible := true
 var joystick_is_visible := true
 var boss_defeated = false
 var locale : String = "en"
-
+var frenzy_high_score : int = 0
+var frenzy_lowest_score:int = 0
 
 #region Saving and loading
 func _ready() -> void:
+	if !FileAccess.file_exists(SAVE_PATH):
+		locale = OS.get_locale_language()
+		if OS.get_name() != "Android" || OS.get_name() != "Web":
+			joystick_is_visible = false
+			fire_button_is_visible = false
+	
 	load_game()
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), !GameState.music)
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("SoundEffects"), !GameState.sound_effects)
+	TranslationServer.set_locale(locale)
+	print("System language: ", locale + ", OS: ", OS.get_name())
+
 
 
 
@@ -36,6 +45,8 @@ func save_game():
 		"joystick_is_visible": joystick_is_visible,
 		"boss_defeated": boss_defeated,
 		"locale": locale,
+		"frenzy_high_score": frenzy_high_score,
+		"frenzy_lowest_score": frenzy_lowest_score
 	}
 	
 	var jstr := JSON.stringify(data)
@@ -55,4 +66,6 @@ func load_game():
 				joystick_is_visible = current_line["joystick_is_visible"]
 				boss_defeated = current_line["boss_defeated"]
 				locale = current_line["locale"]
+				frenzy_high_score = current_line["frenzy_high_score"]
+				frenzy_lowest_score = current_line["frenzy_lowest_score"]
 #endregion
