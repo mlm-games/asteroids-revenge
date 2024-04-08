@@ -2,7 +2,7 @@ app-id: org.mlm.asteroids_revenge
 runtime: org.freedesktop.Platform
 runtime-version: '23.08'
 sdk: org.freedesktop.Sdk
-command: godot-runner
+command: asteroids_revenge.x86_64
 finish-args:
   - --share=ipc
   - --socket=x11
@@ -10,31 +10,21 @@ finish-args:
   - --device=dri
 
 modules:
-  - name: godot
-    buildsystem: simple
-    build-commands:
-      - scons platform=x11 target=release_debug
-      - install -D bin/godot.x11.opt.tools /app/bin/godot
-    sources:
-      - type: git
-        url: https://github.com/godotengine/godot.git
-        tag: 4.2.1-stable
-
   - name: AsteroidsRevenge
     buildsystem: simple
     build-commands:
-      - install -D asteroids_revenge.pck /app/share/asteroids_revenge/asteroids_revenge.pck
+      - install -D asteroids_revenge.x86_64 /app/bin/asteroids_revenge.x86_64
       - install -D org.mlm.asteroids_revenge.desktop /app/share/applications/org.mlm.asteroids_revenge.desktop
-      - install -D org.mlm.asteroids_revenge.appdata.xml /app/share/appdata/org.mlm.asteroids_revenge.appdata.xml
+      - install -D org.mlm.asteroids_revenge.appdata.xml /app/share/metainfo/org.mlm.asteroids_revenge.metainfo.xml
       - install -D icon.png /app/share/icons/hicolor/128x128/apps/org.mlm.asteroids_revenge.png
-      - ln -s /app/bin/godot /app/bin/godot-runner
     sources:
-      - type: git
-        url: https://github.com/mlm-games/asteroids-revenge.git
-        tag: 0.10.3
+      - type: file
+        url: https://github.com/mlm-games/asteroids-revenge/releases/download/0.10.3/asteroids-revenge-linux.x86_64
+        sha256: d5d8e631c4a355c76720d13a4d22d60912d6f4ab1e2da7d1e1d6783b43d116e1
+        dest-filename: asteroids_revenge.x86_64
       - type: file
         path: org.mlm.asteroids_revenge.desktop
       - type: file
         path: org.mlm.asteroids_revenge.appdata.xml
       - type: file
-        path: icons/icon.png
+        path: icon.png
