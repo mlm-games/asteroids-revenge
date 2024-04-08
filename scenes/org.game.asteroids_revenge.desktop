@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=Asteroids Revenge
+GenericName=AsteroidsRevenge
+Comment=Beat the crooked spaceship while dodging its lasers!
+Exec=flatpak run org.mlm.asteroids_revenge
+Terminal=false
+Icon=org.mlm.asteroids_revenge
+Type=Application
+Categories=Game

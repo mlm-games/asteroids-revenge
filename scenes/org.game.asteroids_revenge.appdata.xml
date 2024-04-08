@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.mlm.asteroids_revenge</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <name>Asteroids Revenge</name>
+  <summary>Beat the crooked spaceship while dodging its lasers!</summary>
+  <description>
+    <p>Asteroids Revenge is an exciting arcade-style game where you must navigate through an asteroid field while battling against a crooked spaceship. Dodge its lasers and fight back to emerge victorious!</p>
+    <p>Features:</p>
+    <ul>
+      <li>Fast-paced gameplay</li>
+      <li>Challenging levels</li>
+      <li>Stunning graphics</li>
+      <li>Engaging sound effects</li>
+    </ul>
+  </description>
+  <launchable type="desktop-id">org.mlm.asteroids-revenge.desktop</launchable>
+  <url type="homepage">https://github.com/mlm-games/asteroids-revenge</url>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/mlm-games/asteroids-revenge/main/screenshots/screenshot1.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/mlm-games/asteroids-revenge/main/screenshots/screenshot2.png</image>
+    </screenshot>
+  </screenshots>
+  <releases>
+    <release version="0.10.3" date="2023-05-20">
+      <description>
+        <p>Initial release of Asteroids Revenge on Flathub.</p>
+      </description>
+    </release>
+  </releases>
+  <content_rating type="oars-1.1">
+    <content_attribute id="violence-cartoon">moderate</content_attribute>
+    <content_attribute id="violence-fantasy">moderate</content_attribute>
+  </content_rating>
+</component>
