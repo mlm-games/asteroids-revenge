@@ -15,7 +15,7 @@ modules:
     build-commands:
       - install -D asteroids_revenge.x86_64 /app/bin/asteroids_revenge.x86_64
       - install -D org.mlm.asteroids_revenge.desktop /app/share/applications/org.mlm.asteroids_revenge.desktop
-      - install -D org.mlm.asteroids_revenge.appdata.xml /app/share/metainfo/org.mlm.asteroids_revenge.metainfo.xml
+      - install -D org.mlm.asteroids_revenge.appdata.xml /app/share/metainfo/org.mlm.asteroids_revenge.appdata.xml
       - install -D icon.png /app/share/icons/hicolor/128x128/apps/org.mlm.asteroids_revenge.png
     sources:
       - type: file
