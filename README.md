@@ -1,5 +1,10 @@
 ## Source code for the game asteroid's revenge
 
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
+    alt="Get it on F-Droid"
+    height="80">](https://f-droid.org/packages/org.game.asteroids_revenge/)
+
+
 <a href="https://ragebreaker.itch.io/" target="_blank"><img src="https://static.itch.io/images/badge-color.svg" alt="Available on itch.io" height="50px" ></a>
 
 ## Screenshots
