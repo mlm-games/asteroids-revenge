@@ -1,3 +1,8 @@
+## v0.10.4 Changes 
+
+- Decreased difficulty due to red lasers in frenzy mode.
+- Fixed sound effects and music buttons not muting sound properly.
+
 ## v0.10.3 Changes
 
 - UI looks more cleaner and other minor changes to UI.

@@ -8,7 +8,7 @@ radius = 2.0
 height = 38.0
 
 [node name="SpringLaser" type="CharacterBody2D"]
-position = Vector2(324, 1088)
+position = Vector2(-4, 1108)
 collision_mask = 0
 motion_mode = 1
 platform_on_leave = 2

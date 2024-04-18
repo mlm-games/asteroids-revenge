@@ -1,0 +1,5 @@
+v0.10.4 Changes 
+
+- Fixed audio not muting correctly when entering and exiting settings
+- Reduced difficulty due to red lasers in hard mode.
+

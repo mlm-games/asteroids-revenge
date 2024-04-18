@@ -149,7 +149,7 @@ func score_dependencies_hard_mode():
 			obstacle_type.y = 3
 			spawntime = Vector2(0.4,0.75)
 		400:
-			spawntime = Vector2(0.4,0.65)
+			spawntime = Vector2(0.5,0.65)
 			obstacle_type.x = 4
 			obstacle_type.y = 4
 		500:
