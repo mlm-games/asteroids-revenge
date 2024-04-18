@@ -10,7 +10,7 @@ func _ready() -> void:
 		rotation = randf_range(-PI/2,PI/2)
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	velocity = Vector2(0,-speed).rotated(rotation)
 	move_and_slide()
 

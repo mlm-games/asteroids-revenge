@@ -62,13 +62,13 @@ func handle_locale_mismatch(current_locale: String) -> String:
 
 func _on_music_button_toggled(toggled_on: bool) -> void:
 	GameState.music = toggled_on
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), toggled_on)
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), !toggled_on)
 	update_buttons()
 	GameState.save_game()
 
 func _on_sound_effects_button_toggled(toggled_on: bool) -> void:
 	GameState.sound_effects = toggled_on
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("SoundEffects"), toggled_on)
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("SoundEffects"), !toggled_on)
 	update_buttons()
 	GameState.save_game()
 
