@@ -4,6 +4,6 @@ GenericName=AsteroidsRevenge
 Comment=Dodge lasers and battle a crooked spaceship!
 Exec=asteroids_revenge
 Terminal=false
-Icon=io.github.mlm.asteroids_revenge
+Icon=io.github.mlm_games.asteroids_revenge
 Type=Application
 Categories=Game;ArcadeGame;

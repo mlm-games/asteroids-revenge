@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>io.github.mlm.asteroids_revenge</id>
+  <id>io.github.mlm_games.asteroids_revenge</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>MIT</project_license>
   <name>Asteroids Revenge</name>
@@ -15,7 +15,7 @@
       <li>Engaging sound effects</li>
     </ul>
   </description>
-  <launchable type="desktop-id">io.github.mlm.asteroids_revenge.desktop</launchable>
+  <launchable type="desktop-id">io.github.mlm_games.asteroids_revenge.desktop</launchable>
   <url type="homepage">https://github.com/mlm-games/asteroids-revenge</url>
   <screenshots>
     <screenshot type="default">
@@ -44,7 +44,7 @@
     </screenshot>
   </screenshots>
   <releases>
-    <release version="0.10.4" date="2024-04-18">
+    <release version="0.10.4" date="2024-04-21">
       <description>
         <p>Initial release of Asteroid's Revenge on Flathub.</p>
       </description>
