@@ -1,3 +1,8 @@
+## v0.10.5 Changes 
+
+- Fixed audio not playing properly due to version mismatch of scrlibs
+- Minor text changes
+
 ## v0.10.4 Changes 
 
 - Decreased difficulty due to red lasers in frenzy mode.
