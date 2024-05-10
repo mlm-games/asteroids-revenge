@@ -25,6 +25,9 @@ func transition(anim_name):
 		"slightFlash":
 			white_rect.visible = true
 			effects_player.play(anim_name)
+		"circle-in":
+			transition_rect.visible = true
+			transition_player.play(anim_name)
 
 
 func _on_animation_player_animation_finished(anim_name):
@@ -35,21 +38,3 @@ func _on_animation_player_animation_finished(anim_name):
 		transition_rect.hide()
 	if anim_name == "slightFlash":
 		white_rect.hide()
-
-
-
-#func _create_fade_scene(texture: CompressedTexture2D) -> Node:
-	#var fade_rect = ColorRect.new()
-	#fade_rect.set_script(load("res://addons/transitions/FadeScene.gd"))
-	#fade_rect.anchors_preset = Control.PRESET_FULL_RECT
-	#
-	#var material = CanvasItemMaterial.new()
-	#material.blend_mode = CanvasItemMaterial.BLEND_MODE_MIX
-	#material.set_shader(load("res://addons/transitions/Circle2d.gdshader"))
-	#material.set_shader_parameter("dissolve_texture", texture)
-	#fade_rect.material = material
-	#
-	#return fade_rect
-
-
-
