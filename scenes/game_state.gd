@@ -10,8 +10,8 @@ var sound_effects := true
 var music := true
 #var textsize:= 1
 #const TEXT_SIZES: Array = ["SMALL","BIG","VERY BIG"]
-var fire_button_is_visible := true
-var joystick_is_visible := true
+var fire_button_is_visible := false
+var joystick_is_visible := false
 var boss_defeated = false
 var locale : String = "en"
 var frenzy_high_score : int = 0
@@ -21,9 +21,9 @@ var frenzy_lowest_score:int = 0
 func _ready() -> void:
 	if !FileAccess.file_exists(SAVE_PATH):
 		locale = OS.get_locale_language()
-		if OS.get_name() != "Android" || OS.get_name() != "Web":
-			joystick_is_visible = false
-			fire_button_is_visible = false
+		if OS.get_name() == "Android" or OS.has_feature("web_android") or OS.has_feature("web_ios"):
+			joystick_is_visible = true
+			fire_button_is_visible = true
 	
 	load_game()
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), !GameState.music)

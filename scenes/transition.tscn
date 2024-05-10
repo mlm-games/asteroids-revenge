@@ -7,7 +7,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BlackRect:modulate")
+tracks/0/path = NodePath("TransitionRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -19,7 +19,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WhiteRect:modulate")
+tracks/1/path = NodePath("OnScreenEffectsRect:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -35,7 +35,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BlackRect:modulate")
+tracks/0/path = NodePath("TransitionRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -51,7 +51,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BlackRect:modulate")
+tracks/0/path = NodePath("TransitionRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -67,7 +67,7 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("WhiteRect:modulate")
+tracks/0/path = NodePath("OnScreenEffectsRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -89,7 +89,7 @@ _data = {
 layer = 2
 script = ExtResource("1_mlxrt")
 
-[node name="BlackRect" type="ColorRect" parent="."]
+[node name="TransitionRect" type="ColorRect" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
@@ -99,12 +99,13 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="TransitionPlayer" type="AnimationPlayer" parent="TransitionRect"]
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_mvkca")
 }
 
-[node name="WhiteRect" type="ColorRect" parent="."]
+[node name="OnScreenEffectsRect" type="ColorRect" parent="."]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -112,4 +113,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[node name="EffectsPlayer" type="AnimationPlayer" parent="OnScreenEffectsRect"]
+root_node = NodePath("../..")
+
+[connection signal="animation_finished" from="TransitionRect/TransitionPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="OnScreenEffectsRect/EffectsPlayer" to="." method="_on_animation_player_animation_finished"]
