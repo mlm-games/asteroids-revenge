@@ -16,10 +16,12 @@ var boss_defeated = false
 var locale : String = "en"
 var frenzy_high_score : int = 0
 var frenzy_lowest_score:int = 0
+var first_time_opened: bool
 
 #region Saving and loading
 func _ready() -> void:
 	if !FileAccess.file_exists(SAVE_PATH):
+		first_time_opened = true
 		locale = OS.get_locale_language()
 		if OS.get_name() == "Android" or OS.has_feature("web_android") or OS.has_feature("web_ios"):
 			joystick_is_visible = true

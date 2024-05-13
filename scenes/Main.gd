@@ -1,6 +1,9 @@
 extends Node2D
 
 func _ready() -> void:
+	if GameState.first_time_opened:
+		$FirstTimeArrow.show()
+		GameState.first_time_opened = false
 	GameState.hard_mode = false
 	GameState.lives = 3
 	if GameState.boss_defeated:

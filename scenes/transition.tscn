@@ -100,6 +100,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="TransitionPlayer" type="AnimationPlayer" parent="TransitionRect"]
+unique_name_in_owner = true
 root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_mvkca")
@@ -114,7 +115,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="EffectsPlayer" type="AnimationPlayer" parent="OnScreenEffectsRect"]
+unique_name_in_owner = true
 root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_mvkca")
+}
 
 [connection signal="animation_finished" from="TransitionRect/TransitionPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="OnScreenEffectsRect/EffectsPlayer" to="." method="_on_animation_player_animation_finished"]

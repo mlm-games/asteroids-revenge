@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dh74b3h6q3026"]
+[gd_scene load_steps=12 format=3 uid="uid://dh74b3h6q3026"]
 
 [ext_resource type="Script" path="res://scenes/Main.gd" id="1_0lgb2"]
 [ext_resource type="Texture2D" uid="uid://c33xrciyt6ilb" path="res://art-and-sound/bg_1_1.png" id="2_as2ci"]
@@ -7,6 +7,7 @@
 [ext_resource type="Theme" uid="uid://bmy6kos4l110s" path="res://resources/button-theme.tres" id="5_mt70k"]
 [ext_resource type="Texture2D" uid="uid://drwhk2fn0x6rj" path="res://art-and-sound/kenney_space-shooter-redux/wrench.png" id="6_3qcx3"]
 [ext_resource type="AudioStream" uid="uid://dyysuucwb4xhm" path="res://art-and-sound/OutThere.ogg" id="7_62cej"]
+[ext_resource type="Texture2D" uid="uid://iqxgljh1hu37" path="res://art-and-sound/backarrow.png" id="8_h6amx"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6uu41"]
 
@@ -101,6 +102,13 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme = ExtResource("5_mt70k")
 text = "MENU_LABEL_QUIT"
+
+[node name="FirstTimeArrow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(94, 857)
+rotation = -3.55624
+scale = Vector2(0.701559, 0.5)
+texture = ExtResource("8_h6amx")
 
 [connection signal="pressed" from="SettingsButton" to="." method="_on_touch_screen_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
