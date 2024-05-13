@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmhhmvlxjb4g4"]
+[gd_scene load_steps=9 format=3 uid="uid://dmhhmvlxjb4g4"]
 
 [ext_resource type="Texture2D" uid="uid://c33xrciyt6ilb" path="res://art-and-sound/bg_1_1.png" id="1_nuoml"]
 [ext_resource type="LabelSettings" uid="uid://bj4owgofe5ayt" path="res://resources/textstyle.tres" id="1_u60ei"]
 [ext_resource type="Script" path="res://scenes/tutorial.gd" id="1_whia5"]
 [ext_resource type="Theme" uid="uid://vdypn6ym62cq" path="res://scenes/main-theme.tres" id="3_e3krh"]
 [ext_resource type="LabelSettings" uid="uid://cnoygoxh0kgme" path="res://resources/small_textstyle.tres" id="5_jbwbu"]
+[ext_resource type="AudioStream" uid="uid://27gsi8730ljb" path="res://art-and-sound/menu_click_sound.ogg" id="6_r1n8x"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_vm740"]
 action = &"ui_cancel"
@@ -38,6 +39,13 @@ theme = ExtResource("3_e3krh")
 shortcut = SubResource("Shortcut_u3xp4")
 text = "MENU_LABEL_BACK"
 alignment = 0
+
+[node name="MenuClickSound" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_r1n8x")
+volume_db = -11.277
+pitch_scale = 0.79
+bus = &"SoundEffects"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

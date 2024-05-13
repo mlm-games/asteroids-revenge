@@ -61,12 +61,14 @@ func handle_locale_mismatch(current_locale: String) -> String:
 
 
 func _on_music_button_toggled(toggled_on: bool) -> void:
+	%MenuClickSound.play()
 	GameState.music = toggled_on
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), !toggled_on)
 	update_buttons()
 	GameState.save_game()
 
 func _on_sound_effects_button_toggled(toggled_on: bool) -> void:
+	%MenuClickSound.play()
 	GameState.sound_effects = toggled_on
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("SoundEffects"), !toggled_on)
 	update_buttons()
@@ -74,17 +76,20 @@ func _on_sound_effects_button_toggled(toggled_on: bool) -> void:
 
 
 func _on_joystick_button_toggled(toggled_on: bool) -> void:
+	%MenuClickSound.play()
 	GameState.joystick_is_visible = toggled_on
 	update_buttons()
 	GameState.save_game()
 
 func _on_fire_touch_button_toggled(toggled_on: bool) -> void:
+	%MenuClickSound.play()
 	GameState.fire_button_is_visible = toggled_on
 	update_buttons()
 	GameState.save_game()
 
 
 func _on_language_option_button_item_selected(index: int) -> void:
+	%MenuClickSound.play()
 	var locale: String = %LanguageOptionsButton.get_item_metadata(index)
 	TranslationServer.set_locale(locale)
 	update_buttons()
@@ -99,11 +104,12 @@ func update_buttons():
 	$VBoxContainer/FireTouchButton.button_pressed =  GameState.fire_button_is_visible
 
 func _on_back_button_pressed() -> void:
+	%MenuClickSound.play()
 	GameState.save_game()
 	Transition.change_scene_with_transition("res://scenes/main.tscn")
 
 
-#region Text Size code
+#region Text Size and Fullscreen button
 """
 const TEXT_THEMES = [
 	preload("res://src/ui/theme.tres"),
@@ -118,6 +124,15 @@ func _on_option_button_item_selected(index: int) -> void:
 func resize_text_controls(index: int) -> void:
 	var theme = ThemeDB.get_project_theme()
 	theme.merge_with(TEXT_THEMES[index])
+
+
+
+func _enter_tree():
+	DisplayServer.window_set_mode(DisplayServer.WindowMode.WINDOW_MODE_WINDOWED)
+	var ws = Vector2(1920, 1080)
+	DisplayServer.window_set_size(ws)
+	var ss = DisplayServer.screen_get_size()
+	DisplayServer.window_set_position(ss*0.5-ws*0.5)
 """
 #endregion
 

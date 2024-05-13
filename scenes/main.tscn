@@ -1,13 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://dh74b3h6q3026"]
+[gd_scene load_steps=16 format=3 uid="uid://dh74b3h6q3026"]
 
 [ext_resource type="Script" path="res://scenes/Main.gd" id="1_0lgb2"]
+[ext_resource type="Theme" uid="uid://vdypn6ym62cq" path="res://scenes/main-theme.tres" id="1_jeava"]
 [ext_resource type="Texture2D" uid="uid://c33xrciyt6ilb" path="res://art-and-sound/bg_1_1.png" id="2_as2ci"]
 [ext_resource type="FontFile" uid="uid://by86tftjfcedw" path="res://art-and-sound/kenney_space-shooter-redux/Bonus/kenvector_future_thin.ttf" id="3_k5igf"]
 [ext_resource type="LabelSettings" uid="uid://cnoygoxh0kgme" path="res://resources/small_textstyle.tres" id="4_xs5df"]
 [ext_resource type="Theme" uid="uid://bmy6kos4l110s" path="res://resources/button-theme.tres" id="5_mt70k"]
 [ext_resource type="Texture2D" uid="uid://drwhk2fn0x6rj" path="res://art-and-sound/kenney_space-shooter-redux/wrench.png" id="6_3qcx3"]
+[ext_resource type="AudioStream" uid="uid://27gsi8730ljb" path="res://art-and-sound/menu_click_sound.ogg" id="6_porsc"]
 [ext_resource type="AudioStream" uid="uid://dyysuucwb4xhm" path="res://art-and-sound/OutThere.ogg" id="7_62cej"]
-[ext_resource type="Texture2D" uid="uid://iqxgljh1hu37" path="res://art-and-sound/backarrow.png" id="8_h6amx"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6uu41"]
 
@@ -18,28 +19,28 @@ keycode = 4194309
 [sub_resource type="Shortcut" id="Shortcut_f7s2m"]
 events = [SubResource("InputEventKey_0cih4")]
 
-[sub_resource type="Animation" id="Animation_q5122"]
+[sub_resource type="Animation" id="Animation_gcuun"]
 resource_name = "blink"
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/HelpButton:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.184314), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_e2lbf"]
+[sub_resource type="Animation" id="Animation_bg1rt"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/HelpButton:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -49,33 +50,34 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_gwmu1"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q53df"]
 _data = {
-"RESET": SubResource("Animation_e2lbf"),
-"blink": SubResource("Animation_q5122")
+"RESET": SubResource("Animation_bg1rt"),
+"blink": SubResource("Animation_gcuun")
 }
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jeava")
 script = ExtResource("1_0lgb2")
+metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 648.0
-offset_bottom = 1152.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_as2ci")
-
-[node name="GameName" type="Label" parent="."]
-offset_left = 3.0
-offset_top = 9.0
-offset_right = 642.0
-offset_bottom = 132.0
-theme_override_fonts/font = ExtResource("3_k5igf")
-theme_override_font_sizes/font_size = 48
-text = "GAME_TITLE"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="SettingsButton" type="TouchScreenButton" parent="."]
 modulate = Color(1, 1, 1, 0.827451)
@@ -87,14 +89,42 @@ stream = ExtResource("7_62cej")
 autoplay = true
 bus = &"Music"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_direction = 1
-offset_top = 426.0
-offset_right = 648.0
-offset_bottom = 1054.0
-alignment = 1
+[node name="MenuClickSound" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_porsc")
+volume_db = -11.277
+pitch_scale = 0.79
+bus = &"SoundEffects"
 
-[node name="StartButton" type="Button" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_direction = 1
+layout_mode = 2
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SpacerConrol" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GameName" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 12.0
+theme_override_fonts/font = ExtResource("3_k5igf")
+theme_override_font_sizes/font_size = 48
+text = "GAME_TITLE"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
@@ -104,7 +134,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_6uu41")
 shortcut = SubResource("Shortcut_f7s2m")
 text = "MENU_LABEL_PLAY"
 
-[node name="HintLabel" type="Label" parent="VBoxContainer"]
+[node name="HintLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
@@ -116,7 +146,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="HardModeButton" type="Button" parent="VBoxContainer"]
+[node name="HardModeButton" type="Button" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(0, 100)
@@ -126,35 +156,34 @@ theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxTexture_6uu41")
 text = "GAME_FRENZY_MODE"
 
-[node name="HelpButton" type="Button" parent="VBoxContainer"]
+[node name="HelpButton" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-size_flags_horizontal = 6
 theme_override_fonts/font = ExtResource("3_k5igf")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxTexture_6uu41")
 text = "MENU_MODE_HELP"
 
-[node name="ExitButton" type="Button" parent="VBoxContainer"]
+[node name="FirstTimeAnimPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/HelpButton"]
+unique_name_in_owner = true
+root_node = NodePath("../../../..")
+libraries = {
+"": SubResource("AnimationLibrary_q53df")
+}
+
+[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme = ExtResource("5_mt70k")
 text = "MENU_LABEL_QUIT"
 
-[node name="FirstTimeArrow" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(94, 857)
-rotation = 2.72695
-scale = Vector2(0.701559, 0.5)
-texture = ExtResource("8_h6amx")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FirstTimeArrow"]
-libraries = {
-"": SubResource("AnimationLibrary_gwmu1")
-}
+[node name="SpacerConrol2" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.67
 
 [connection signal="pressed" from="SettingsButton" to="." method="_on_touch_screen_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HardModeButton" to="." method="_on_hard_mode_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HelpButton" to="." method="_on_help_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HardModeButton" to="." method="_on_hard_mode_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HelpButton" to="." method="_on_help_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

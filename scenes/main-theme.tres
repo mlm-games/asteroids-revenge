@@ -17,3 +17,7 @@ default_font = ExtResource("1_c4em2")
 default_font_size = 24
 /styles/stylebox_custom = SubResource("StyleBoxFlat_wwy38")
 Button/styles/normal = SubResource("StyleBoxFlat_8ugsr")
+MarginContainer/constants/margin_bottom = 5
+MarginContainer/constants/margin_left = 5
+MarginContainer/constants/margin_right = 5
+MarginContainer/constants/margin_top = 5

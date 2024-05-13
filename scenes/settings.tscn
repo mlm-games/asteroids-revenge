@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwik1k1a4d85w"]
+[gd_scene load_steps=10 format=3 uid="uid://dwik1k1a4d85w"]
 
 [ext_resource type="Script" path="res://scenes/settings.gd" id="1_ch03l"]
 [ext_resource type="Texture2D" uid="uid://c33xrciyt6ilb" path="res://art-and-sound/bg_1_1.png" id="1_l14kl"]
@@ -6,6 +6,7 @@
 [ext_resource type="LabelSettings" uid="uid://bj4owgofe5ayt" path="res://resources/textstyle.tres" id="3_38bei"]
 [ext_resource type="Theme" uid="uid://vdypn6ym62cq" path="res://scenes/main-theme.tres" id="4_w4twb"]
 [ext_resource type="Texture2D" uid="uid://iqxgljh1hu37" path="res://art-and-sound/backarrow.png" id="4_wxjj8"]
+[ext_resource type="AudioStream" uid="uid://27gsi8730ljb" path="res://art-and-sound/menu_click_sound.ogg" id="7_eoiia"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_dg25f"]
 device = -1
@@ -124,6 +125,13 @@ offset_right = 374.0
 offset_bottom = 11.0
 scale = Vector2(2.52, 2.52)
 theme = ExtResource("4_w4twb")
+
+[node name="MenuClickSound" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_eoiia")
+volume_db = -11.277
+pitch_scale = 0.79
+bus = &"SoundEffects"
 
 [connection signal="toggled" from="VBoxContainer/SoundEffectsButton" to="." method="_on_sound_effects_button_toggled"]
 [connection signal="toggled" from="VBoxContainer/MusicButton" to="." method="_on_music_button_toggled"]
