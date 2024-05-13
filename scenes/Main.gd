@@ -3,6 +3,7 @@ extends Node2D
 func _ready() -> void:
 	if GameState.first_time_opened:
 		$FirstTimeArrow.show()
+		$FirstTimeArrow/AnimationPlayer.play("blink",-1,0.5)
 		GameState.first_time_opened = false
 	GameState.hard_mode = false
 	GameState.lives = 3
