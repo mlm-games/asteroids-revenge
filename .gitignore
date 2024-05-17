@@ -5,3 +5,17 @@
 /savegame.bin
 exports/
 art-and-sound/zips/
+
+
+# Builds/export directory
+builds/**/*
+!builds/.gdignore
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# OSX 
+.DS_Store
+
+# sh files
+release.sh
