@@ -1,3 +1,8 @@
+## v0.10.6 Changes 
+
+- Improved UI looks and other minor changes to UI.
+- Added a menu click sound effect.
+
 ## v0.10.5 Changes 
 
 - Fixed audio not playing properly due to version mismatch of scrlibs

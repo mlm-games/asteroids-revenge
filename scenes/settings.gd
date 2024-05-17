@@ -36,7 +36,7 @@ var locales := {
 }
 
 func _ready() -> void:
-	%SoundEffectsButton.grab_focus()
+	%LanguageOptionsButton.grab_focus()
 	update_buttons()
 	var locale = handle_locale_mismatch(TranslationServer.get_locale())
 	var saved_locale_index :int

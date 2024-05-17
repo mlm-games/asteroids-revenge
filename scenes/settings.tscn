@@ -45,8 +45,7 @@ grow_horizontal = 2
 
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2
-text = "Settings
-"
+text = "GAME_SETTINGS_LABEL"
 label_settings = ExtResource("3_38bei")
 horizontal_alignment = 1
 
@@ -89,11 +88,12 @@ layout_mode = 2
 alignment = 1
 
 [node name="VisibilityHintLabel" type="Label" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(600, 100)
 layout_mode = 2
 text = "GAME_SETTINGS_BUTTON_VISIBILITY_HINT"
 label_settings = ExtResource("2_sy1r1")
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="BackButton" type="Button" parent="."]
@@ -130,7 +130,7 @@ theme = ExtResource("4_w4twb")
 unique_name_in_owner = true
 stream = ExtResource("7_eoiia")
 volume_db = -11.277
-pitch_scale = 0.79
+pitch_scale = 0.84
 bus = &"SoundEffects"
 
 [connection signal="toggled" from="VBoxContainer/SoundEffectsButton" to="." method="_on_sound_effects_button_toggled"]

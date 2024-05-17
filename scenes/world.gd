@@ -37,7 +37,6 @@ func _process(_delta):
 		if %SpawnTimer.is_stopped() && %PlayerRock.visible:
 				%SpawnTimer.start()
 				%PlayerRock/BGM.play()
-	%HUD/BulletsBar.value = 5 - %PlayerRock.bullets_fired
 	%Camera2D2.global_position.y = %PlayerRock.global_position.y
 	score_counter()
 	if GameState.hard_mode:

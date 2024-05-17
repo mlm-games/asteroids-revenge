@@ -1,0 +1,5 @@
+v0.10.6 Changes 
+
+- Improved UI looks and other minor changes to UI.
+- Added a menu click sound effect.
+
