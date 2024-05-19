@@ -130,7 +130,7 @@ theme = ExtResource("4_w4twb")
 unique_name_in_owner = true
 stream = ExtResource("7_eoiia")
 volume_db = -11.277
-pitch_scale = 0.84
+pitch_scale = 1.4
 bus = &"SoundEffects"
 
 [connection signal="toggled" from="VBoxContainer/SoundEffectsButton" to="." method="_on_sound_effects_button_toggled"]

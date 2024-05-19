@@ -93,7 +93,7 @@ bus = &"Music"
 unique_name_in_owner = true
 stream = ExtResource("6_porsc")
 volume_db = -11.277
-pitch_scale = 0.79
+pitch_scale = 1.16
 bus = &"SoundEffects"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

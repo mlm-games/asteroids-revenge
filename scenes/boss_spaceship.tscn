@@ -1,14 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://basjlr2ltfo70"]
+[gd_scene load_steps=12 format=3 uid="uid://basjlr2ltfo70"]
 
 [ext_resource type="Script" path="res://scenes/boss_spaceship.gd" id="1_wffw1"]
 [ext_resource type="AudioStream" uid="uid://4mk624f2vxfm" path="res://art-and-sound/kenney_space-shooter-redux/Bonus/sfx_laser1.ogg" id="3_rvogu"]
 [ext_resource type="AudioStream" uid="uid://x2ci72ak32wa" path="res://art-and-sound/through space.ogg" id="4_eejcy"]
+[ext_resource type="AudioStream" uid="uid://bccmmcxao62qu" path="res://art-and-sound/launches/iceball.wav" id="4_ghvdv"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4wv0b"]
 size = Vector2(100, 100)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_blmny"]
-size = Vector2(99, 38)
 
 [sub_resource type="Animation" id="Animation_pamcf"]
 length = 0.001
@@ -24,6 +22,42 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BGM:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_og5i2"]
 resource_name = "approach"
@@ -31,7 +65,7 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Sprite2D:offset")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
@@ -56,12 +90,55 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, 5), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_h2t25"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BGM:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -80.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 12.5664]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 350)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2p8ah"]
 _data = {
 "RESET": SubResource("Animation_pamcf"),
 "approach": SubResource("Animation_og5i2"),
+"death": SubResource("Animation_h2t25"),
 "idle": SubResource("Animation_80y55")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_blmny"]
+size = Vector2(99, 38)
 
 [node name="BossSpaceship" type="CharacterBody2D" groups=["Boss"]]
 collision_mask = 0
@@ -74,6 +151,10 @@ texture = SubResource("PlaceholderTexture2D_4wv0b")
 
 [node name="ApproachAnim" type="AnimationPlayer" parent="Sprite2D"]
 root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_2p8ah")
+}
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 9)
@@ -116,9 +197,16 @@ volume_db = -10.0
 bus = &"SoundEffects"
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("4_eejcy")
 autoplay = true
 bus = &"Music"
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_ghvdv")
+volume_db = -5.0
+pitch_scale = 0.29
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]

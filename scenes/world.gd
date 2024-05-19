@@ -7,8 +7,8 @@ extends Node2D
 var score := 0
 var obstacle_type := Vector2i(1,1)
 var spawntime = Vector2(0.5, 1.5)
-var highscore = GameState.highscore
-var lowestscore = GameState.lowestscore
+var highscore := GameState.highscore
+var lowestscore := GameState.lowestscore
 var particles_spawn_count: int
 var initial_lives := 3
 
@@ -33,10 +33,13 @@ func take_life():
 
 
 func _process(_delta):
-	if boss_spawn_node.get_child_count() == 0:
-		if %SpawnTimer.is_stopped() && %PlayerRock.visible:
-				%SpawnTimer.start()
-				%PlayerRock/BGM.play()
+	if boss_spawn_node.get_child_count() == 0 && %SpawnTimer.is_stopped() && %PlayerRock.visible:
+		%SpawnTimer.start()
+		var tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+		var initial_vol = %PlayerRock/BGM.volume_db
+		%PlayerRock/BGM.volume_db = -80
+		tween.tween_property(%PlayerRock/BGM, "volume_db", initial_vol, 1.0)
+		%PlayerRock/BGM.play()
 	%Camera2D2.global_position.y = %PlayerRock.global_position.y
 	score_counter()
 	if GameState.hard_mode:
@@ -82,7 +85,7 @@ func _on_player_spaceship_game_over():
 
 
 func score_counter() -> void:
-	score = (%PlayerRock.position.y)*0.05
+	score = (%PlayerRock.position.y)*0.05 + 1000
 	if GameState.hard_mode:
 		GameState.frenzy_high_score = max(GameState.frenzy_high_score,score)
 		GameState.frenzy_lowest_score = min(GameState.frenzy_lowest_score,score)
