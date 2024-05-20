@@ -1,6 +1,6 @@
 ## Source code for the game asteroid's revenge
 
-<a href="https://f-droid.org/en/packages/org.game.asteroids_revenge/" target="_blank"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="50px" ></a>
+<a href="https://f-droid.org/en/packages/org.game.asteroids_revenge/" target="_blank"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="60px" ></a>
 
 <a href="https://ragebreaker.itch.io/" target="_blank"><img src="https://static.itch.io/images/badge-color.svg" alt="Available on itch.io" height="50px" ></a>
 
