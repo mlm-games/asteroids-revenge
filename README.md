@@ -1,11 +1,10 @@
 ## Source code for the game asteroid's revenge
 
-[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
-    alt="Get it on F-Droid"
-    height="80" >](https://f-droid.org/packages/org.game.asteroids_revenge/)
+<a href="https://f-droid.org/en/packages/org.game.asteroids_revenge/" target="_blank"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="50px" ></a>
 
+<a href="https://ragebreaker.itch.io/" target="_blank"><img src="https://static.itch.io/images/badge-color.svg" alt="Available on itch.io" height="50px" ></a>
 
-<a href="https://ragebreaker.itch.io/" target="_blank"><img src="https://static.itch.io/images/badge-color.svg" alt="Available on itch.io" height="60px" ></a>
+<a href="https://flathub.org/apps/io.github.mlm_games.asteroids_revenge" target="_blank"><img src="https://www.freac.org/images/flathub.png" alt="Get it on Flathub" height="50px" ></a>
 
 ## Screenshots
 <div>
