@@ -1,4 +1,4 @@
-## Source code for the game asteroid's revenge
+## Source code for the game Asteroid's Revenge
 
 <a href="https://f-droid.org/en/packages/org.game.asteroids_revenge/" target="_blank"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="60px" ></a>
 
