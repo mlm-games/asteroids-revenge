@@ -38,6 +38,10 @@ mouse_cursor/custom_image="res://art-and-sound/kenney_space-shooter-redux/PNG/UI
 
 enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg")
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 down={
@@ -69,6 +73,7 @@ fire={
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+pointing/emulate_mouse_from_touch=false
 
 [internationalization]
 

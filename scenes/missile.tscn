@@ -39,6 +39,7 @@ unique_name_in_owner = true
 position = Vector2(-71, 2)
 scale = Vector2(0.0647437, 1)
 sprite_frames = SubResource("SpriteFrames_pijoj")
+autoplay = "default"
 frame = 1
 frame_progress = 0.00316248
 flip_h = true

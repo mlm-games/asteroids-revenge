@@ -1,3 +1,10 @@
+## v0.10.7 Changes 
+
+- The menu-click-sound sounds better (Hopefully)
+- Added particles for boss's death
+- Added a death animation for the spaceship
+- Fixed press any key to continue to take touch inputs (previously tapping at the black edges or the shoot button would only work).
+
 ## v0.10.6 Changes 
 
 - Improved UI looks and other minor changes to UI.

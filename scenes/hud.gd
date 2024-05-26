@@ -38,8 +38,8 @@ func game_over(score) -> void:
 	called = true
 	%PressAnyKeyLabel/AnimationPlayer.play("showText")
 	
-func _unhandled_input(_event: InputEvent) -> void:
-	if Input.is_anything_pressed() && called:
+func _input(event: InputEvent) -> void:
+	if event.is_pressed() && called:
 		called = false
 		Transition.change_scene_with_transition("res://scenes/main.tscn")
 

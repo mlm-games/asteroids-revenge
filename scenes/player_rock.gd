@@ -1,10 +1,11 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 signal game_over
 signal hit
 
 const SPEED = 400.0
 
+var force_field : bool = false
 var bullets_fired := 0
 
 @export var rock_bullet_scene:PackedScene 
@@ -33,7 +34,7 @@ func shoot():
 		get_node("/root").add_child(rock_bullet)
 		bullets_fired+=1
 	else:
-		#Player gets hit for every 5 bullets he fires
+		#Player gets hit for every 5 bullets he fires (so he can fire inf?)
 		pass
 
 

@@ -1,6 +1,7 @@
 extends Control
 
 #HACK: Have the sound effect bars like in pirate solitaire 
+#Extra sound plays due to update_buttons being called
 
 @onready var language_options_button: OptionButton = %LanguageOptionsButton
 
