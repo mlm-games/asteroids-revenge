@@ -1,10 +1,10 @@
 ## Source code for the game Asteroid's Revenge
 
-<a href="https://f-droid.org/en/packages/org.game.asteroids_revenge/" target="_blank"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="60px" ></a>
+![F-Droid Version](https://img.shields.io/f-droid/v/com.game.asteroids_revenge?style=for-the-badge&logo=fdroid&labelColor=blue&color=black)
 
-<a href="https://ragebreaker.itch.io/" target="_blank"><img src="https://static.itch.io/images/badge-color.svg" alt="Available on itch.io" height="50px" ></a>
+![Flathub Version](https://img.shields.io/flathub/v/io.github.mlm_games.asteroids_revenge?style=for-the-badge&logo=flathub&labelColor=blue&color=black)
 
-<a href="https://flathub.org/apps/io.github.mlm_games.asteroids_revenge" target="_blank"><img src="https://www.freac.org/images/flathub.png" alt="Get it on Flathub" height="50px" ></a>
+[![Play on itch.io](https://img.shields.io/badge/play_on_itch.io-b84341?style=for-the-badge&logo=itchdotio&color=%23161616)](https://ragebreaker.itch.io/asteroids-revenge)
 
 ## Screenshots
 <div>
