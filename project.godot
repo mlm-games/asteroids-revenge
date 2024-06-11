@@ -70,11 +70,6 @@ fire={
 ]
 }
 
-[input_devices]
-
-pointing/emulate_touch_from_mouse=false
-pointing/emulate_mouse_from_touch=true
-
 [internationalization]
 
 locale/translations=PackedStringArray("res://locale/translations.ar.translation", "res://locale/translations.bg.translation", "res://locale/translations.br.translation", "res://locale/translations.bs.translation", "res://locale/translations.cs.translation", "res://locale/translations.da.translation", "res://locale/translations.de.translation", "res://locale/translations.el.translation", "res://locale/translations.en.translation", "res://locale/translations.es.translation", "res://locale/translations.fi.translation", "res://locale/translations.fr.translation", "res://locale/translations.he.translation", "res://locale/translations.hu.translation", "res://locale/translations.it.translation", "res://locale/translations.ja.translation", "res://locale/translations.ko.translation", "res://locale/translations.lzh.translation", "res://locale/translations.nb.translation", "res://locale/translations.nl.translation", "res://locale/translations.pl.translation", "res://locale/translations.pt.translation", "res://locale/translations.ro.translation", "res://locale/translations.ru.translation", "res://locale/translations.sv.translation", "res://locale/translations.th.translation", "res://locale/translations.tr.translation", "res://locale/translations.zh.translation")
