@@ -1,3 +1,9 @@
+## v0.10.9 Changes 
+
+- Changed Buttons layout for RTL languages
+- Fixed Settings button not being able to be clicked on desktop (only on v0.10.8)
+- Fixed Lowestscore text overlapping with "press any key to continue" text
+
 ## v0.10.7 Changes 
 
 - The menu-click-sound sounds better (Hopefully)
