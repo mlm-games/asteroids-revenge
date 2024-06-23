@@ -119,9 +119,9 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 0
 offset_left = 15.0
-offset_top = 797.0
+offset_top = 600.0
 offset_right = 634.0
-offset_bottom = 934.0
+offset_bottom = 737.0
 label_settings = ExtResource("2_8bg75")
 horizontal_alignment = 1
 
@@ -148,9 +148,12 @@ libraries = {
 [node name="Virtual Joystick" parent="Control" instance=ExtResource("5_vxcta")]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.52549)
+layout_direction = 2
 layout_mode = 1
-offset_top = -259.0
-offset_right = 262.0
+offset_left = 35.0
+offset_top = -299.0
+offset_right = 297.0
+offset_bottom = -48.0
 pressed_color = Color(0.745098, 0.745098, 0.745098, 0.360784)
 joystick_mode = 1
 visibility_mode = 1
@@ -163,12 +166,11 @@ action_down = "down"
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.52549)
 texture_filter = 1
-position = Vector2(500, 989)
+position = Vector2(450, 950)
 scale = Vector2(4.515, 4.20588)
 texture_normal = ExtResource("6_m0fvi")
 shape = SubResource("RectangleShape2D_7yggq")
 action = "fire"
-visibility_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
@@ -200,6 +202,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 5.0
+value = 5.0
 fill_mode = 1
 texture_progress = ExtResource("6_o465q")
 texture_progress_offset = Vector2(5, 10)
@@ -207,21 +210,6 @@ tint_under = Color(1, 1, 1, 0.270588)
 tint_progress = Color(1, 0.6, 0.6, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control/VBoxContainer/HBoxContainer/BulletsBar"]
-libraries = {
-"": SubResource("AnimationLibrary_kulbx")
-}
-
-[node name="BulletsBar" type="TextureProgressBar" parent="Control/VBoxContainer/HBoxContainer/BulletsBar"]
-layout_mode = 0
-size_flags_horizontal = 3
-max_value = 5.0
-fill_mode = 1
-texture_progress = ExtResource("6_o465q")
-texture_progress_offset = Vector2(5, 10)
-tint_under = Color(1, 1, 1, 0.270588)
-tint_progress = Color(1, 0.6, 0.6, 1)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/VBoxContainer/HBoxContainer/BulletsBar/BulletsBar"]
 libraries = {
 "": SubResource("AnimationLibrary_kulbx")
 }

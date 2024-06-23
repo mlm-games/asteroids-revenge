@@ -6,9 +6,9 @@ signal hit
 const SPEED = 400.0
 
 var force_field : bool = false
-var bullets_fired := 0
+var bullets_fired : int = 0
 
-@export var rock_bullet_scene:PackedScene 
+@export var rock_bullet_scene: PackedScene 
 
 func _ready() -> void:
 	if GameState.hard_mode:
