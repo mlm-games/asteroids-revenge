@@ -21,8 +21,19 @@ var difficulty_level_method = score_dependencies_hard_mode if GameState.hard_mod
 @onready var boss_spawn_node = %Camera2D2
 
 func _ready() -> void:
-	%HUD.update_lives(INITIAL_LIVES)
-	$HardModeLabel.visible = GameState.hard_mode
+    GameState.lives = INITIAL_LIVES
+    %HUD.update_lives(GameState.lives)
+    $HardModeLabel.visible = GameState.hard_mode
+    
+    # Connect player signals to HUD
+    %PlayerRock.bullet_fired.connect(%HUD._on_player_bullet_fired)
+    %PlayerRock.bullets_reset.connect(%HUD._on_player_bullets_reset)
+    %PlayerRock.hit.connect(_on_player_rock_hit)
+    %PlayerRock.game_over.connect(_on_player_spaceship_game_over)
+    
+    # Connect HUD signals
+    %HUD.game_restarted.connect(_on_game_restarted)
+
 
 func _process(_delta: float) -> void:
 	handle_boss_spawn()
@@ -30,10 +41,12 @@ func _process(_delta: float) -> void:
 	update_score()
 	difficulty_level_method.call()
 
+
 func handle_boss_spawn() -> void:
 	if boss_spawn_node.get_child_count() == 0 && %SpawnTimer.is_stopped() && %PlayerRock.visible:
 		%SpawnTimer.start()
 		fade_in_bgm()
+
 
 func fade_in_bgm() -> void:
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
@@ -42,8 +55,10 @@ func fade_in_bgm() -> void:
 	tween.tween_property(%PlayerRock/BGM, "volume_db", initial_vol, 1.0)
 	%PlayerRock/BGM.play()
 
+
 func update_camera_position() -> void:
 	%Camera2D2.global_position.y = %PlayerRock.global_position.y
+
 
 func update_score() -> void:
 	score = (%PlayerRock.position.y) * 0.05
@@ -60,9 +75,11 @@ func update_score() -> void:
 		GameState.highscore = high_score
 		GameState.lowestscore = low_score
 
+
 func _on_spawn_timer_timeout() -> void:
 	%SpawnTimer.wait_time = randf_range(spawntime.x, spawntime.y)
 	spawn_obstacle()
+
 
 func spawn_obstacle() -> void:
 	var obstacle: Obstacles = load("res://resources/obstacle" + str(randi_range(obstacle_type.x, obstacle_type.y)) + ".tres")
@@ -74,8 +91,10 @@ func spawn_obstacle() -> void:
 	%Enemies.add_child(projectile_scene)
 	%SpawnFireSound.play()
 
+
 func _on_player_rock_hit() -> void:
 	take_life()
+
 
 func take_life() -> void:
 	GameState.lives -= 1
@@ -184,3 +203,24 @@ func spawn_boss() -> void:
 		boss_spawn_node.add_child(boss)
 		%SpawnTimer.stop()
 		%PlayerRock/BGM.stop()
+
+func _on_game_restarted() -> void:
+    # Reset game state
+    GameState.lives = INITIAL_LIVES
+    score = 0
+    %PlayerRock.bullets_fired = 0
+    %PlayerRock.show()
+    %PlayerRock/CollisionShape2D.set_deferred("disabled", false)
+    %SpawnTimer.start()
+    
+    # Update HUD
+    %HUD.update_lives(GameState.lives)
+    %HUD.update_score(score, GameState.highscore, GameState.lowestscore)
+    %HUD.update_bullets_bar(0)
+    
+    # Reset difficulty
+    obstacle_type = Vector2i(1, 1)
+    spawntime = Vector2(0.5, 1.5)
+    
+    # Restart background music
+    fade_in_bgm()
