@@ -29,20 +29,22 @@ func _physics_process(delta):
             shoot()
 
 func shoot():
+	#Here we dont know the exact value of rotation as its spinning, so tweens should be used. (just an example, not needed here)
     if bullets_fired < MAX_BULLETS:
-        emit_signal("bullet_fired")
+		bullet_fired.emit()
         %AnimationPlayer.play("fire")
         var rock_bullet = rock_bullet_scene.instantiate()
         rock_bullet.global_position = %Sprite2D.global_position + Vector2(0,50) 
         get_node("/root").add_child(rock_bullet)
         bullets_fired += 1
     else:
-        # Player gets hit for every 5 bullets they fire
-        hit.emit()
-        hit_effects()
+		#Player gets hit for every 5 bullets he fires (so he can fire inf?)
+		pass
+
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
     game_over.emit()
+
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
     if body.is_in_group("enemies"):
@@ -50,11 +52,12 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
         hit.emit()
         hit_effects()
 
+
 func hit_effects():
     $Area2D/CollisionShape2D.set_deferred("disabled", true)
     %InvincibilityTimer.start()
     bullets_fired = 0
-    emit_signal("bullets_reset")
+	bullets_reset.emit()
     $DeathSound.play()
     var tween = %Sprite2D.create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
     tween.tween_property(%Sprite2D,"modulate",Color.RED,0.1)
@@ -65,6 +68,7 @@ func hit_effects():
         $DeathSound.stop()
         fade_in_out()
     Engine.time_scale = 1
+
 
 func fade_in_out():
     if !%InvincibilityTimer.is_stopped():
