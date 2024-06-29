@@ -214,6 +214,7 @@ tint_progress = Color(1, 0.6, 0.6, 1)
 libraries = {
 "": SubResource("AnimationLibrary_kulbx")
 }
+autoplay = "fullBar"
 
 [node name="ScoreLabel" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true

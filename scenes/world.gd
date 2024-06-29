@@ -6,7 +6,7 @@ extends Node2D
 #HACK: Missile only Forcefield powerup? like setting speed to -ve in direction * speed (easy mode? like in libre-memory-game)
 
 const MiniAsteroidScene = preload("res://scenes/mini_asteroid.tscn")
-const BossSpaceshipScene = preload("res://scenes/boss_spaceship.tscn")
+const BOSS_SPACESHIP_PATH = 'res://scenes/boss_spaceship.tscn'
 
 const PARTICLE_SPAWN_OFFSET = 20
 const MIN_PARTICLES = 2
@@ -21,18 +21,19 @@ var difficulty_level_method = score_dependencies_hard_mode if GameState.hard_mod
 @onready var boss_spawn_node = %Camera2D2
 
 func _ready() -> void:
-    GameState.lives = INITIAL_LIVES
-    %HUD.update_lives(GameState.lives)
-    $HardModeLabel.visible = GameState.hard_mode
-    
-    # Connect player signals to HUD
-    %PlayerRock.bullet_fired.connect(%HUD._on_player_bullet_fired)
-    %PlayerRock.bullets_reset.connect(%HUD._on_player_bullets_reset)
-    %PlayerRock.hit.connect(_on_player_rock_hit)
-    %PlayerRock.game_over.connect(_on_player_spaceship_game_over)
-    
-    # Connect HUD signals
-    %HUD.game_restarted.connect(_on_game_restarted)
+	GameState.lives = INITIAL_LIVES
+	%HUD.update_lives(GameState.lives)
+	$HardModeLabel.visible = GameState.hard_mode
+	ResourceLoader.load_threaded_request(BOSS_SPACESHIP_PATH)
+	
+	# Connect player signals to HUD
+	#%PlayerRock.bullet_fired.connect(%HUD._on_player_bullet_fired)
+	#%PlayerRock.bullets_reset.connect(%HUD._on_player_bullets_reset)
+	#%PlayerRock.hit.connect(_on_player_rock_hit)
+	#%PlayerRock.game_over.connect(_on_player_spaceship_game_over)
+	
+	# Connect HUD signals
+	#%HUD.game_restarted.connect(_on_game_restarted)
 
 
 func _process(_delta: float) -> void:
@@ -198,29 +199,31 @@ func score_dependencies_hard_mode() -> void:
 
 func spawn_boss() -> void:
 	if boss_spawn_node.get_child_count() == 0:
-		var boss = BossSpaceshipScene.instantiate()
+		var boss = ResourceLoader.load_threaded_get(BOSS_SPACESHIP_PATH).instantiate()
 		boss.position.x = boss_spawn_node.position.x
 		boss_spawn_node.add_child(boss)
 		%SpawnTimer.stop()
 		%PlayerRock/BGM.stop()
 
+"""
 func _on_game_restarted() -> void:
-    # Reset game state
-    GameState.lives = INITIAL_LIVES
-    score = 0
-    %PlayerRock.bullets_fired = 0
-    %PlayerRock.show()
-    %PlayerRock/CollisionShape2D.set_deferred("disabled", false)
-    %SpawnTimer.start()
-    
-    # Update HUD
-    %HUD.update_lives(GameState.lives)
-    %HUD.update_score(score, GameState.highscore, GameState.lowestscore)
-    %HUD.update_bullets_bar(0)
-    
-    # Reset difficulty
-    obstacle_type = Vector2i(1, 1)
-    spawntime = Vector2(0.5, 1.5)
-    
-    # Restart background music
-    fade_in_bgm()
+	# Reset game state
+	GameState.lives = INITIAL_LIVES
+	score = 0
+	%PlayerRock.bullets_fired = 0
+	%PlayerRock.show()
+	%PlayerRock/CollisionShape2D.set_deferred("disabled", false)
+	%SpawnTimer.start()
+	
+	# Update HUD
+	%HUD.update_lives(GameState.lives)
+	%HUD.update_score(score, GameState.highscore, GameState.lowestscore)
+	%HUD.update_bullets_bar(0)
+	
+	# Reset difficulty
+	obstacle_type = Vector2i(1, 1)
+	spawntime = Vector2(0.5, 1.5)
+	
+	# Restart background music
+	fade_in_bgm()
+"""
