@@ -82,7 +82,7 @@ if [ -z "$exported_releases" ]; then
     fi
 fi
 if [ "$exported_releases" = "yes" ]; then
-    ./exports/butler-upload.sh "$version_name"
+    ./butler-upload.sh "$version_name"
 
     # Create GitHub release
     gh release create "$version_name" \
