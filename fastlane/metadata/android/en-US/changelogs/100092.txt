@@ -1,0 +1,6 @@
+v0.10.10 Changes 
+
+ - Optimised the code for the game
+ - Some minor changes to UI
+ - Fix boss loading time when it spawns
+

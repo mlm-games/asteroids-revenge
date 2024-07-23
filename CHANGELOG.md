@@ -1,3 +1,9 @@
+## v0.10.10 Changes 
+
+ - Optimised the code for the game
+ - Some minor changes to UI
+ - Fix boss loading time when it spawns
+
 ## v0.10.9 Changes 
 
 - Changed Buttons layout for RTL languages

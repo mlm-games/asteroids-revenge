@@ -1,5 +1,25 @@
 #!/bin/bash
 
+
+
+# Help function
+show_help() {
+    echo "Usage: $0 <version_name> <version_code>"
+    echo "Example: $0 0.10.9 100082"
+    echo
+    echo "This script performs the following tasks:"
+    echo "1. Checks if the provided version exists in CHANGELOG.md"
+    echo "2. Extracts the changelog for the given version"
+    echo "3. Updates version codes and names in export_presets.cfg"
+    echo "4. Prompts for confirmation of exported releases"
+    echo "5. Runs the butler-upload script for file uploads"
+    echo "6. Creates a GitHub release with the changelog"
+    echo "7. Uploads release assets to GitHub"
+}
+
+
+
+
 # Check if two arguments are provided
 if [ $# -ne 2 ]; then
     echo "Usage: $0 <version_name> <version_code>"
@@ -9,6 +29,7 @@ if [ $# -ne 2 ]; then
     previous_version_code=$(grep 'version/code=' export_presets.cfg | head -n1 | cut -d'=' -f2)
     echo "Previous version code was: $previous_version_code"
     
+    show_help
     exit 1
 fi
 
@@ -49,6 +70,35 @@ sed -i "0,/version\/code=[0-9]*/s//version\/code=$((version_code-1))/" export_pr
 echo "Updated version codes and version name in export_presets.cfg"
 
 # If we've made it this far, run the butler-upload script
-#./exports/butler-upload.sh "$version_name"
+
+echo "Please export your releases in godot-app and push your changes to github."
+if [ -z "$exported_releases" ]; then
+    read -p "Have you exported releases in the Godot app and pushed the changelog file to github? (y/n): " response
+    if [[ $response =~ ^[Yy]$ ]]; then
+        exported_releases="yes"
+    else
+        echo "Please export releases in the Godot app before continuing."
+        exit 1
+    fi
+fi
+if [ "$exported_releases" = "yes" ]; then
+    ./exports/butler-upload.sh "$version_name"
+
+    # Create GitHub release
+    gh release create "$version_name" \
+        --title "New Release $version_name" \
+        --notes-file $changelog_file
+
+    # Upload assets to the release
+    gh release upload "$version_name" \
+        "./exports/asteroids-revenge-windows.exe" \
+        "./exports/asteroids-revenge-linux-aarch64.arm64" \
+        "./exports/asteroids-revenge-linux.x86_64" \
+        "./exports/asteroids-revenge-macOS.zip" \
+        "./exports/asteroids-revenge-android-arm64.apk" \
+        "./exports/asteroids-revenge-android-arm32.apk"
+fi
 
 echo "Upload completed successfully!"
+
+
