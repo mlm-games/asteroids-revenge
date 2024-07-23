@@ -87,7 +87,7 @@ if [ "$exported_releases" = "yes" ]; then
     # Create GitHub release
     gh release create "$version_name" \
         --title "v$version_name" \
-        --notes-file "## $changelog_file"
+        --notes-file <(echo "## $(cat "$changelog_file")")
 
     # Upload assets to the release
     gh release upload "$version_name" \
