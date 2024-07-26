@@ -39,11 +39,11 @@ License: [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)
 
 ### 2D assets
 
-Space Shooter Redux Pack
-Copyright: kenney.nl - https://kenney.nl/assets/space-shooter-redux
+Space Shooter Redux Pack - by Kenney - https://kenney.nl/assets/space-shooter-redux
 License: [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/)
 
 Missile - by samoliver - https://opengameart.org/content/missile-0
+License: [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/)
 
 credits.md has more info on assets added in updates.
 
