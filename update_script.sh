@@ -102,3 +102,4 @@ fi
 echo "Upload completed successfully!"
 
 
+xdg-open https://itch.io/dashboard

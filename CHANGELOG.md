@@ -1,3 +1,8 @@
+## v0.10.11 Changes
+
+ - F-droid didnt recognise the last update, so adding a new one
+ - Removes the 2 hashes that were copied over from changelog to .txt file  
+
 ## v0.10.10 Changes 
 
  - Optimised the code for the game
