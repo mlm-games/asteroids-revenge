@@ -42,10 +42,3 @@ func _on_player_detection_body_exited(_body: Node2D) -> void:
 	if player.force_field:
 		follow = true
 		%LockOnSound.volume_db = -80
-
-
-
-
-
-
-

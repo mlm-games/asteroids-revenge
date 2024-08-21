@@ -136,4 +136,3 @@ func _enter_tree():
 	DisplayServer.window_set_position(ss*0.5-ws*0.5)
 """
 #endregion
-

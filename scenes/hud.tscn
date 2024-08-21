@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dw1xhin6im8kv"]
+[gd_scene load_steps=13 format=3 uid="uid://dw1xhin6im8kv"]
 
 [ext_resource type="Script" path="res://scenes/hud.gd" id="1_ocri0"]
 [ext_resource type="LabelSettings" uid="uid://bj4owgofe5ayt" path="res://resources/textstyle.tres" id="2_8bg75"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/joystick/virtual_joystick.tscn" id="5_vxcta"]
 [ext_resource type="Texture2D" uid="uid://0jhdq4bj5wh3" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Meteors/meteorBrown_small1.png" id="6_m0fvi"]
 [ext_resource type="Texture2D" uid="uid://b7fpmcg7ian2w" path="res://art-and-sound/missile/spr_missile.png" id="6_o465q"]
+[ext_resource type="Texture2D" uid="uid://c33xrciyt6ilb" path="res://art-and-sound/bg_1_1.png" id="7_2s6xh"]
 
 [sub_resource type="Animation" id="Animation_c728u"]
 length = 0.001
@@ -78,6 +79,7 @@ _data = {
 size = Vector2(30, 30)
 
 [node name="HUD" type="CanvasLayer"]
+layer = -3
 script = ExtResource("1_ocri0")
 
 [node name="Control" type="Control" parent="."]
@@ -87,6 +89,31 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ParallaxBackground" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ParallaxLayer" type="Parallax2D" parent="Control/ParallaxBackground"]
+repeat_size = Vector2(0, 1152)
+follow_viewport = false
+
+[node name="Sprite2D" type="TextureRect" parent="Control/ParallaxBackground/ParallaxLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 648.0
+offset_bottom = 1152.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("7_2s6xh")
 metadata/_edit_use_anchors_ = true
 
 [node name="DeathLabel" type="Label" parent="Control"]
@@ -161,6 +188,7 @@ action_left = "left"
 action_right = "right"
 action_up = "up"
 action_down = "down"
+metadata/_edit_use_anchors_ = true
 
 [node name="FireButton" type="TouchScreenButton" parent="Control"]
 unique_name_in_owner = true

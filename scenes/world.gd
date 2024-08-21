@@ -38,7 +38,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	handle_boss_spawn()
-	update_camera_position()
+	update_camera_position_and_projectile_path()
 	update_score()
 	difficulty_level_method.call()
 
@@ -57,8 +57,9 @@ func fade_in_bgm() -> void:
 	%PlayerRock/BGM.play()
 
 
-func update_camera_position() -> void:
+func update_camera_position_and_projectile_path() -> void:
 	%Camera2D2.global_position.y = %PlayerRock.global_position.y
+	
 
 
 func update_score() -> void:
@@ -85,7 +86,7 @@ func _on_spawn_timer_timeout() -> void:
 func spawn_obstacle() -> void:
 	var obstacle: Obstacles = load("res://resources/obstacle" + str(randi_range(obstacle_type.x, obstacle_type.y)) + ".tres")
 	var projectile_scene = obstacle.scene.instantiate()
-	var spawn_location = %PlayerRock/ProjectilePath/ProjectileSpawnLocation
+	var spawn_location = %ProjectilePath/ProjectileSpawnLocation
 	spawn_location.progress_ratio = randf()
 	projectile_scene.global_position = spawn_location.global_position
 	projectile_scene.add_to_group("enemies")
