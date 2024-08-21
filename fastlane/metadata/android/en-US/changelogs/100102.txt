@@ -1,0 +1,8 @@
+v0.11.0 Changes
+
+- Updated godot version to 4.3
+- Added a new control scheme (should be enabled by you in settings) as the old one was kinda hard to use 
+- As suggested by [lealternativeto.net](https://www.lealternative.net/), the new controls have the player moving automatically down for android only (touch left/right side of screen to move to side)
+- Added info regarding the new controls in the help section
+- The fire button now reacts to user input like the home screen buttons instead of just performing the action
+

@@ -4,9 +4,10 @@
 [ext_resource type="LabelSettings" uid="uid://bj4owgofe5ayt" path="res://resources/textstyle.tres" id="2_8bg75"]
 [ext_resource type="LabelSettings" uid="uid://cnoygoxh0kgme" path="res://resources/small_textstyle.tres" id="3_6pdgi"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/joystick/virtual_joystick.tscn" id="5_vxcta"]
-[ext_resource type="Texture2D" uid="uid://0jhdq4bj5wh3" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Meteors/meteorBrown_small1.png" id="6_m0fvi"]
+[ext_resource type="Texture2D" uid="uid://ceroyuqbhc4ys" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Meteors/meteorBrown_med1.png" id="6_5rvp1"]
 [ext_resource type="Texture2D" uid="uid://b7fpmcg7ian2w" path="res://art-and-sound/missile/spr_missile.png" id="6_o465q"]
 [ext_resource type="Texture2D" uid="uid://c33xrciyt6ilb" path="res://art-and-sound/bg_1_1.png" id="7_2s6xh"]
+[ext_resource type="Theme" uid="uid://bmy6kos4l110s" path="res://resources/button-theme.tres" id="7_oub31"]
 
 [sub_resource type="Animation" id="Animation_c728u"]
 length = 0.001
@@ -74,9 +75,6 @@ _data = {
 "fullBar": SubResource("Animation_0he1m"),
 "showText": SubResource("Animation_ye65v")
 }
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7yggq"]
-size = Vector2(30, 30)
 
 [node name="HUD" type="CanvasLayer"]
 layer = -3
@@ -190,17 +188,6 @@ action_up = "up"
 action_down = "down"
 metadata/_edit_use_anchors_ = true
 
-[node name="FireButton" type="TouchScreenButton" parent="Control"]
-unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0.52549)
-texture_filter = 1
-position = Vector2(450, 950)
-scale = Vector2(4.515, 4.20588)
-texture_normal = ExtResource("6_m0fvi")
-shape = SubResource("RectangleShape2D_7yggq")
-action = "fire"
-visibility_mode = 1
-
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
@@ -252,3 +239,55 @@ text = "0"
 label_settings = ExtResource("2_8bg75")
 horizontal_alignment = 2
 vertical_alignment = 2
+
+[node name="TouchAltVBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/TouchAltVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.75
+
+[node name="LeftTouchScreenButton" type="Button" parent="Control/TouchAltVBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightTouchScreenButton" type="Button" parent="Control/TouchAltVBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="Control/TouchAltVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FireButton" type="Button" parent="Control/TouchAltVBoxContainer/Control"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.52549)
+layout_mode = 0
+offset_left = 399.0
+offset_top = 53.0001
+offset_right = 450.0
+offset_bottom = 104.0
+scale = Vector2(3.205, 3.205)
+focus_mode = 0
+theme = ExtResource("7_oub31")
+icon = ExtResource("6_5rvp1")
+icon_alignment = 1
+
+[connection signal="button_down" from="Control/TouchAltVBoxContainer/HBoxContainer/LeftTouchScreenButton" to="." method="_on_left_touch_screen_button_button_down"]
+[connection signal="button_up" from="Control/TouchAltVBoxContainer/HBoxContainer/LeftTouchScreenButton" to="." method="_on_left_touch_screen_button_button_up"]
+[connection signal="button_down" from="Control/TouchAltVBoxContainer/HBoxContainer/RightTouchScreenButton" to="." method="_on_right_touch_screen_button_button_down"]
+[connection signal="button_up" from="Control/TouchAltVBoxContainer/HBoxContainer/RightTouchScreenButton" to="." method="_on_right_touch_screen_button_button_up"]
+[connection signal="button_down" from="Control/TouchAltVBoxContainer/Control/FireButton" to="." method="_on_fire_button_button_down"]

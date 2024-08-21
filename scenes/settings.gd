@@ -97,17 +97,23 @@ func _on_language_option_button_item_selected(index: int) -> void:
 	GameState.locale = locale
 
 
+func _on_android_automove_button_toggled(toggled_on: bool) -> void:
+	GameState.player_alt_touch_controls = toggled_on
+	update_buttons()
+	GameState.save_game()
 
 func update_buttons():
 	$VBoxContainer/SoundEffectsButton.button_pressed = GameState.sound_effects
 	$VBoxContainer/MusicButton.button_pressed = GameState.music
 	$VBoxContainer/JoystickButton.button_pressed =  GameState.joystick_is_visible
 	$VBoxContainer/FireTouchButton.button_pressed =  GameState.fire_button_is_visible
+	$VBoxContainer/AndroidAutomoveButton.button_pressed = GameState.player_alt_touch_controls
 
 func _on_back_button_pressed() -> void:
 	%MenuClickSound.play()
 	GameState.save_game()
 	Transition.change_scene_with_transition("res://scenes/main.tscn")
+
 
 
 #region Text Size and Fullscreen button

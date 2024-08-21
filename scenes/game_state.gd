@@ -17,6 +17,7 @@ var locale : String = "en"
 var frenzy_high_score : int = 0
 var frenzy_lowest_score:int = 0
 var first_time_opened: bool
+var player_alt_touch_controls: bool = false
 
 #region Saving and loading
 func _ready() -> void:
@@ -48,7 +49,8 @@ func save_game():
 		"boss_defeated": boss_defeated,
 		"locale": locale,
 		"frenzy_high_score": frenzy_high_score,
-		"frenzy_lowest_score": frenzy_lowest_score
+		"frenzy_lowest_score": frenzy_lowest_score,
+		"player_alt_touch_controls": player_alt_touch_controls,
 	}
 	
 	var jstr := JSON.stringify(data)
@@ -70,4 +72,5 @@ func load_game():
 				locale = current_line["locale"]
 				frenzy_high_score = current_line["frenzy_high_score"]
 				frenzy_lowest_score = current_line["frenzy_lowest_score"]
+				player_alt_touch_controls = current_line["player_alt_touch_controls"]
 #endregion

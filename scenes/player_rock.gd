@@ -21,8 +21,13 @@ func _physics_process(delta):
 	if visible:
 		%Sprite2D.rotation += delta * PI/2
 		var direction = Input.get_vector("left", "right","up","down")
-		velocity = direction * SPEED
-		velocity.y /= 2
+		if GameState.player_alt_touch_controls:
+			velocity.x = direction.x * SPEED
+			velocity.y = SPEED/2 
+			velocity *= abs(velocity.normalized())
+		else:
+			velocity = direction * SPEED
+			velocity.y /= 2
 		move_and_slide()
 		
 		if Input.is_action_just_pressed("fire"):

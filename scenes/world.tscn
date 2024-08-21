@@ -64,6 +64,7 @@ position_smoothing_speed = 7.0
 
 [node name="ProjectilePath" type="Path2D" parent="Camera2D2"]
 unique_name_in_owner = true
+position = Vector2(6, -445)
 curve = SubResource("Curve2D_pkpba")
 metadata/_edit_group_ = true
 

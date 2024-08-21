@@ -164,4 +164,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "HELP_ANDROID_CONTROLS"
+label_settings = ExtResource("5_jbwbu")
+horizontal_alignment = 1
+autowrap_mode = 3
+
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

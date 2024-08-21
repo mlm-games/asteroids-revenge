@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://bmy6kos4l110s"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://bmy6kos4l110s"]
 
 [ext_resource type="FontFile" uid="uid://5u8hgsjkihsm" path="res://art-and-sound/kenney_space-shooter-redux/Bonus/kenvector_future.ttf" id="1_tli68"]
 
@@ -18,9 +18,22 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bovvx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6u3qw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2i5pt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v2drj"]
+
 [resource]
 default_font = ExtResource("1_tli68")
 default_font_size = 34
 /styles/stylebox_custom = SubResource("StyleBoxFlat_wwy38")
 Button/styles/hover = SubResource("StyleBoxEmpty_yq41d")
 Button/styles/normal = SubResource("StyleBoxFlat_8ugsr")
+NoOutlineButton/base_type = &"Button"
+NoOutlineButton/styles/disabled = SubResource("StyleBoxEmpty_bovvx")
+NoOutlineButton/styles/disabled_mirrored = SubResource("StyleBoxEmpty_6u3qw")
+NoOutlineButton/styles/focus = SubResource("StyleBoxEmpty_2i5pt")
+NoOutlineButton/styles/hover = SubResource("StyleBoxEmpty_v2drj")

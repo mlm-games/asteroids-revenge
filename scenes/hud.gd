@@ -11,7 +11,16 @@ func _ready() -> void:
 	%"Virtual Joystick".visible = GameState.joystick_is_visible
 	%FireButton.visible = GameState.fire_button_is_visible
 	
-	# Connect to player signals
+	if GameState.player_alt_touch_controls:
+		%LeftTouchScreenButton.show()
+		%RightTouchScreenButton.show()
+		%"Virtual Joystick".process_mode = Node.PROCESS_MODE_DISABLED
+		%"Virtual Joystick".hide()
+		%FireButton.scale = Vector2(4,4)
+		# idk how this works but (width + size)/2 doesnt
+		%FireButton.global_position.x = ProjectSettings.get_setting("display/window/size/viewport_width")/2 - (%FireButton.size.x * %FireButton.scale.x)/2
+	
+	# Connect to player signals (for opening scene without player i.e debugging)
 	if player:
 		player.bullet_fired.connect(_on_player_bullet_fired)
 		player.bullets_reset.connect(_on_player_bullets_reset)
@@ -63,3 +72,24 @@ func _on_player_bullet_fired() -> void:
 
 func _on_player_bullets_reset() -> void:
 	update_bullets_bar(0)
+
+
+func _on_right_touch_screen_button_button_down() -> void:
+	Input.action_press("right")
+
+
+func _on_left_touch_screen_button_button_down() -> void:
+	Input.action_press("left")
+
+
+func _on_right_touch_screen_button_button_up() -> void:
+	Input.action_release("right")
+
+
+func _on_left_touch_screen_button_button_up() -> void:
+	Input.action_release("left")
+
+
+func _on_fire_button_button_down() -> void:
+	Input.action_press("fire")
+	Input.action_release("fire")
