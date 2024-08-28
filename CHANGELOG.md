@@ -1,3 +1,8 @@
+## v0.11.1 Changes
+
+- Add WASD to inputs for convenience
+- Fixed fire button touch problem (Control nodes don't support multi-touch yet)
+
 ## v0.11.0 Changes
 
 - Updated godot version to 4.3
