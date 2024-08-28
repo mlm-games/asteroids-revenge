@@ -17,8 +17,7 @@ func _ready() -> void:
 		%"Virtual Joystick".process_mode = Node.PROCESS_MODE_DISABLED
 		%"Virtual Joystick".hide()
 		%FireButton.scale = Vector2(4,4)
-		# idk how this works but (width + size)/2 doesnt
-		%FireButton.global_position.x = ProjectSettings.get_setting("display/window/size/viewport_width")/2 - (%FireButton.size.x * %FireButton.scale.x)/2
+		%FireButton.global_position.x = ProjectSettings.get_setting("display/window/size/viewport_width")/2  - (%FireButton.texture_normal.get_size().x * %FireButton.scale.x)/2
 	
 	# Connect to player signals (for opening scene without player i.e debugging)
 	if player:
@@ -88,8 +87,3 @@ func _on_right_touch_screen_button_button_up() -> void:
 
 func _on_left_touch_screen_button_button_up() -> void:
 	Input.action_release("left")
-
-
-func _on_fire_button_button_down() -> void:
-	Input.action_press("fire")
-	Input.action_release("fire")

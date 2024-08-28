@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-#HACK: moves in the direction of its movement
+#HACK: looks in the direction of its movement
 
 # Enemy properties
 var amplitude = 150.0  # Adjust this for the size of the sine wave

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dw1xhin6im8kv"]
+[gd_scene load_steps=12 format=3 uid="uid://dw1xhin6im8kv"]
 
 [ext_resource type="Script" path="res://scenes/hud.gd" id="1_ocri0"]
 [ext_resource type="LabelSettings" uid="uid://bj4owgofe5ayt" path="res://resources/textstyle.tres" id="2_8bg75"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://ceroyuqbhc4ys" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Meteors/meteorBrown_med1.png" id="6_5rvp1"]
 [ext_resource type="Texture2D" uid="uid://b7fpmcg7ian2w" path="res://art-and-sound/missile/spr_missile.png" id="6_o465q"]
 [ext_resource type="Texture2D" uid="uid://c33xrciyt6ilb" path="res://art-and-sound/bg_1_1.png" id="7_2s6xh"]
-[ext_resource type="Theme" uid="uid://bmy6kos4l110s" path="res://resources/button-theme.tres" id="7_oub31"]
 
 [sub_resource type="Animation" id="Animation_c728u"]
 length = 0.001
@@ -77,7 +76,7 @@ _data = {
 }
 
 [node name="HUD" type="CanvasLayer"]
-layer = -3
+layer = -1
 script = ExtResource("1_ocri0")
 
 [node name="Control" type="Control" parent="."]
@@ -272,22 +271,15 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="FireButton" type="Button" parent="Control/TouchAltVBoxContainer/Control"]
+[node name="FireButton" type="TouchScreenButton" parent="Control/TouchAltVBoxContainer/Control"]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.52549)
-layout_mode = 0
-offset_left = 399.0
-offset_top = 53.0001
-offset_right = 450.0
-offset_bottom = 104.0
+position = Vector2(394, 57)
 scale = Vector2(3.205, 3.205)
-focus_mode = 0
-theme = ExtResource("7_oub31")
-icon = ExtResource("6_5rvp1")
-icon_alignment = 1
+texture_normal = ExtResource("6_5rvp1")
+action = "fire"
 
 [connection signal="button_down" from="Control/TouchAltVBoxContainer/HBoxContainer/LeftTouchScreenButton" to="." method="_on_left_touch_screen_button_button_down"]
 [connection signal="button_up" from="Control/TouchAltVBoxContainer/HBoxContainer/LeftTouchScreenButton" to="." method="_on_left_touch_screen_button_button_up"]
 [connection signal="button_down" from="Control/TouchAltVBoxContainer/HBoxContainer/RightTouchScreenButton" to="." method="_on_right_touch_screen_button_button_down"]
 [connection signal="button_up" from="Control/TouchAltVBoxContainer/HBoxContainer/RightTouchScreenButton" to="." method="_on_right_touch_screen_button_button_up"]
-[connection signal="button_down" from="Control/TouchAltVBoxContainer/Control/FireButton" to="." method="_on_fire_button_button_down"]
