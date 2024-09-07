@@ -1,3 +1,7 @@
+## v0.11.2 Changes
+
+- Made alt controls' buttons react better to touches (Again since Control nodes don't support multi-touch yet)
+
 ## v0.11.1 Changes
 
 - Add WASD to inputs for convenience
