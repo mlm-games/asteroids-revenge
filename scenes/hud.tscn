@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dw1xhin6im8kv"]
+[gd_scene load_steps=14 format=3 uid="uid://dw1xhin6im8kv"]
 
 [ext_resource type="Script" path="res://scenes/hud.gd" id="1_ocri0"]
 [ext_resource type="LabelSettings" uid="uid://bj4owgofe5ayt" path="res://resources/textstyle.tres" id="2_8bg75"]
@@ -74,6 +74,10 @@ _data = {
 "fullBar": SubResource("Animation_0he1m"),
 "showText": SubResource("Animation_ye65v")
 }
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2n7ks"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_nqukk"]
 
 [node name="HUD" type="CanvasLayer"]
 layer = -1
@@ -239,47 +243,27 @@ label_settings = ExtResource("2_8bg75")
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="TouchAltVBoxContainer" type="VBoxContainer" parent="Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/TouchAltVBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 2.75
-
-[node name="LeftTouchScreenButton" type="Button" parent="Control/TouchAltVBoxContainer/HBoxContainer"]
+[node name="LeftTouchScreenButton" type="TouchScreenButton" parent="."]
 unique_name_in_owner = true
 visible = false
 modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-size_flags_horizontal = 3
+scale = Vector2(324, 800)
+texture_normal = SubResource("PlaceholderTexture2D_2n7ks")
+action = "left"
 
-[node name="RightTouchScreenButton" type="Button" parent="Control/TouchAltVBoxContainer/HBoxContainer"]
+[node name="RightTouchScreenButton" type="TouchScreenButton" parent="."]
 unique_name_in_owner = true
 visible = false
 modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-size_flags_horizontal = 3
+position = Vector2(324, 0)
+scale = Vector2(324, 800)
+texture_normal = SubResource("PlaceholderTexture2D_nqukk")
+action = "right"
 
-[node name="Control" type="Control" parent="Control/TouchAltVBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="FireButton" type="TouchScreenButton" parent="Control/TouchAltVBoxContainer/Control"]
+[node name="FireButton" type="TouchScreenButton" parent="."]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.52549)
-position = Vector2(394, 57)
+position = Vector2(394, 902)
 scale = Vector2(3.205, 3.205)
 texture_normal = ExtResource("6_5rvp1")
 action = "fire"
-
-[connection signal="button_down" from="Control/TouchAltVBoxContainer/HBoxContainer/LeftTouchScreenButton" to="." method="_on_left_touch_screen_button_button_down"]
-[connection signal="button_up" from="Control/TouchAltVBoxContainer/HBoxContainer/LeftTouchScreenButton" to="." method="_on_left_touch_screen_button_button_up"]
-[connection signal="button_down" from="Control/TouchAltVBoxContainer/HBoxContainer/RightTouchScreenButton" to="." method="_on_right_touch_screen_button_button_down"]
-[connection signal="button_up" from="Control/TouchAltVBoxContainer/HBoxContainer/RightTouchScreenButton" to="." method="_on_right_touch_screen_button_button_up"]

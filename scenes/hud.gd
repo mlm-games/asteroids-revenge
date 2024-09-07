@@ -71,19 +71,3 @@ func _on_player_bullet_fired() -> void:
 
 func _on_player_bullets_reset() -> void:
 	update_bullets_bar(0)
-
-
-func _on_right_touch_screen_button_button_down() -> void:
-	Input.action_press("right")
-
-
-func _on_left_touch_screen_button_button_down() -> void:
-	Input.action_press("left")
-
-
-func _on_right_touch_screen_button_button_up() -> void:
-	Input.action_release("right")
-
-
-func _on_left_touch_screen_button_button_up() -> void:
-	Input.action_release("left")
