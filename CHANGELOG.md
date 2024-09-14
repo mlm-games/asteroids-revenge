@@ -1,3 +1,7 @@
+## v0.11.3 Changes
+
+- Add arrows for alt controls at the bottom left and right of the screen
+
 ## v0.11.2 Changes
 
 - Made alt controls' buttons react better to touches (Again since Control nodes don't support multi-touch yet)

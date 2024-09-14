@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dw1xhin6im8kv"]
+[gd_scene load_steps=15 format=3 uid="uid://dw1xhin6im8kv"]
 
 [ext_resource type="Script" path="res://scenes/hud.gd" id="1_ocri0"]
 [ext_resource type="LabelSettings" uid="uid://bj4owgofe5ayt" path="res://resources/textstyle.tres" id="2_8bg75"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ceroyuqbhc4ys" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Meteors/meteorBrown_med1.png" id="6_5rvp1"]
 [ext_resource type="Texture2D" uid="uid://b7fpmcg7ian2w" path="res://art-and-sound/missile/spr_missile.png" id="6_o465q"]
 [ext_resource type="Texture2D" uid="uid://c33xrciyt6ilb" path="res://art-and-sound/bg_1_1.png" id="7_2s6xh"]
+[ext_resource type="Texture2D" uid="uid://iqxgljh1hu37" path="res://art-and-sound/backarrow.png" id="7_jni3v"]
 
 [sub_resource type="Animation" id="Animation_c728u"]
 length = 0.001
@@ -259,6 +260,25 @@ position = Vector2(324, 0)
 scale = Vector2(324, 800)
 texture_normal = SubResource("PlaceholderTexture2D_nqukk")
 action = "right"
+
+[node name="LeftTouchScreenButton2" type="TouchScreenButton" parent="."]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0.372549)
+position = Vector2(648, 1152)
+rotation = 3.14159
+scale = Vector2(0.8, 1)
+texture_normal = ExtResource("7_jni3v")
+action = "right"
+
+[node name="RightTouchScreenButton2" type="TouchScreenButton" parent="."]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0.372549)
+position = Vector2(0, 898)
+scale = Vector2(0.8, 1)
+texture_normal = ExtResource("7_jni3v")
+action = "left"
 
 [node name="FireButton" type="TouchScreenButton" parent="."]
 unique_name_in_owner = true

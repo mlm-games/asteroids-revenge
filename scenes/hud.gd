@@ -14,6 +14,8 @@ func _ready() -> void:
 	if GameState.player_alt_touch_controls:
 		%LeftTouchScreenButton.show()
 		%RightTouchScreenButton.show()
+		%LeftTouchScreenButton2.show()
+		%RightTouchScreenButton2.show()
 		%"Virtual Joystick".process_mode = Node.PROCESS_MODE_DISABLED
 		%"Virtual Joystick".hide()
 		%FireButton.scale = Vector2(4,4)
