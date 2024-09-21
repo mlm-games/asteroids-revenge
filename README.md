@@ -1,6 +1,6 @@
 ## Source code for the game Asteroid's Revenge
 
-Should now properly support Android TV (and its variants like Fire-TV), If you have tried it on an fully android smartwatch running android 7.1.1 and it runs fine, If you have tried sideloading it to a WearOS smartwatch and if there are any problems, do open an issue.
+Should now properly support Android TV (and its variants like Fire-TV), If you have tried sideloading it to a WearOS smartwatch and if there are any problems, do open an issue.
 
 ![F-Droid Version](https://img.shields.io/f-droid/v/com.game.asteroids_revenge?style=for-the-badge&logo=fdroid&labelColor=blue&color=black)
 
