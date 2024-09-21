@@ -10,7 +10,7 @@ func _ready() -> void:
 		%HardModeButton.show()
 		%HintLabel.hide()
 	GameState.save_game()
-
+	%StartButton.grab_focus()
 
 
 func _on_start_button_pressed():

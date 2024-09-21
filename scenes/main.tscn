@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dh74b3h6q3026"]
+[gd_scene load_steps=14 format=3 uid="uid://dh74b3h6q3026"]
 
 [ext_resource type="Script" path="res://scenes/Main.gd" id="1_0lgb2"]
 [ext_resource type="Theme" uid="uid://vdypn6ym62cq" path="res://scenes/main-theme.tres" id="1_jeava"]
@@ -11,13 +11,6 @@
 [ext_resource type="AudioStream" uid="uid://dyysuucwb4xhm" path="res://art-and-sound/OutThere.ogg" id="7_62cej"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6uu41"]
-
-[sub_resource type="InputEventKey" id="InputEventKey_0cih4"]
-device = -1
-keycode = 4194309
-
-[sub_resource type="Shortcut" id="Shortcut_f7s2m"]
-events = [SubResource("InputEventKey_0cih4")]
 
 [sub_resource type="Animation" id="Animation_bg1rt"]
 length = 0.001
@@ -79,11 +72,6 @@ size_flags_vertical = 4
 texture = ExtResource("2_as2ci")
 metadata/_edit_use_anchors_ = true
 
-[node name="SettingsButton" type="TouchScreenButton" parent="."]
-modulate = Color(1, 1, 1, 0.827451)
-position = Vector2(546, 1054)
-texture_normal = ExtResource("6_3qcx3")
-
 [node name="BGM" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_62cej")
 autoplay = true
@@ -111,9 +99,10 @@ layout_mode = 2
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="SpacerConrol" type="Control" parent="MarginContainer/VBoxContainer"]
+[node name="SpacerControl" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 2.3
 
 [node name="GameName" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -131,7 +120,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("3_k5igf")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxTexture_6uu41")
-shortcut = SubResource("Shortcut_f7s2m")
 text = "MENU_LABEL_PLAY"
 
 [node name="HintLabel" type="Label" parent="MarginContainer/VBoxContainer"]
@@ -177,13 +165,29 @@ layout_mode = 2
 theme = ExtResource("5_mt70k")
 text = "MENU_LABEL_QUIT"
 
-[node name="SpacerConrol2" type="Control" parent="MarginContainer/VBoxContainer"]
+[node name="SpacerControl2" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.67
 
-[connection signal="pressed" from="SettingsButton" to="." method="_on_touch_screen_button_pressed"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SpacerControl3" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.3
+
+[node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.827451)
+layout_mode = 2
+theme = ExtResource("5_mt70k")
+icon = ExtResource("6_3qcx3")
+icon_alignment = 2
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HardModeButton" to="." method="_on_hard_mode_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HelpButton" to="." method="_on_help_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SettingsButton" to="." method="_on_touch_screen_button_pressed"]

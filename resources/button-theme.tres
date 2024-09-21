@@ -1,5 +1,6 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://bmy6kos4l110s"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://bmy6kos4l110s"]
 
+[ext_resource type="StyleBox" uid="uid://dfgh43i4b1mqt" path="res://resources/darken_slightly.tres" id="1_85sep"]
 [ext_resource type="FontFile" uid="uid://5u8hgsjkihsm" path="res://art-and-sound/kenney_space-shooter-redux/Bonus/kenvector_future.ttf" id="1_tli68"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwy38"]
@@ -37,3 +38,5 @@ NoOutlineButton/styles/disabled = SubResource("StyleBoxEmpty_bovvx")
 NoOutlineButton/styles/disabled_mirrored = SubResource("StyleBoxEmpty_6u3qw")
 NoOutlineButton/styles/focus = SubResource("StyleBoxEmpty_2i5pt")
 NoOutlineButton/styles/hover = SubResource("StyleBoxEmpty_v2drj")
+OnlyDarkenButton/base_type = &"Button"
+OnlyDarkenButton/styles/pressed = ExtResource("1_85sep")

@@ -1,3 +1,10 @@
+## v0.12.0 Changes
+
+- Now supports android TV and its variants properly, 
+- Tried it on an fully android 7.1.1 smartwatch and it is somewhat playable with alt controls
+- The start button is immediately brought into focus, which allows all buttons to be accessed by tab movement or android tv remotes
+- Added x86 and x86 64 android versions 
+
 ## v0.11.3 Changes
 
 - Add arrows for alt controls at the bottom left and right of the screen

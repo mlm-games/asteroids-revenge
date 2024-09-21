@@ -63,11 +63,18 @@ fi
 echo "Changelog for version $version_name has been saved to $changelog_file"
 
 # Update version codes and version name in export_presets.cfg
-sed -i "s/version\/code=[0-9]*/version\/code=$version_code/" export_presets.cfg
-sed -i "s/version\/name=\"[^\"]*\"/version\/name=\"$version_name\"/" export_presets.cfg
+
+# Set version_code-1 at the top
 sed -i "0,/version\/code=[0-9]*/s//version\/code=$((version_code-1))/" export_presets.cfg
 
+# Set version_code in the middle
+sed -i "0,/version\/code=[0-9]*/! {0,/version\/code=[0-9]*/s//version\/code=$version_code/}" export_presets.cfg
+
+# Set version_code+1 at the bottom
+sed -i "$(grep -n 'version/code=' export_presets.cfg | tail -n1 | cut -d: -f1),\$s/version\/code=[0-9]*/version\/code=$((version_code+1))/" export_presets.cfg
+
 echo "Updated version codes and version name in export_presets.cfg"
+
 
 # If we've made it this far, run the butler-upload script
 
@@ -96,7 +103,8 @@ if [ "$exported_releases" = "yes" ]; then
         "./exports/asteroids-revenge-linux.x86_64" \
         "./exports/asteroids-revenge-macOS.zip" \
         "./exports/asteroids-revenge-android-arm64.apk" \
-        "./exports/asteroids-revenge-android-arm32.apk"
+        "./exports/asteroids-revenge-android-arm32.apk" \
+        "./exports/asteroids-revenge-android-x86_64.apk"
 fi
 
 echo "Upload completed successfully!"

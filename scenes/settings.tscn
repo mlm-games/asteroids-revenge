@@ -88,6 +88,13 @@ text = "MENU_OPTIONS_USE_ALT_CONTROLS"
 alignment = 1
 autowrap_mode = 3
 
+[node name="FullscreenButton" type="CheckButton" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_w4twb")
+text = "MENU_OPTIONS_FULLSCREEN"
+alignment = 1
+autowrap_mode = 3
+
 [node name="LanguageOptionsButton" type="OptionButton" parent="VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 200)
@@ -154,5 +161,6 @@ bus = &"SoundEffects"
 [connection signal="toggled" from="VBoxContainer/JoystickButton" to="." method="_on_joystick_button_toggled"]
 [connection signal="toggled" from="VBoxContainer/FireTouchButton" to="." method="_on_fire_touch_button_toggled"]
 [connection signal="toggled" from="VBoxContainer/AndroidAutomoveButton" to="." method="_on_android_automove_button_toggled"]
+[connection signal="toggled" from="VBoxContainer/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
 [connection signal="item_selected" from="VBoxContainer/LanguageOptionsButton" to="." method="_on_language_option_button_item_selected"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

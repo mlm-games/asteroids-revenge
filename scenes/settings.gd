@@ -115,8 +115,13 @@ func _on_back_button_pressed() -> void:
 	Transition.change_scene_with_transition("res://scenes/main.tscn")
 
 
+func _on_fullscreen_button_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
-#region Text Size and Fullscreen button
+# Region Text Size and Fullscreen button
 """
 const TEXT_THEMES = [
 	preload("res://src/ui/theme.tres"),
