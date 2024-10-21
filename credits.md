@@ -11,3 +11,7 @@
 - Through Space by maxstack - CC-BY-SA 3.0 - https://opengameart.org/content/through-space
 
 - Intro bgm - https://opengameart.org/content/space-music-out-there
+
+### Plugins
+
+- Godot Joystick -  https://github.com/MarcoFazioRandom/Virtual-Joystick-Godot
