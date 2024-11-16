@@ -64,6 +64,8 @@ echo "Changelog for version $version_name has been saved to $changelog_file"
 
 # Update version codes and version name in export_presets.cfg
 
+sed -i "/version\/name=\".*\"/s//version\/name=\"$version_name\"/" export_presets.cfg
+
 # Set version_code-1 at the top
 sed -i "0,/version\/code=[0-9]*/s//version\/code=$((version_code-1))/" export_presets.cfg
 
