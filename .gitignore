@@ -16,6 +16,3 @@ locale/.translation
 
 # OSX 
 .DS_Store
-
-# sh files
-release.sh

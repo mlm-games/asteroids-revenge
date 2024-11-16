@@ -1,3 +1,7 @@
+## v0.12.1 Changes
+
+- Fix boss not spawning after UI changes and fix the after boss spawn of objects.
+
 ## v0.12.0 Changes
 
 - Now supports android TV and its variants properly, 
