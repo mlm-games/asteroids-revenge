@@ -30,6 +30,7 @@ Transition="*res://scenes/transition.tscn"
 
 window/size/viewport_width=648
 window/size/viewport_height=1152
+window/size/mode=2
 window/stretch/mode="canvas_items"
 window/handheld/orientation=1
 mouse_cursor/custom_image="res://art-and-sound/kenney_space-shooter-redux/PNG/UI/cursor.png"

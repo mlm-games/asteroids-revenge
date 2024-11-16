@@ -43,10 +43,12 @@ func _process(_delta: float) -> void:
 
 
 func handle_boss_spawn() -> void:
-	if boss_spawn_node.get_child_count() == 0 && %SpawnTimer.is_stopped() && %PlayerRock.visible:
+	if is_boss_present() && %SpawnTimer.is_stopped() && %PlayerRock.visible:
 		%SpawnTimer.start()
 		fade_in_bgm()
 
+func is_boss_present() -> bool:
+	return boss_spawn_node.get_child_count() == 1
 
 func fade_in_bgm() -> void:
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
@@ -165,8 +167,10 @@ func score_dependencies() -> void:
 		700:
 			spawntime = Vector2(0.4, 0.6)
 			obstacle_type.x = 1
-		1000: spawn_boss()
-		1200: obstacle_type.y = 6
+		1000: 
+			spawn_boss()
+		1200: 
+			obstacle_type.y = 6
 
 func score_dependencies_hard_mode() -> void:
 	var abs_score = abs(score)
@@ -198,7 +202,7 @@ func score_dependencies_hard_mode() -> void:
 		1000: spawn_boss()
 
 func spawn_boss() -> void:
-	if boss_spawn_node.get_child_count() == 0:
+	if is_boss_present():
 		var boss = ResourceLoader.load_threaded_get(BOSS_SPACESHIP_PATH).instantiate()
 		boss.position.x = boss_spawn_node.position.x
 		boss_spawn_node.add_child(boss)

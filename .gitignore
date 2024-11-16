@@ -12,7 +12,7 @@ builds/**/*
 !builds/.gdignore
 
 # Imported translations (automatically generated from CSV files)
-*.translation
+locale/.translation
 
 # OSX 
 .DS_Store
