@@ -67,10 +67,10 @@ echo "Changelog for version $version_name has been saved to $changelog_file"
 sed -i "/version\/name=\".*\"/s//version\/name=\"$version_name\"/" export_presets.cfg
 
 # Set version_code-1 at the top
-sed -i "0,/version\/code=[0-9]*/s//version\/code=$((version_code+1))/" export_presets.cfg
+sed -i "0,/version\/code=[0-9]*/s//version\/code=$version_code/" export_presets.cfg
 
 # Set version_code in the middle
-sed -i "0,/version\/code=[0-9]*/! {0,/version\/code=[0-9]*/s//version\/code=$version_code/}" export_presets.cfg
+sed -i "0,/version\/code=[0-9]*/! {0,/version\/code=[0-9]*/s//version\/code=$((version_code+1))/}" export_presets.cfg
 
 # Set version_code+1 at the bottom
 sed -i "$(grep -n 'version/code=' export_presets.cfg | tail -n1 | cut -d: -f1),\$s/version\/code=[0-9]*/version\/code=$((version_code+2))/" export_presets.cfg
