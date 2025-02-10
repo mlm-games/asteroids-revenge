@@ -38,13 +38,13 @@ mv web.zip ../
 cd ..
 
 # Upload the zip files to their respective Butler targets
-butler push web.zip "$web_target" --userversion "$version"
-butler push asteroids-revenge-windows.exe "$windows_target" --userversion "$version"
-butler push asteroids-revenge-linux.x86_64 "$linux_target" --userversion "$version"
-butler push asteroids-revenge-linux-aarch64.arm64 "$linux_arm64_target" --userversion "$version"
-butler push asteroids-revenge-macOS.zip "$macos_target" --userversion "$version"
-butler push asteroids-revenge-android-arm32.apk "$android_arm32_target" --userversion "$version"
-butler push asteroids-revenge-android-arm64.apk "$android_arm64_target" --userversion "$version"
+~/bin/butler/butler push web.zip "$web_target" --userversion "$version"
+~/bin/butler/butler push asteroids-revenge-windows.exe "$windows_target" --userversion "$version"
+~/bin/butler/butler push asteroids-revenge-linux.x86_64 "$linux_target" --userversion "$version"
+~/bin/butler/butler push asteroids-revenge-linux-aarch64.arm64 "$linux_arm64_target" --userversion "$version"
+~/bin/butler/butler push asteroids-revenge-macOS.zip "$macos_target" --userversion "$version"
+~/bin/butler/butler push asteroids-revenge-android-arm32.apk "$android_arm32_target" --userversion "$version"
+~/bin/butler/butler push asteroids-revenge-android-arm64.apk "$android_arm64_target" --userversion "$version"
 
 # Prompt the user to press any key to exit
 echo "Press any key to exit..."
