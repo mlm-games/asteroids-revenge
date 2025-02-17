@@ -26,7 +26,8 @@ func _physics_process(delta):
 		velocity.y += sin(time*frequency)*amplitude * 1.5
 	else:
 		velocity.y += sin(time*frequency)*amplitude * 1.5
-		
+	
+	#rotation = rotate_toward(rotation, global_position.angle_to(velocity.normalized()), delta)
 	move_and_slide()
 	
 	# Update sprite2D and collisionshape2d rotation based on movement direction
