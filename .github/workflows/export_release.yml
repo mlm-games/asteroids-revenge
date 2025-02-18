@@ -1,4 +1,4 @@
-name: Release Management
+name: Release builds
 
 on:
   workflow_dispatch:
@@ -32,6 +32,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Validate Version in Changelog
         run: |
@@ -64,9 +66,8 @@ jobs:
       - name: Build
         uses: mlm-games/godot-build-action@main
         with:
-          GODOT_PREVIEW_BUILDS: true
           EXPORT_PRESET_NAME: ${{ matrix.platform }}
-          ITCH_USER_SLASH_GAME: your-username/your-game
+          ITCH_USER_SLASH_GAME: "ragebreaker/asteroids-revenge"
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           RELEASE_KEYSTORE: ${{ secrets.RELEASE_KEYSTORE }}
           KEYSTORE_PASSPHRASE: ${{ secrets.KEYSTORE_PASSPHRASE }}
