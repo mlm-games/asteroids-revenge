@@ -1,0 +1,108 @@
+name: Release Management
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_name:
+        description: 'Version name (e.g., 0.10.9)'
+        required: true
+      version_code:
+        description: 'Version code (e.g., 100082)'
+        required: true
+      upload_to_itch:
+        description: 'Upload exported files to itch.io?'
+        required: false
+        default: 'false'
+        type: boolean
+      mark_prerelease:
+        description: 'Mark as prerelease'
+        required: true
+        default: 'false'
+        type: boolean
+
+jobs:
+  prepare-and-build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    strategy:
+      matrix:
+        platform: ["Windows Desktop", "Linux/X11", "macOS", "Android", "Linux/X11 arm64", "Android x86 and x86 64", "Web"]
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate Version in Changelog
+        run: |
+          if ! grep -q "## v${{ inputs.version_name }}" CHANGELOG.md; then
+            echo "Error: Version ${{ inputs.version_name }} not found in CHANGELOG.md"
+            exit 1
+          fi
+
+      - name: Check Existing Version Code
+        run: |
+          if [ -f "./fastlane/metadata/android/en-US/changelogs/${{ inputs.version_code }}.txt" ]; then
+            echo "Error: Version code ${{ inputs.version_code }} already exists in metadata"
+            exit 1
+          fi
+
+      - name: Extract Changelog
+        run: |
+          mkdir -p ./fastlane/metadata/android/en-US/changelogs
+          sed -n "/## v${{ inputs.version_name }}/,/## v/p" CHANGELOG.md | \
+          sed '$d' | sed '1s/^## //' > \
+          "./fastlane/metadata/android/en-US/changelogs/${{ inputs.version_code }}.txt"
+
+      - name: Update Version Info
+        run: |
+          sed -i "/version\/name=\".*\"/s//version\/name=\"${{ inputs.version_name }}\"/" export_presets.cfg
+          sed -i "0,/version\/code=[0-9]*/s//version\/code=${{ inputs.version_code }}/" export_presets.cfg
+          sed -i "0,/version\/code=[0-9]*/! {0,/version\/code=[0-9]*/s//version\/code=$(({{ inputs.version_code }}+1))/}" export_presets.cfg
+          sed -i "$(grep -n 'version/code=' export_presets.cfg | tail -n1 | cut -d: -f1),\$s/version\/code=[0-9]*/version\/code=$(({{ inputs.version_code }}+2))/" export_presets.cfg
+
+      - name: Build
+        uses: mlm-games/godot-build-action@main
+        with:
+          GODOT_PREVIEW_BUILDS: true
+          EXPORT_PRESET_NAME: ${{ matrix.platform }}
+          ITCH_USER_SLASH_GAME: your-username/your-game
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+          RELEASE_KEYSTORE: ${{ secrets.RELEASE_KEYSTORE }}
+          KEYSTORE_PASSPHRASE: ${{ secrets.KEYSTORE_PASSPHRASE }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          BUTLER_UPLOAD: ${{ inputs.upload_to_itch }}
+
+      - name: Set artifact name
+        id: artifact-name
+        shell: bash
+        run: |
+          PLATFORM="${{ matrix.platform }}"
+          SAFE_NAME="${PLATFORM//[^a-zA-Z0-9_]/_}"
+          echo "name=${SAFE_NAME}" >> $GITHUB_OUTPUT
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.artifact-name.outputs.name }}-build
+          path: ${{ github.workspace }}/builds/
+
+      - name: Upload to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ github.workspace }}/builds/*
+          name: ${{ inputs.version_name }}
+          tag_name: ${{ inputs.version_name }}
+          body_path: ./fastlane/metadata/android/en-US/changelogs/${{ inputs.version_code }}.txt
+          prerelease: ${{ inputs.mark_prerelease }}
+          generate_release_notes: true
+
+      - name: Commit Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add export_presets.cfg
+          git add ./fastlane/metadata/android/en-US/changelogs/${{ inputs.version_code }}.txt
+          git commit -m "Update version to ${{ inputs.version_name }} (${{ inputs.version_code }})"
+          git push
