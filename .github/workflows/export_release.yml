@@ -120,13 +120,14 @@ jobs:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           BUTLER_UPLOAD: ${{ inputs.upload_to_itch }}
 
-      - name: Set artifact name
+      - name: Set artifact name and pull latest
         id: artifact-name
         shell: bash
         run: |
           PLATFORM="${{ matrix.platform }}"
           SAFE_NAME="${PLATFORM//[^a-zA-Z0-9_]/_}"
           echo "name=${SAFE_NAME}" >> $GITHUB_OUTPUT
+          git pull
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
