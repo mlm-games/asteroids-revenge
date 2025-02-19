@@ -38,10 +38,18 @@ jobs:
           exit 1
           fi
 
+      - name: Get Previous Version Code
+        id: prev_version
+        run: |
+          PREV_CODE=$(grep -o 'version/code=[0-9]*' export_presets.cfg | head -1 | cut -d= -f2)
+          NEW_CODE=$((PREV_CODE + 10))
+          echo "prev_code=${PREV_CODE}" >> $GITHUB_OUTPUT
+          echo "new_code=${NEW_CODE}" >> $GITHUB_OUTPUT
+
       - name: Check Existing Version Code
         run: |
-          if [ -f "./fastlane/metadata/android/en-US/changelogs/${{ inputs.version_code }}.txt" ]; then
-            echo "Error: Version code ${{ inputs.version_code }} already exists in metadata"
+          if [ -f "./fastlane/metadata/android/en-US/changelogs/${{ steps.prev_version.outputs.new_code }}.txt" ]; then
+            echo "Error: Version code ${{ steps.prev_version.outputs.new_code }} already exists in metadata"
             exit 1
           fi
 
@@ -50,15 +58,9 @@ jobs:
           mkdir -p ./fastlane/metadata/android/en-US/changelogs
           sed -n "/## v${{ inputs.version_name }}/,/## v/p" CHANGELOG.md | \
           sed '$d' | sed '1s/^## //' > \
-          "./fastlane/metadata/android/en-US/changelogs/${{ inputs.version_code }}.txt"
+          "./fastlane/metadata/android/en-US/changelogs/${{ steps.prev_version.outputs.new_code }}.txt"
           
-      - name: Get Previous Version Code
-        id: prev_version
-        run: |
-          PREV_CODE=$(grep -o 'version/code=[0-9]*' export_presets.cfg | head -1 | cut -d= -f2)
-          NEW_CODE=$((PREV_CODE + 10))
-          echo "prev_code=${PREV_CODE}" >> $GITHUB_OUTPUT
-          echo "new_code=${NEW_CODE}" >> $GITHUB_OUTPUT
+      
       
       - name: Commit Previous Version Code
         run: |
@@ -80,8 +82,8 @@ jobs:
           git config --local user.name "GitHub Action"
           git pull
           git add export_presets.cfg
-          git add ./fastlane/metadata/android/en-US/changelogs/${{ inputs.version_code }}.txt
-          git commit -m "Update version to ${{ inputs.version_name }} (${{ inputs.version_code }})"
+          git add ./fastlane/metadata/android/en-US/changelogs/${{ steps.prev_version.outputs.new_code }}.txt
+          git commit -m "Update version to ${{ inputs.version_name }} (${{ steps.prev_version.outputs.new_code }})"
           git push
       
 
@@ -139,6 +141,6 @@ jobs:
           files: ${{ github.workspace }}/builds/*
           name: ${{ inputs.version_name }}
           tag_name: ${{ inputs.version_name }}
-          body_path: ./fastlane/metadata/android/en-US/changelogs/${{ inputs.version_code }}.txt
+          body_path: ./fastlane/metadata/android/en-US/changelogs/${{ steps.prev_version.outputs.new_code }}.txt
           prerelease: ${{ inputs.mark_prerelease }}
           generate_release_notes: true
