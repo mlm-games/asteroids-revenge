@@ -9,7 +9,7 @@ on:
       upload_to_itch:
         description: 'Upload exported files to itch.io?'
         required: false
-        default: 'false'
+        default: 'true'
         type: boolean
       mark_prerelease:
         description: 'Mark as prerelease'
