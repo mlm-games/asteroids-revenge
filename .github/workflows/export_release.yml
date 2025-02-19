@@ -80,6 +80,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          git pull
           git add export_presets.cfg
           git add ./fastlane/metadata/android/en-US/changelogs/${{ inputs.version_code }}.txt
           git commit -m "Update version to ${{ inputs.version_name }} (${{ inputs.version_code }})"
