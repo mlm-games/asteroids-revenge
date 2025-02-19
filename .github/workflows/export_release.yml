@@ -6,9 +6,6 @@ on:
       version_name:
         description: 'Version name (e.g., 0.12.2)'
         required: true
-      version_code:
-        description: 'Version code (e.g., 100130)'
-        required: true
       upload_to_itch:
         description: 'Upload exported files to itch.io?'
         required: false
