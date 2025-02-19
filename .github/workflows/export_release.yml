@@ -21,20 +21,16 @@ on:
         type: boolean
 
 jobs:
-  prepare-and-build:
+  commit-vercode-changes:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    strategy:
-      matrix:
-        platform: ["Windows Desktop", "Linux/X11", "macOS", "Android arm32", "Android arm64", "Linux/X11 arm64", "Android x86 and x86 64", "Web"]
-      fail-fast: false
-
     steps:
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.GH_TOKEN }}
 
+    
       - name: Validate Version in Changelog
         run: |
           if ! grep -q "## v${{ inputs.version_name }}" CHANGELOG.md; then
@@ -85,6 +81,21 @@ jobs:
           git add ./fastlane/metadata/android/en-US/changelogs/${{ inputs.version_code }}.txt
           git commit -m "Update version to ${{ inputs.version_name }} (${{ inputs.version_code }})"
           git push
+      
+
+  prepare-and-build:
+    needs: commit-vercode-changes
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    strategy:
+      matrix:
+        platform: ["Windows Desktop", "Linux/X11", "macOS", "Android arm32", "Android arm64", "Linux/X11 arm64", "Android x86 and x86 64", "Web"]
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v4
+      
       # - name: Update Version Info
       #   run: |
       #     sed -i "/version\/name=\".*\"/s//version\/name=\"${{ inputs.version_name }}\"/" export_presets.cfg
