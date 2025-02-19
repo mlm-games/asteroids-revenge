@@ -1,3 +1,9 @@
+## v0.12.2 Changes
+
+- Changed export paths to standard (editor)
+- Reduce size of game by seperating unused assets (around 2mb only ig)
+- Add a github workflow for easier releases in the future 
+
 ## v0.12.1 Changes
 
 - Fix boss not spawning after UI changes and fix the after boss spawn of objects.
