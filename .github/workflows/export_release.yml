@@ -22,6 +22,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    outputs:
+      new_version_code: ${{ steps.prev_version.outputs.new_code }}  # Add this to share the output
     steps:
       - uses: actions/checkout@v4
         with:
