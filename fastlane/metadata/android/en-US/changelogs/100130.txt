@@ -1,6 +1,0 @@
-v0.12.2 Changes
-
-- Changed export paths to standard (editor)
-- Reduce size of game by seperating unused assets (around 2mb only ig)
-- Add a github workflow for easier releases in the future 
-
