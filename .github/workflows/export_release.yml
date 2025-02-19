@@ -99,14 +99,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      # - name: Update Version Info
-      #   run: |
-      #     sed -i "/version\/name=\".*\"/s//version\/name=\"${{ inputs.version_name }}\"/" export_presets.cfg
-      #     sed -i "0,/version\/code=[0-9]*/s//version\/code=${{ inputs.version_code }}/" export_presets.cfg
-      #     sed -i "0,/version\/code=[0-9]*/! s/version\/code=[0-9]*/version\/code=$((VERSION_CODE+1))/" export_presets.cfg
-      #     sed -i "$(grep -n 'version/code=' export_presets.cfg | tail -n1 | cut -d: -f1),\$s/version\/code=[0-9]*/version\/code=$((VERSION_CODE+2))/" export_presets.cfg
-      #   env:
-      #     VERSION_CODE: ${{ inputs.version_code }}
+      - name: git pull
+        shell: bash
+        run: |
+          git pull
           
       - name: Build
         uses: mlm-games/godot-build-action@main
