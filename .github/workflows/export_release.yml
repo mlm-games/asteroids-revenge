@@ -23,7 +23,7 @@ jobs:
     permissions:
       contents: write
     outputs:
-      new_version_code: ${{ steps.prev_version.outputs.new_code }}  # Add this to share the output
+      new_version_code: ${{ steps.prev_version.outputs.new_code }}  # Add this to share the output for the release
     steps:
       - uses: actions/checkout@v4
         with:
@@ -140,6 +140,6 @@ jobs:
           files: ${{ github.workspace }}/builds/*
           name: ${{ inputs.version_name }}
           tag_name: ${{ inputs.version_name }}
-          body_path: ./fastlane/metadata/android/en-US/changelogs/${{ steps.prev_version.outputs.new_code }}.txt
+          body_path: ./fastlane/metadata/android/en-US/changelogs/${{ needs.commit-vercode-changes.outputs.new_version_code }}.txt
           prerelease: ${{ inputs.mark_prerelease }}
           generate_release_notes: true
