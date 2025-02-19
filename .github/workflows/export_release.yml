@@ -67,6 +67,8 @@ jobs:
           
           VERSION_CODE=${{ steps.prev_version.outputs.new_code }}
           
+          sed -i "/version\/name=\".*\"/s//version\/name=\"${{ inputs.version_name }}\"/" export_presets.cfg
+          
           # Update version codes
           sed -i "0,/version\/code=[0-9]*/s//version\/code=$VERSION_CODE/" export_presets.cfg
           sed -i "0,/version\/code=[0-9]*/! {0,/version\/code=[0-9]*/s//version\/code=$((VERSION_CODE+1))/}" export_presets.cfg
