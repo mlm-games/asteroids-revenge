@@ -1,0 +1,4 @@
+v0.12.3 Changes
+
+- New release for fdroid due to build issues
+
