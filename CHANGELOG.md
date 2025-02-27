@@ -1,3 +1,7 @@
+## v0.12.3 Changes
+
+- New release for fdroid due to build issues
+
 ## v0.12.2 Changes
 
 - Changed export paths to standard (editor)
