@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://basjlr2ltfo70"]
 
-[ext_resource type="Script" path="res://scenes/boss_spaceship.gd" id="1_wffw1"]
+[ext_resource type="Script" uid="uid://xxwklu2ef6p2" path="res://scenes/boss_spaceship.gd" id="1_wffw1"]
 [ext_resource type="AudioStream" uid="uid://4mk624f2vxfm" path="res://art-and-sound/kenney_space-shooter-redux/Bonus/sfx_laser1.ogg" id="3_rvogu"]
 [ext_resource type="AudioStream" uid="uid://x2ci72ak32wa" path="res://art-and-sound/through space.ogg" id="4_eejcy"]
 [ext_resource type="AudioStream" uid="uid://bccmmcxao62qu" path="res://art-and-sound/launches/iceball.wav" id="4_ghvdv"]
@@ -131,10 +131,10 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2p8ah"]
 _data = {
-"RESET": SubResource("Animation_pamcf"),
-"approach": SubResource("Animation_og5i2"),
-"death": SubResource("Animation_h2t25"),
-"idle": SubResource("Animation_80y55")
+&"RESET": SubResource("Animation_pamcf"),
+&"approach": SubResource("Animation_og5i2"),
+&"death": SubResource("Animation_h2t25"),
+&"idle": SubResource("Animation_80y55")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_blmny"]

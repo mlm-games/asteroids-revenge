@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bpi3vc7duphvu"]
 
-[ext_resource type="Script" path="res://scenes/teleporting_laser.gd" id="1_q8nku"]
+[ext_resource type="Script" uid="uid://cn2sbgolxv3jv" path="res://scenes/teleporting_laser.gd" id="1_q8nku"]
 [ext_resource type="Texture2D" uid="uid://ceqkxqaxqitxh" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Lasers/laserRed08.png" id="2_yoeyy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d4k68"]
@@ -55,9 +55,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_70coy"]
 _data = {
-"RESET": SubResource("Animation_34cm0"),
-"fade-in": SubResource("Animation_oovk8"),
-"fade-out": SubResource("Animation_5o61f")
+&"RESET": SubResource("Animation_34cm0"),
+&"fade-in": SubResource("Animation_oovk8"),
+&"fade-out": SubResource("Animation_5o61f")
 }
 
 [node name="TeleportingLaser" type="CharacterBody2D"]

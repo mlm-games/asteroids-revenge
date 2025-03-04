@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Obstacles" load_steps=3 format=3 uid="uid://d30n34shtngac"]
 
 [ext_resource type="PackedScene" uid="uid://bpi3vc7duphvu" path="res://scenes/teleporting_laser.tscn" id="1_oeyup"]
-[ext_resource type="Script" path="res://scenes/obstacles.gd" id="2_24jb4"]
+[ext_resource type="Script" uid="uid://c6tji6njl0mr0" path="res://scenes/obstacles.gd" id="2_24jb4"]
 
 [resource]
 script = ExtResource("2_24jb4")

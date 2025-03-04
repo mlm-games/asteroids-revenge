@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://cxi3stw7wrvli"]
 
-[ext_resource type="Script" path="res://scenes/player_rock.gd" id="1_kccwu"]
+[ext_resource type="Script" uid="uid://cv6lgtatphwgd" path="res://scenes/player_rock.gd" id="1_kccwu"]
 [ext_resource type="Texture2D" uid="uid://fv4u676rvcc6" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Meteors/meteorBrown_big1.png" id="2_ctg6k"]
 [ext_resource type="PackedScene" uid="uid://divaw71qkw2lp" path="res://scenes/asteroid_bullet.tscn" id="2_m20jj"]
 [ext_resource type="AudioStream" uid="uid://bdri2e7vh3reo" path="res://art-and-sound/launches/rlaunch.wav" id="3_xgo6l"]
@@ -92,12 +92,13 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4lbyr"]
 _data = {
-"RESET": SubResource("Animation_s6ef7"),
-"fire": SubResource("Animation_hy6if"),
-"hit-effects": SubResource("Animation_elrae")
+&"RESET": SubResource("Animation_s6ef7"),
+&"fire": SubResource("Animation_hy6if"),
+&"hit-effects": SubResource("Animation_elrae")
 }
 
 [node name="PlayerRock" type="CharacterBody2D" groups=["Player"]]
+z_index = 4096
 scale = Vector2(0.85, 0.85)
 collision_layer = 2
 collision_mask = 0
@@ -135,7 +136,7 @@ shape = SubResource("CircleShape2D_4pdcd")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_4lbyr")
+&"": SubResource("AnimationLibrary_4lbyr")
 }
 
 [node name="InvincibilityTimer" type="Timer" parent="."]

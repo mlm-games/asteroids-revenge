@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://dh74b3h6q3026"]
 
-[ext_resource type="Script" path="res://scenes/Main.gd" id="1_0lgb2"]
+[ext_resource type="Script" uid="uid://cu6nvp4mmo11k" path="res://scenes/Main.gd" id="1_0lgb2"]
 [ext_resource type="Theme" uid="uid://vdypn6ym62cq" path="res://scenes/main-theme.tres" id="1_jeava"]
 [ext_resource type="Texture2D" uid="uid://c33xrciyt6ilb" path="res://art-and-sound/bg_1_1.png" id="2_as2ci"]
 [ext_resource type="FontFile" uid="uid://by86tftjfcedw" path="res://art-and-sound/kenney_space-shooter-redux/Bonus/kenvector_future_thin.ttf" id="3_k5igf"]
@@ -45,8 +45,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q53df"]
 _data = {
-"RESET": SubResource("Animation_bg1rt"),
-"blink": SubResource("Animation_gcuun")
+&"RESET": SubResource("Animation_bg1rt"),
+&"blink": SubResource("Animation_gcuun")
 }
 
 [node name="Main" type="Control"]
@@ -156,7 +156,7 @@ text = "MENU_MODE_HELP"
 unique_name_in_owner = true
 root_node = NodePath("../../../..")
 libraries = {
-"": SubResource("AnimationLibrary_q53df")
+&"": SubResource("AnimationLibrary_q53df")
 }
 
 [node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer"]

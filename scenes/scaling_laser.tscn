@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bs2yljcysk56h"]
 
-[ext_resource type="Script" path="res://scenes/scaling_laser.gd" id="1_xijea"]
+[ext_resource type="Script" uid="uid://blrtgmpe8xvwj" path="res://scenes/scaling_laser.gd" id="1_xijea"]
 [ext_resource type="Texture2D" uid="uid://dne1mu7gwf7c8" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Lasers/laserGreen15.png" id="2_nw3yi"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_67f50"]
@@ -56,9 +56,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hb0tr"]
 _data = {
-"RESET": SubResource("Animation_od3u4"),
-"scale-right": SubResource("Animation_0yhar"),
-"scale-up": SubResource("Animation_8pixu")
+&"RESET": SubResource("Animation_od3u4"),
+&"scale-right": SubResource("Animation_0yhar"),
+&"scale-up": SubResource("Animation_8pixu")
 }
 
 [node name="ScalingLaser" type="CharacterBody2D"]

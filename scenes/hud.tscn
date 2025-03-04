@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://dw1xhin6im8kv"]
 
-[ext_resource type="Script" path="res://scenes/hud.gd" id="1_ocri0"]
+[ext_resource type="Script" uid="uid://cshofsmqqv45m" path="res://scenes/hud.gd" id="1_ocri0"]
 [ext_resource type="LabelSettings" uid="uid://bj4owgofe5ayt" path="res://resources/textstyle.tres" id="2_8bg75"]
 [ext_resource type="LabelSettings" uid="uid://cnoygoxh0kgme" path="res://resources/small_textstyle.tres" id="3_6pdgi"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/joystick/virtual_joystick.tscn" id="5_vxcta"]
@@ -71,9 +71,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kulbx"]
 _data = {
-"RESET": SubResource("Animation_c728u"),
-"fullBar": SubResource("Animation_0he1m"),
-"showText": SubResource("Animation_ye65v")
+&"RESET": SubResource("Animation_c728u"),
+&"fullBar": SubResource("Animation_0he1m"),
+&"showText": SubResource("Animation_ye65v")
 }
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2n7ks"]

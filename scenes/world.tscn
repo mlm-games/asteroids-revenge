@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=4 uid="uid://sq6hbykhax0"]
 
 [ext_resource type="PackedScene" uid="uid://cxi3stw7wrvli" path="res://scenes/player_rock.tscn" id="1_u7ba8"]
-[ext_resource type="Script" path="res://scenes/world.gd" id="1_wwy7r"]
+[ext_resource type="Script" uid="uid://d07nfekv3qrfm" path="res://scenes/world.gd" id="1_wwy7r"]
 [ext_resource type="AudioStream" uid="uid://bdri2e7vh3reo" path="res://art-and-sound/launches/rlaunch.wav" id="5_7x11b"]
 [ext_resource type="PackedScene" uid="uid://dw1xhin6im8kv" path="res://scenes/hud.tscn" id="5_c0pkx"]
 [ext_resource type="LabelSettings" uid="uid://cnoygoxh0kgme" path="res://resources/small_textstyle.tres" id="6_wor0t"]

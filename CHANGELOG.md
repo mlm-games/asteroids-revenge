@@ -1,3 +1,9 @@
+## v0.13.1 Changes
+
+- Update to Godot 4.4
+- Fix macos bundle name
+- Add particle effects for laser and for when asteroid takes damage  
+
 ## v0.12.3 Changes
 
 - New release for fdroid due to build issues

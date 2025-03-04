@@ -64,7 +64,7 @@ func hit_effects():
 	bullets_fired = 0
 	bullets_reset.emit()
 	$DeathSound.play()
-	var tween = %Sprite2D.create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
+	var tween := %Sprite2D.create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
 	tween.tween_property(%Sprite2D,"modulate",Color.RED,0.1)
 	tween.tween_property(%Sprite2D,"modulate",Color.WHITE,0.1)
 	Engine.time_scale = 0.2
@@ -73,6 +73,8 @@ func hit_effects():
 		$DeathSound.stop()
 		fade_in_out()
 	Engine.time_scale = 1
+	spawn_hurt_particles()
+	
 
 
 func fade_in_out():
@@ -84,3 +86,19 @@ func fade_in_out():
 
 func _on_invincibility_timer_timeout() -> void:
 	%Area2D/CollisionShape2D.disabled = false
+
+func spawn_hurt_particles() -> void:
+	var particles_spawn_count = randi_range(3, 5)
+	for i:int in range(particles_spawn_count):
+		var mini_asteroid := World.MiniAsteroidScene.instantiate()
+		var random_offset := Vector2(randf() * World.PARTICLE_SPAWN_OFFSET, randf() * World.PARTICLE_SPAWN_OFFSET)
+		mini_asteroid.position = position + random_offset
+		get_tree().get_root().add_child(mini_asteroid)
+		animate_particle(mini_asteroid)
+
+func animate_particle(particle: Node2D) -> void:
+	var tween = create_tween().set_parallel().set_ease(Tween.EASE_IN)
+	tween.tween_property(particle, "position", position + Vector2(300 * randf_range(-1, 1), 300 * randf_range(-1, 1)), 2.0)
+	tween.tween_property(particle, "rotation", TAU, 2.0)
+	tween.tween_property(particle, "modulate", Color.TRANSPARENT, 2.0)
+	tween.chain().tween_callback(particle.queue_free)

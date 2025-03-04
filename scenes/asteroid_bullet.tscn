@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://divaw71qkw2lp"]
 
-[ext_resource type="Script" path="res://scenes/asteroid_bullet.gd" id="1_00uet"]
+[ext_resource type="Script" uid="uid://d2jvst3mxg1br" path="res://scenes/asteroid_bullet.gd" id="1_00uet"]
 [ext_resource type="PackedScene" uid="uid://bdv8udonykbs1" path="res://scenes/mini_asteroid.tscn" id="2_ndjqt"]
 [ext_resource type="Texture2D" uid="uid://bcfman7jtjuyn" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Meteors/meteorGrey_big1.png" id="3_c7hgf"]
 [ext_resource type="AudioStream" uid="uid://bccmmcxao62qu" path="res://art-and-sound/launches/iceball.wav" id="4_ec5l3"]

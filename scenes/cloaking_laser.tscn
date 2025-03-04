@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dvu3jp0umjhwm"]
 
-[ext_resource type="Script" path="res://scenes/cloaking_laser.gd" id="1_pcfxm"]
+[ext_resource type="Script" uid="uid://3heq64xp7wl1" path="res://scenes/cloaking_laser.gd" id="1_pcfxm"]
 [ext_resource type="Texture2D" uid="uid://c8cwdg6lv5rsn" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Lasers/laserBlue12.png" id="2_u7y57"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_apuwp"]
@@ -43,9 +43,9 @@ resource_name = "uncloak"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uuntw"]
 _data = {
-"RESET": SubResource("Animation_7yw8p"),
-"cloak": SubResource("Animation_klnbj"),
-"uncloak": SubResource("Animation_05rdo")
+&"RESET": SubResource("Animation_7yw8p"),
+&"cloak": SubResource("Animation_klnbj"),
+&"uncloak": SubResource("Animation_05rdo")
 }
 
 [node name="CloakingLaser" type="CharacterBody2D"]

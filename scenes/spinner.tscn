@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ca2aakjbasmn2"]
 
-[ext_resource type="Script" path="res://scenes/spinner.gd" id="1_5vdxy"]
+[ext_resource type="Script" uid="uid://be375yw8jxv5w" path="res://scenes/spinner.gd" id="1_5vdxy"]
 [ext_resource type="Texture2D" uid="uid://ixhjjgwytprq" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Lasers/laserRed11.png" id="2_56gue"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jn2vx"]
@@ -39,8 +39,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tmjvq"]
 _data = {
-"RESET": SubResource("Animation_f14p1"),
-"spin": SubResource("Animation_i4g14")
+&"RESET": SubResource("Animation_f14p1"),
+&"spin": SubResource("Animation_i4g14")
 }
 
 [node name="Spinner" type="RigidBody2D"]

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Obstacles" load_steps=3 format=3 uid="uid://ysfrtee1qg06"]
 
 [ext_resource type="PackedScene" uid="uid://b1jnd5ggcbf08" path="res://scenes/missile.tscn" id="1_735vf"]
-[ext_resource type="Script" path="res://scenes/obstacles.gd" id="2_dl7yv"]
+[ext_resource type="Script" uid="uid://c6tji6njl0mr0" path="res://scenes/obstacles.gd" id="2_dl7yv"]
 
 [resource]
 script = ExtResource("2_dl7yv")
