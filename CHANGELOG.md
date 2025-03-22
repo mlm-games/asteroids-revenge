@@ -1,3 +1,8 @@
+## v0.13.2 Changes
+
+- Add death particles and sound for asteroid bullet
+- Add main screen animation and sound effect
+
 ## v0.13.1 Changes
 
 - Update to Godot 4.4
