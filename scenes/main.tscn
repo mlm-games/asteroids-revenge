@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dh74b3h6q3026"]
+[gd_scene load_steps=17 format=3 uid="uid://dh74b3h6q3026"]
 
 [ext_resource type="Script" uid="uid://cu6nvp4mmo11k" path="res://scenes/Main.gd" id="1_0lgb2"]
 [ext_resource type="Theme" uid="uid://vdypn6ym62cq" path="res://scenes/main-theme.tres" id="1_jeava"]
@@ -47,6 +47,43 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_bg1rt"),
 &"blink": SubResource("Animation_gcuun")
+}
+
+[sub_resource type="Animation" id="Animation_85g3d"]
+resource_name = "ScaleSlightly"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.99, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_choun"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ya4ey"]
+_data = {
+&"RESET": SubResource("Animation_choun"),
+&"ScaleSlightly": SubResource("Animation_85g3d")
 }
 
 [node name="Main" type="Control"]
@@ -102,16 +139,7 @@ metadata/_edit_use_anchors_ = true
 [node name="SpacerControl" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 2.3
-
-[node name="GameName" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 12.0
-theme_override_fonts/font = ExtResource("3_k5igf")
-theme_override_font_sizes/font_size = 48
-text = "GAME_TITLE"
-horizontal_alignment = 1
+size_flags_stretch_ratio = 16.0
 
 [node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -185,6 +213,28 @@ layout_mode = 2
 theme = ExtResource("5_mt70k")
 icon = ExtResource("6_3qcx3")
 icon_alignment = 2
+
+[node name="GameName" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 5.0
+offset_top = 92.0
+offset_right = 643.0
+offset_bottom = 526.0
+pivot_offset = Vector2(319, 217)
+size_flags_vertical = 3
+size_flags_stretch_ratio = 12.0
+theme_override_fonts/font = ExtResource("3_k5igf")
+theme_override_font_sizes/font_size = 48
+text = "GAME_TITLE"
+horizontal_alignment = 1
+
+[node name="TitleAnim" type="AnimationPlayer" parent="GameName"]
+libraries = {
+&"": SubResource("AnimationLibrary_ya4ey")
+}
+autoplay = "ScaleSlightly"
+speed_scale = 0.25
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HardModeButton" to="." method="_on_hard_mode_button_pressed"]

@@ -11,6 +11,10 @@ func _ready() -> void:
 		%HintLabel.hide()
 	GameState.save_game()
 	%StartButton.grab_focus()
+	
+	#HACK: Remove the title as a child of container, and then add anim
+	
+	
 
 
 func _on_start_button_pressed():
