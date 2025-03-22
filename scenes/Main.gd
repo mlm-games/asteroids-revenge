@@ -1,5 +1,7 @@
 extends Control
 
+@onready var tween := get_tree().create_tween()
+
 func _ready() -> void:
 	if GameState.first_time_opened:
 		%FirstTimeAnimPlayer.play("blink",-1,0.75)
@@ -13,7 +15,12 @@ func _ready() -> void:
 	%StartButton.grab_focus()
 	
 	#HACK: Remove the title as a child of container, and then add anim
-	
+	%AnimSound.play()
+	tween.parallel().tween_property(%GameName, "position", %GameName.position, 1.25
+	).from(%GameName.position + Vector2(0, 200)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	tween.parallel().tween_property(%MarginContainer, "position", Vector2.ZERO, 1.2
+	).from(%MarginContainer.position - Vector2(0, 100)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC).set_delay(0.25)
+
 	
 
 

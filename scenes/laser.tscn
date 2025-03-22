@@ -27,6 +27,7 @@ shape = SubResource("CapsuleShape2D_hum1q")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
 lifetime = 0.2
 randomness = 1.0
 lifetime_randomness = 0.2

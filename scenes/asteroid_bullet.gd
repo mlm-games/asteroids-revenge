@@ -14,6 +14,10 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
 		body.queue_free()
+		%DeathParticles.emitting = true
+		%DeathSound.play()
+		%DeathParticles.reparent(get_tree().get_root())
+		%DeathSound.reparent(get_tree().get_root())
 		queue_free()
 	elif body.is_in_group("Boss"):
 		body.take_damage(20)
