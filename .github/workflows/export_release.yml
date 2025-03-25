@@ -95,7 +95,6 @@ jobs:
       matrix:
         platform: ["Windows Desktop", "Linux/X11", "macOS", "Android arm32", "Android arm64", "Linux/X11 arm64", "Android x86 and x86 64", "Web"]
       fail-fast: false
-      max-parallel: 1
 
     steps:
       - uses: actions/checkout@v4
