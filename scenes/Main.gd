@@ -9,8 +9,10 @@ func _ready() -> void:
 	GameState.hard_mode = false
 	GameState.lives = 3
 	if GameState.boss_defeated:
-		%HardModeButton.show()
+		%BossRushModeButton.show()
 		%HintLabel.hide()
+	
+	
 	GameState.save_game()
 	%StartButton.grab_focus()
 	
@@ -50,3 +52,9 @@ func _on_help_button_pressed() -> void:
 func _on_touch_screen_button_pressed() -> void:
 	%MenuClickSound.play()
 	Transition.change_scene_with_transition("res://scenes/settings.tscn")
+
+
+func _on_boss_rush_mode_button_pressed() -> void:
+	%MenuClickSound.play()
+	GameState.start_boss_rush()
+	Transition.change_scene_with_transition("res://scenes/world.tscn")

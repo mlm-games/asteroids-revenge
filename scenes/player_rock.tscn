@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cxi3stw7wrvli"]
+[gd_scene load_steps=11 format=3 uid="uid://cxi3stw7wrvli"]
 
 [ext_resource type="Script" uid="uid://cv6lgtatphwgd" path="res://scenes/player_rock.gd" id="1_kccwu"]
 [ext_resource type="Texture2D" uid="uid://fv4u676rvcc6" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Meteors/meteorBrown_big1.png" id="2_ctg6k"]
 [ext_resource type="PackedScene" uid="uid://divaw71qkw2lp" path="res://scenes/asteroid_bullet.tscn" id="2_m20jj"]
 [ext_resource type="AudioStream" uid="uid://bdri2e7vh3reo" path="res://art-and-sound/launches/rlaunch.wav" id="3_xgo6l"]
+[ext_resource type="AudioStream" uid="uid://bccmmcxao62qu" path="res://art-and-sound/launches/iceball.wav" id="5_baikv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4pdcd"]
 radius = 56.0
@@ -143,6 +144,14 @@ libraries = {
 unique_name_in_owner = true
 wait_time = 5.0
 one_shot = true
+
+[node name="SpawnSound" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_baikv")
+volume_db = -3.11
+pitch_scale = 1.44
+autoplay = true
+bus = &"SoundEffects"
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

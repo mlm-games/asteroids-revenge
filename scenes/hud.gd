@@ -10,6 +10,7 @@ var called: bool = false
 func _ready() -> void:
 	%"Virtual Joystick".visible = GameState.joystick_is_visible
 	%FireButton.visible = GameState.fire_button_is_visible
+	%ScoreLabel.visible = !GameState.boss_rush_mode
 	
 	if GameState.player_alt_touch_controls:
 		%LeftTouchScreenButton.show()

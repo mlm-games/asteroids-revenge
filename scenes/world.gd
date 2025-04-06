@@ -12,17 +12,27 @@ const MIN_PARTICLES = 2
 const MAX_PARTICLES = 4
 const INITIAL_LIVES = 3
 
+signal boss_rush_next_level
+
 var score := 0
 var obstacle_type := Vector2i(1, 1)
 var spawntime := Vector2(0.5, 1.5)
 var particles_spawn_count: int
 var difficulty_level_method = score_dependencies_hard_mode if GameState.hard_mode else score_dependencies
+
 @onready var boss_spawn_node = %Camera2D2
+@onready var boss_rush_label: Label = %BossRushLabel
 
 func _ready() -> void:
 	GameState.lives = INITIAL_LIVES
 	%HUD.update_lives(GameState.lives)
 	$HardModeLabel.visible = GameState.hard_mode
+	if GameState.boss_rush_mode:
+		boss_rush_label.visible = true
+		boss_rush_label.text = tr("GAMEPLAY_BOSS_RUSH_LEVEL_LABEL") + " " + str(GameState.boss_rush_level)
+		
+		spawn_boss()
+	
 	ResourceLoader.load_threaded_request(BOSS_SPACESHIP_PATH)
 	
 	# Connect player signals to HUD
@@ -43,12 +53,12 @@ func _process(_delta: float) -> void:
 
 
 func handle_boss_spawn() -> void:
-	if is_boss_present() && %SpawnTimer.is_stopped() && %PlayerRock.visible:
+	if not is_boss_present() && %SpawnTimer.is_stopped() && %PlayerRock.visible and not GameState.boss_rush_mode:
 		%SpawnTimer.start()
 		fade_in_bgm()
 
 func is_boss_present() -> bool:
-	return boss_spawn_node.get_child_count() == 1
+	return boss_spawn_node.get_child_count() != 1
 
 func fade_in_bgm() -> void:
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
@@ -74,7 +84,7 @@ func update_score() -> void:
 	if GameState.hard_mode:
 		GameState.frenzy_high_score = high_score
 		GameState.frenzy_lowest_score = low_score
-	else:
+	elif not GameState.boss_rush_mode:
 		GameState.highscore = high_score
 		GameState.lowestscore = low_score
 
@@ -202,12 +212,33 @@ func score_dependencies_hard_mode() -> void:
 		1000: spawn_boss()
 
 func spawn_boss() -> void:
-	if is_boss_present():
-		var boss = ResourceLoader.load_threaded_get(BOSS_SPACESHIP_PATH).instantiate()
+	#if GameState.boss_rush_mode:
+		
+		
+	if not is_boss_present():
+		var boss = ResourceLoader.load_threaded_get(BOSS_SPACESHIP_PATH).instantiate() if !GameState.boss_rush_mode else load(BOSS_SPACESHIP_PATH).instantiate()
 		boss.position.x = boss_spawn_node.position.x
 		boss_spawn_node.add_child(boss)
 		%SpawnTimer.stop()
 		%PlayerRock/BGM.stop()
+
+
+func boss_defeated():
+	if GameState.boss_rush_mode:
+		GameState.next_boss_level()
+		GameState.max_boss_rush_level = maxi(GameState.max_boss_rush_level, GameState.boss_rush_level)
+		
+		%PlayerRock.refresh_for_boss_rush()
+		
+		if GameState.lives < INITIAL_LIVES:
+			GameState.lives = INITIAL_LIVES
+			%HUD.update_lives(GameState.lives)
+		
+		await get_tree().create_timer(7).timeout # Wait for death anim
+		spawn_boss()
+		
+		if GameState.boss_rush_mode: boss_rush_label.text = tr("GAMEPLAY_BOSS_RUSH_LEVEL_LABEL") + " " + str(GameState.boss_rush_level)
+
 
 """
 func _on_game_restarted() -> void:

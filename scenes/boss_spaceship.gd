@@ -17,9 +17,15 @@ const MAX_HEALTH = 100
 @onready var bgm: AudioStreamPlayer2D = %BGM
 
 func _ready() -> void:
-	health = MAX_HEALTH
+	if GameState.boss_rush_mode:
+		health = MAX_HEALTH * GameState.boss_health_multiplier
+	else:
+		health = MAX_HEALTH
+	
 	%Sprite2D.texture = load("res://art-and-sound/kenney_space-shooter-redux/PNG/playerShip" +str(randi_range(1,3)) + "_" + spaceship_color + ".png")
 	%Sprite2D/ApproachAnim.play("approach")
+	
+	%BossHealthBar.max_value = health
 
 func _process(delta: float) -> void:
 	position = lerp(position, target_position, delta * 2.0)
@@ -55,6 +61,9 @@ func take_damage(damage: float) -> void:
 		%DeathSound.play()
 		%BossHealthBar.hide()
 		GameState.boss_defeated = true
+		if GameState.boss_rush_mode:
+			get_parent().get_parent().boss_defeated()
+			
 		var part : Array = ["cockpit", "wing"]
 		var material_color : String = spaceship_color.capitalize()
 		if material_color == "Orange":

@@ -19,6 +19,11 @@ var frenzy_lowest_score:int = 0
 var first_time_opened: bool
 var player_alt_touch_controls: bool = false
 
+var boss_rush_mode := false
+var boss_rush_level := 0
+var boss_health_multiplier := 1.0
+var max_boss_rush_level := 0
+
 #region Saving and loading
 func _ready() -> void:
 	if !FileAccess.file_exists(SAVE_PATH):
@@ -35,7 +40,14 @@ func _ready() -> void:
 	print("System language: ", locale + ", OS: ", OS.get_name())
 
 
+func start_boss_rush():
+	boss_rush_mode = true
+	boss_rush_level = 0
+	boss_health_multiplier = 1.0
 
+func next_boss_level():
+	boss_rush_level += 1
+	boss_health_multiplier = 1.0 + (boss_rush_level * 0.2) #20% per level
 
 func save_game():
 	var save_file = FileAccess.open(SAVE_PATH ,FileAccess.WRITE)
@@ -51,6 +63,7 @@ func save_game():
 		"frenzy_high_score": frenzy_high_score,
 		"frenzy_lowest_score": frenzy_lowest_score,
 		"player_alt_touch_controls": player_alt_touch_controls,
+		"max_boss_rush_level": max_boss_rush_level
 	}
 	
 	var jstr := JSON.stringify(data)
@@ -73,4 +86,7 @@ func load_game():
 				frenzy_high_score = current_line["frenzy_high_score"]
 				frenzy_lowest_score = current_line["frenzy_lowest_score"]
 				player_alt_touch_controls = current_line["player_alt_touch_controls"]
+				if "max_boss_rush_level" in current_line:
+					boss_rush_level = current_line["max_boss_rush_level"]
+
 #endregion

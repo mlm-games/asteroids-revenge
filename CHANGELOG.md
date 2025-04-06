@@ -1,3 +1,7 @@
+## v0.14.0 Changes
+
+- Add a new game mode (unlocks after the first boss kill...)
+
 ## v0.13.3 Changes
 
 - Try fixing releases not being uploaded

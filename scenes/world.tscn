@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://sq6hbykhax0"]
+[gd_scene load_steps=10 format=4 uid="uid://sq6hbykhax0"]
 
 [ext_resource type="PackedScene" uid="uid://cxi3stw7wrvli" path="res://scenes/player_rock.tscn" id="1_u7ba8"]
 [ext_resource type="Script" uid="uid://d07nfekv3qrfm" path="res://scenes/world.gd" id="1_wwy7r"]
@@ -14,6 +14,8 @@ sampling_rate = 22050.0
 [sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_vop8t"]
 packet_sequence = SubResource("OggPacketSequence_doc0e")
 loop = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_71j4m"]
 
 [sub_resource type="Curve2D" id="Curve2D_pkpba"]
 _data = {
@@ -54,6 +56,17 @@ bus = &"SoundEffects"
 
 [node name="HUD" parent="." instance=ExtResource("5_c0pkx")]
 unique_name_in_owner = true
+
+[node name="BossRushLabel" type="Label" parent="HUD"]
+unique_name_in_owner = true
+modulate = Color(0.972549, 0.647059, 0.537255, 0.462745)
+offset_left = -1.0
+offset_top = 30.0
+offset_right = 645.0
+offset_bottom = 221.0
+text = "sss"
+label_settings = SubResource("LabelSettings_71j4m")
+horizontal_alignment = 2
 
 [node name="Camera2D2" type="Camera2D" parent="."]
 unique_name_in_owner = true

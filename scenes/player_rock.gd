@@ -42,6 +42,7 @@ func shoot():
 		get_node("/root").add_child(rock_bullet)
 		bullets_fired += 1
 		bullet_fired.emit()
+		%SpawnSound.play()
 	else:
 		#Player gets hit for every 5 bullets he fires (so he can fire inf?)
 		pass
@@ -102,3 +103,12 @@ func animate_particle(particle: Node2D) -> void:
 	tween.tween_property(particle, "rotation", TAU, 2.0)
 	tween.tween_property(particle, "modulate", Color.TRANSPARENT, 2.0)
 	tween.chain().tween_callback(particle.queue_free)
+
+func refresh_for_boss_rush():
+	bullets_fired = 0
+	bullets_reset.emit()
+	
+	var tween = %Sprite2D.create_tween().set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(%Sprite2D, "modulate", Color.GREEN, 0.3)
+	tween.tween_property(%Sprite2D, "modulate", Color.WHITE, 0.3)
+	

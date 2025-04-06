@@ -171,7 +171,7 @@ visible_ratio = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control/PressAnyKeyLabel"]
 libraries = {
-"": SubResource("AnimationLibrary_kulbx")
+&"": SubResource("AnimationLibrary_kulbx")
 }
 
 [node name="Virtual Joystick" parent="Control" instance=ExtResource("5_vxcta")]
@@ -231,7 +231,7 @@ tint_progress = Color(1, 0.6, 0.6, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control/VBoxContainer/HBoxContainer/BulletsBar"]
 libraries = {
-"": SubResource("AnimationLibrary_kulbx")
+&"": SubResource("AnimationLibrary_kulbx")
 }
 autoplay = "fullBar"
 
