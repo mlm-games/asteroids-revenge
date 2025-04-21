@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://d2jvst3mxg1br" path="res://scenes/asteroid_bullet.gd" id="1_00uet"]
 [ext_resource type="PackedScene" uid="uid://bdv8udonykbs1" path="res://scenes/mini_asteroid.tscn" id="2_ndjqt"]
 [ext_resource type="Texture2D" uid="uid://bcfman7jtjuyn" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Meteors/meteorGrey_big1.png" id="3_c7hgf"]
-[ext_resource type="AudioStream" uid="uid://lecvkg6566m5" path="res://art-and-sound/bullet_death.ogg" id="5_ujktb"]
+[ext_resource type="AudioStream" uid="uid://2gth7dqm5o4v" path="res://art-and-sound/my-assets/mini_asteroid_death.ogg" id="4_h2xg5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b5us7"]
 radius = 36.0
@@ -35,10 +35,7 @@ texture = ExtResource("3_c7hgf")
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("5_ujktb")
-volume_db = -3.11
-pitch_scale = 2.25
-autoplay = true
+stream = ExtResource("4_h2xg5")
 bus = &"SoundEffects"
 
 [node name="DeathParticles" type="CPUParticles2D" parent="."]

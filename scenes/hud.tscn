@@ -102,7 +102,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ParallaxLayer" type="Parallax2D" parent="Control/ParallaxBackground"]
-repeat_size = Vector2(0, 1152)
+repeat_size = Vector2(648, 1152)
 follow_viewport = false
 
 [node name="Sprite2D" type="TextureRect" parent="Control/ParallaxBackground/ParallaxLayer"]

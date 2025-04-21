@@ -121,6 +121,8 @@ func _on_player_spaceship_game_over() -> void:
 	cleanup_entities()
 	show_game_over_screen()
 	spawn_death_particles()
+	Transition.camera_shake(5, 2.5, 5)
+
 
 func stop_game_effects() -> void:
 	%SpawnTimer.stop()

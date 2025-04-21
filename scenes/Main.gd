@@ -10,6 +10,7 @@ func _ready() -> void:
 	GameState.lives = 3
 	if GameState.boss_defeated:
 		%BossRushModeButton.show()
+		%HardModeButton.show()
 		%HintLabel.hide()
 	
 	

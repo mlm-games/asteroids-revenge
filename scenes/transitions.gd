@@ -36,3 +36,42 @@ func _on_animation_player_animation_finished(anim_name):
 		transition_rect.hide()
 	if anim_name == "slightFlash":
 		white_rect.hide()
+
+
+func camera_shake(intensity: float = 1.5, duration: float = 1.5, decay: float = 3.0, camera: Camera2D = get_viewport().get_camera_2d()) -> void:
+	# Stop any existing shake tweens
+	if camera.has_meta("shake_tween") and camera.get_meta("shake_tween").is_valid():
+			camera.get_meta("shake_tween").kill()
+	
+	var tween := create_tween()
+	camera.set_meta("shake_tween", tween)
+	
+	var original_position := camera.position
+	var original_rotation := camera.rotation
+	
+	# This will be called by tween_method to update the camera shake
+	var shake_function := func(progress: float) -> void:
+		var remaining := 1.0 - progress
+		var current_intensity := intensity * pow(remaining, decay)
+		
+		if current_intensity > 0.01:
+			var cam_offset := Vector2(
+				intensity * 5.0 * current_intensity * randf_range(-1, 1),
+				intensity * 5.0 * current_intensity * randf_range(-1, 1)
+			)
+			var cam_rotation := 0.1 * intensity * current_intensity * randf_range(-1, 1)
+			
+			camera.position = original_position + cam_offset
+			camera.rotation = original_rotation + cam_rotation
+		else:
+			camera.position = original_position
+			camera.rotation = original_rotation
+	
+	#call our shake function over the duration
+	tween.tween_method(shake_function, 0.0, 1.0, duration)
+	
+	# Reset camera when done
+	tween.tween_callback(func() -> void:
+		camera.position = original_position
+		camera.rotation = original_rotation
+	)

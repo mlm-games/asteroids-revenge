@@ -59,12 +59,12 @@ unique_name_in_owner = true
 
 [node name="BossRushLabel" type="Label" parent="HUD"]
 unique_name_in_owner = true
+visible = false
 modulate = Color(0.972549, 0.647059, 0.537255, 0.462745)
 offset_left = -1.0
 offset_top = 30.0
 offset_right = 645.0
 offset_bottom = 221.0
-text = "sss"
 label_settings = SubResource("LabelSettings_71j4m")
 horizontal_alignment = 2
 

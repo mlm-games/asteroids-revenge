@@ -98,3 +98,4 @@ locale/translations=PackedStringArray("res://locale/translations.ar.translation"
 
 textures/canvas_textures/default_texture_filter=0
 textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.00261828, 0.146263, 0.221763, 1)
