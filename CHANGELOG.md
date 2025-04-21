@@ -1,3 +1,9 @@
+## v0.14.1 Changes
+
+- Fix the hard mode not getting hidden along with boss rush
+- Add a better death screen shake ffect
+- Improve the asteroid collision sound
+
 ## v0.14.0 Changes
 
 - Add a new game mode (unlocks after the first boss kill...)
