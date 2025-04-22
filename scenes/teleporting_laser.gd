@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
 # Enemy properties
-var speed = 150
+var speed : float = 150
 
 
-func _physics_process(_delta):
+func _physics_process(_delta: float) -> void:
 	velocity = speed * Vector2.UP
 	move_and_slide()
 	

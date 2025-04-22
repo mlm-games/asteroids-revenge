@@ -5,7 +5,7 @@ signal game_restarted
 const MAX_BULLETS = 5
 
 var called: bool = false
-@onready var player = get_tree().get_first_node_in_group("Player")
+@onready var player : Player = get_tree().get_first_node_in_group("Player")
 
 func _ready() -> void:
 	%"Virtual Joystick".visible = GameState.joystick_is_visible
@@ -28,11 +28,11 @@ func _ready() -> void:
 		player.bullets_reset.connect(_on_player_bullets_reset)
 
 
-func update_lives(lives):
+func update_lives(lives: int) -> void:
 	%LivesLabel.text = tr("GAME_CHARACTER_LIVES") + ": " + str(lives)
 
 
-func update_score(score, highscore, lowestscore) -> void:
+func update_score(score: int, highscore: int, lowestscore: int) -> void:
 	%ScoreLabel.text = str(score)
 	if score > 0:
 		%HighscoreLabel.text = tr("GAME_OBJECTIVE_HIGH_SCORE") + "\n" + str(highscore)
@@ -40,7 +40,7 @@ func update_score(score, highscore, lowestscore) -> void:
 		%LowestScoreLabel.text = tr("GAME_OBJECTIVE_LOWEST_SCORE") + "\n" + str(lowestscore)
 
 
-func game_over(score) -> void:
+func game_over(score: int) -> void:
 	GameState.save_game()
 	Transition.transition("slightFlash")
 	if score > 0:

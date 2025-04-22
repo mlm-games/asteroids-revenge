@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var speed : float
-@onready var angle = randf_range(PI/2,-PI/2)
+@onready var angle : float = randf_range(PI/2,-PI/2)
 
 func _ready() -> void:
 	

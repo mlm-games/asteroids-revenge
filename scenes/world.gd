@@ -18,9 +18,9 @@ var score := 0
 var obstacle_type := Vector2i(1, 1)
 var spawntime := Vector2(0.5, 1.5)
 var particles_spawn_count: int
-var difficulty_level_method = score_dependencies_hard_mode if GameState.hard_mode else score_dependencies
+var difficulty_level_method := score_dependencies_hard_mode if GameState.hard_mode else score_dependencies
 
-@onready var boss_spawn_node = %Camera2D2
+@onready var boss_spawn_node : Camera2D = %Camera2D2
 @onready var boss_rush_label: Label = %BossRushLabel
 
 func _ready() -> void:
@@ -61,8 +61,8 @@ func is_boss_present() -> bool:
 	return boss_spawn_node.get_child_count() != 1
 
 func fade_in_bgm() -> void:
-	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
-	var initial_vol = %PlayerRock/BGM.volume_db
+	var tween : Tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+	var initial_vol : float = %PlayerRock/BGM.volume_db
 	%PlayerRock/BGM.volume_db = -80
 	tween.tween_property(%PlayerRock/BGM, "volume_db", initial_vol, 1.0)
 	%PlayerRock/BGM.play()
@@ -75,8 +75,8 @@ func update_camera_position_and_projectile_path() -> void:
 
 func update_score() -> void:
 	score = (%PlayerRock.position.y) * 0.05
-	var high_score = GameState.frenzy_high_score if GameState.hard_mode else GameState.highscore
-	var low_score = GameState.frenzy_lowest_score if GameState.hard_mode else GameState.lowestscore
+	var high_score : int = GameState.frenzy_high_score if GameState.hard_mode else GameState.highscore
+	var low_score : int = GameState.frenzy_lowest_score if GameState.hard_mode else GameState.lowestscore
 	high_score = max(high_score, score)
 	low_score = min(low_score, score)
 	%HUD.update_score(score, high_score, low_score)
@@ -96,8 +96,8 @@ func _on_spawn_timer_timeout() -> void:
 
 func spawn_obstacle() -> void:
 	var obstacle: Obstacles = load("res://resources/obstacle" + str(randi_range(obstacle_type.x, obstacle_type.y)) + ".tres")
-	var projectile_scene = obstacle.scene.instantiate()
-	var spawn_location = %ProjectilePath/ProjectileSpawnLocation
+	var projectile_scene : Node = obstacle.scene.instantiate()
+	var spawn_location : PathFollow2D = %ProjectilePath/ProjectileSpawnLocation
 	spawn_location.progress_ratio = randf()
 	projectile_scene.global_position = spawn_location.global_position
 	projectile_scene.add_to_group("enemies")
@@ -143,21 +143,21 @@ func show_game_over_screen() -> void:
 func spawn_death_particles() -> void:
 	particles_spawn_count = randi_range(MIN_PARTICLES, MAX_PARTICLES)
 	for i in range(particles_spawn_count):
-		var mini_asteroid = MiniAsteroidScene.instantiate()
-		var random_offset = Vector2(randf() * PARTICLE_SPAWN_OFFSET, randf() * PARTICLE_SPAWN_OFFSET)
+		var mini_asteroid := MiniAsteroidScene.instantiate()
+		var random_offset : Vector2 = Vector2(randf() * PARTICLE_SPAWN_OFFSET, randf() * PARTICLE_SPAWN_OFFSET)
 		mini_asteroid.global_position = %PlayerRock.global_position + random_offset
 		add_child(mini_asteroid)
 		animate_death_particle(mini_asteroid)
 
 func animate_death_particle(particle: Node2D) -> void:
-	var tween = create_tween().set_parallel()
+	var tween : Tween = create_tween().set_parallel()
 	tween.tween_property(particle, "position", %PlayerRock.global_position + Vector2(300 * randf_range(-1, 1), 300 * randf_range(-1, 1)), 2.0)
 	tween.tween_property(particle, "rotation", TAU, 2.0)
 	tween.tween_property(particle, "modulate", Color.TRANSPARENT, 2.0)
 	tween.chain().tween_callback(particle.queue_free)
 
 func score_dependencies() -> void:
-	var abs_score = abs(score)
+	var abs_score : int = absi(score)
 	match abs_score:
 		50: spawntime = Vector2(0.5, 1.4)
 		100:
@@ -185,7 +185,7 @@ func score_dependencies() -> void:
 			obstacle_type.y = 6
 
 func score_dependencies_hard_mode() -> void:
-	var abs_score = abs(score)
+	var abs_score :int = absi(score)
 	match abs_score:
 		50: spawntime = Vector2(0.5, 1)
 		100:
@@ -218,14 +218,14 @@ func spawn_boss() -> void:
 		
 		
 	if not is_boss_present():
-		var boss = ResourceLoader.load_threaded_get(BOSS_SPACESHIP_PATH).instantiate() if !GameState.boss_rush_mode else load(BOSS_SPACESHIP_PATH).instantiate()
+		var boss : CharacterBody2D = ResourceLoader.load_threaded_get(BOSS_SPACESHIP_PATH).instantiate() if !GameState.boss_rush_mode else load(BOSS_SPACESHIP_PATH).instantiate()
 		boss.position.x = boss_spawn_node.position.x
 		boss_spawn_node.add_child(boss)
 		%SpawnTimer.stop()
 		%PlayerRock/BGM.stop()
 
 
-func boss_defeated():
+func boss_defeated() -> void:
 	if GameState.boss_rush_mode:
 		GameState.next_boss_level()
 		GameState.max_boss_rush_level = maxi(GameState.max_boss_rush_level, GameState.boss_rush_level)

@@ -6,7 +6,7 @@ var speed := 200.0  # Adjust this for the enemy's movement speed
 var cloaked := false
 
 
-func _physics_process(_delta):
+func _physics_process(_delta: float) -> void:
 	velocity = speed * Vector2.UP
 	move_and_slide()
 
@@ -25,4 +25,3 @@ func _on_cloak_timer_timeout() -> void:
 #		%CloakTimer.wait_time = 1
 #		%AnimationPlayer.play("uncloak")
 #		cloaked = false
-

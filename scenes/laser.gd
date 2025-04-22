@@ -3,17 +3,17 @@ extends RigidBody2D
 @export var health:int
 var speed:float = self.linear_velocity.y
 
-var lifetime = 100
+var lifetime : int = 100
 
-var velocity = Vector2(0,randf_range(speed,speed*4))
+var velocity : Vector2 = Vector2(0,randf_range(speed,speed*4))
 
-func _ready():
+func _ready() -> void:
 	gravity_scale = 0
 	await get_tree().create_timer(lifetime).timeout
 	queue_free()
 
 
-func _process(_delta):
+func _process(_delta: float) -> void:
 	linear_velocity = velocity
 
 

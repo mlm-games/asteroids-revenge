@@ -2,19 +2,18 @@ extends CharacterBody2D
 
 #HACK: looks in the direction of its movement
 
-# Enemy properties
-var amplitude = 150.0  # Adjust this for the size of the sine wave
-var frequency = 2.0  # Adjust this for the frequency of the sine wave
-var speed = 200.0  # Adjust this for the enemy's movement speed
-var direction = Vector2(1,-1)  # Initial movement direction
-var time = 0
-var initial_pos
+var amplitude : float = 150.0 
+var frequency : float = 2.0  
+var speed : float = 200.0  
+var direction : Vector2 = Vector2(1,-1) 
+var initial_pos : Vector2
+var time : float = 0.0
 
-@onready var random_offset = randf_range(150,550)
+@onready var random_offset : float = randf_range(150,550)
 #@onready var sprite_2d: Sprite2D = %Sprite2D
 #@onready var collision_shape_2d: CollisionShape2D = %CollisionShape2D
 
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	time += delta
 	position.x = sin(time*frequency)*amplitude + random_offset 
 	velocity.y = direction.y * speed

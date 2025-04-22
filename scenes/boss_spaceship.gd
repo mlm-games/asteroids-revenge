@@ -13,7 +13,7 @@ var target_position := Vector2(randi_range(0,600),800)
 var spaceship_color : String = SHAPESHIP_TYPE.pick_random()
 
 const MAX_HEALTH = 100
-@onready var timer = get_tree().create_timer(1.5)
+@onready var timer : SceneTreeTimer = get_tree().create_timer(1.5)
 @onready var bgm: AudioStreamPlayer2D = %BGM
 
 func _ready() -> void:
@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 
 func shoot() -> void:
 	var boss_obstacle := load("res://resources/obstacle"+str(randi_range(7,9))+".tres")
-	var bullet = boss_obstacle.scene.instantiate()
+	var bullet : Node2D = boss_obstacle.scene.instantiate()
 	bullet.global_position = %ProjectileSpawnPoint.global_position
 	get_node("/root").add_child(bullet)
 	bullet.add_to_group("enemies")
@@ -52,7 +52,7 @@ func _on_shoot_timer_timeout() -> void:
 func take_damage(damage: float) -> void:
 	health = max(health - damage, 0)
 	if health > 0:
-		var tween = create_tween()
+		var tween : Tween = create_tween()
 		tween.tween_property(%Sprite2D, "modulate", Color.RED, 0.2)
 		tween.tween_property(%Sprite2D, "modulate", Color.WHITE, 0.2)
 	else:
@@ -68,23 +68,23 @@ func take_damage(damage: float) -> void:
 		var material_color : String = spaceship_color.capitalize()
 		if material_color == "Orange":
 			material_color = "Yellow"
-		var particles_spawn_count = randi_range(1,3)
+		var particles_spawn_count : int = randi_range(1,3)
 		%AnimationPlayer.play("death")
 		# The particles after death of spaceship
 		for i in range(particles_spawn_count):
 			randomize()
 			var part_path : String = "res://art-and-sound/kenney_space-shooter-redux/PNG/Parts/" + part.pick_random() + material_color + "_" + str(randi_range(0,7)) + ".png"
 			var broken_part : Sprite2D = Sprite2D.new()
-			var random_offset = Vector2(randf() * 20, randf() * 20)  # Random offset around player
+			var random_offset : Vector2 = Vector2(randf() * 20, randf() * 20)  # Random offset around player
 			broken_part.texture = load(part_path)
 			broken_part.global_position = %Sprite2D.global_position + random_offset
 			get_tree().current_scene.add_child(broken_part)
 			# Create tween to fade out and delete
-			var tween = broken_part.create_tween().set_parallel()
+			var tween : Tween = broken_part.create_tween().set_parallel()
 			tween.tween_property(broken_part,"position", %Sprite2D.global_position + Vector2(300 * randf_range(-1,1), 300 * randf_range(-1,1)),2.0)
 			tween.tween_property(broken_part,"rotation", TAU, 2.0)
 			tween.tween_property(broken_part, "modulate", Color.TRANSPARENT, 2.0)
-			tween.chain().tween_callback(func(): broken_part.queue_free())  # Delete after fading
+			tween.chain().tween_callback(func() -> void: broken_part.queue_free())  # Delete after fading
 		await %DeathSound.finished
 		queue_free()
 #invincibility state

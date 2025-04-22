@@ -7,17 +7,17 @@ signal faded_to_black
 @onready var white_rect : ColorRect = $OnScreenEffectsRect
 @onready var effects_player: AnimationPlayer = %EffectsPlayer
 
-func _ready():
+func _ready() -> void:
 	transition_rect.visible = false
 	white_rect.visible = false
 
 
-func change_scene_with_transition(scene_path):
+func change_scene_with_transition(scene_path: StringName) -> void:
 	transition("fadeToBlack")
 	await faded_to_black
 	get_tree().change_scene_to_file(scene_path)
 
-func transition(anim_name):
+func transition(anim_name: StringName) -> void:
 	match anim_name:
 		"fadeToBlack":
 			transition_rect.visible = true
@@ -28,7 +28,7 @@ func transition(anim_name):
 
 
 
-func _on_animation_player_animation_finished(anim_name):
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "fadeToBlack":
 		transition_player.play("fadeToNormal")
 		faded_to_black.emit()
@@ -43,7 +43,7 @@ func camera_shake(intensity: float = 1.5, duration: float = 1.5, decay: float = 
 	if camera.has_meta("shake_tween") and camera.get_meta("shake_tween").is_valid():
 			camera.get_meta("shake_tween").kill()
 	
-	var tween := create_tween()
+	var tween : Tween = create_tween()
 	camera.set_meta("shake_tween", tween)
 	
 	var original_position := camera.position
@@ -64,8 +64,9 @@ func camera_shake(intensity: float = 1.5, duration: float = 1.5, decay: float = 
 			camera.position = original_position + cam_offset
 			camera.rotation = original_rotation + cam_rotation
 		else:
-			camera.position = original_position
-			camera.rotation = original_rotation
+			if camera: # incase scene is changed
+				camera.position = original_position
+				camera.rotation = original_rotation
 	
 	#call our shake function over the duration
 	tween.tween_method(shake_function, 0.0, 1.0, duration)

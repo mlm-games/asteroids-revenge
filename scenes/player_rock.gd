@@ -17,10 +17,10 @@ func _ready() -> void:
 	if GameState.hard_mode:
 		$Sprite2D.texture = load("res://art-and-sound/kenney_space-shooter-redux/PNG/Meteors/meteorGrey_big1.png")
 
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	if visible:
 		%Sprite2D.rotation += delta * PI/2
-		var direction = Input.get_vector("left", "right","up","down")
+		var direction : Vector2 = Input.get_vector("left", "right","up","down")
 		if GameState.player_alt_touch_controls:
 			velocity.x = direction.x * SPEED
 			velocity.y = SPEED/2 
@@ -33,11 +33,11 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("fire"):
 			shoot()
 
-func shoot():
+func shoot() -> void:
 	#Here we dont know the exact value of rotation as its spinning, so tweens should be used. (just an example, not needed here)
 	if bullets_fired < MAX_BULLETS:
 		%AnimationPlayer.play("fire")
-		var rock_bullet = rock_bullet_scene.instantiate()
+		var rock_bullet : Node = rock_bullet_scene.instantiate()
 		rock_bullet.global_position = %Sprite2D.global_position + Vector2(0,50) 
 		get_node("/root").add_child(rock_bullet)
 		bullets_fired += 1
@@ -48,7 +48,7 @@ func shoot():
 		pass
 
 
-func _on_visible_on_screen_notifier_2d_screen_exited():
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	game_over.emit()
 
 
@@ -59,7 +59,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		hit_effects()
 
 
-func hit_effects():
+func hit_effects() -> void:
 	$Area2D/CollisionShape2D.set_deferred("disabled", true)
 	%InvincibilityTimer.start()
 	bullets_fired = 0
@@ -78,9 +78,9 @@ func hit_effects():
 	
 
 
-func fade_in_out():
+func fade_in_out() -> void:
 	if !%InvincibilityTimer.is_stopped():
-		var tween = %Sprite2D.create_tween()
+		var tween : Tween = %Sprite2D.create_tween()
 		tween.tween_property(%Sprite2D, "modulate", Color.TRANSPARENT, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property(%Sprite2D, "modulate", Color.WHITE, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		tween.tween_callback(fade_in_out)
@@ -89,7 +89,7 @@ func _on_invincibility_timer_timeout() -> void:
 	%Area2D/CollisionShape2D.disabled = false
 
 func spawn_hurt_particles() -> void:
-	var particles_spawn_count = randi_range(3, 5)
+	var particles_spawn_count : int = randi_range(3, 5)
 	for i:int in range(particles_spawn_count):
 		var mini_asteroid := World.MiniAsteroidScene.instantiate()
 		var random_offset := Vector2(randf() * World.PARTICLE_SPAWN_OFFSET, randf() * World.PARTICLE_SPAWN_OFFSET)
@@ -98,17 +98,17 @@ func spawn_hurt_particles() -> void:
 		animate_particle(mini_asteroid)
 
 func animate_particle(particle: Node2D) -> void:
-	var tween = create_tween().set_parallel().set_ease(Tween.EASE_IN)
+	var tween : Tween = create_tween().set_parallel().set_ease(Tween.EASE_IN)
 	tween.tween_property(particle, "position", position + Vector2(300 * randf_range(-1, 1), 300 * randf_range(-1, 1)), 2.0)
 	tween.tween_property(particle, "rotation", TAU, 2.0)
 	tween.tween_property(particle, "modulate", Color.TRANSPARENT, 2.0)
 	tween.chain().tween_callback(particle.queue_free)
 
-func refresh_for_boss_rush():
+func refresh_for_boss_rush() -> void:
 	bullets_fired = 0
 	bullets_reset.emit()
 	
-	var tween = %Sprite2D.create_tween().set_trans(Tween.TRANS_CUBIC)
+	var tween : Tween = %Sprite2D.create_tween().set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(%Sprite2D, "modulate", Color.GREEN, 0.3)
 	tween.tween_property(%Sprite2D, "modulate", Color.WHITE, 0.3)
 	

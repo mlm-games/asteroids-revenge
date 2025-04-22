@@ -12,7 +12,7 @@ var music := true
 #const TEXT_SIZES: Array = ["SMALL","BIG","VERY BIG"]
 var fire_button_is_visible := false
 var joystick_is_visible := false
-var boss_defeated = false
+var boss_defeated : bool = false
 var locale : String = "en"
 var frenzy_high_score : int = 0
 var frenzy_lowest_score:int = 0
@@ -40,17 +40,17 @@ func _ready() -> void:
 	print("System language: ", locale + ", OS: ", OS.get_name())
 
 
-func start_boss_rush():
+func start_boss_rush() -> void:
 	boss_rush_mode = true
 	boss_rush_level = 0
 	boss_health_multiplier = 1.0
 
-func next_boss_level():
+func next_boss_level() -> void:
 	boss_rush_level += 1
 	boss_health_multiplier = 1.0 + (boss_rush_level * 0.2) #20% per level
 
-func save_game():
-	var save_file = FileAccess.open(SAVE_PATH ,FileAccess.WRITE)
+func save_game() -> void:
+	var save_file : FileAccess = FileAccess.open(SAVE_PATH ,FileAccess.WRITE)
 	var data: Dictionary = {
 		"highscore": highscore,
 		"lowestscore": lowestscore,
@@ -69,11 +69,11 @@ func save_game():
 	var jstr := JSON.stringify(data)
 	save_file.store_line(jstr)
 
-func load_game():
-	var save_file = FileAccess.open(SAVE_PATH ,FileAccess.READ)
+func load_game() -> void:
+	var save_file : FileAccess = FileAccess.open(SAVE_PATH ,FileAccess.READ)
 	if FileAccess.file_exists(SAVE_PATH):                               #you can also put '== true:' near end
 		if not save_file.eof_reached():
-			var current_line = JSON.parse_string(save_file.get_line())
+			var current_line : Dictionary = JSON.parse_string(save_file.get_line())
 			if current_line:
 				highscore = current_line["highscore"]
 				lowestscore = current_line["lowestscore"]

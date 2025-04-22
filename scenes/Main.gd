@@ -27,12 +27,12 @@ func _ready() -> void:
 	
 
 
-func _on_start_button_pressed():
+func _on_start_button_pressed() -> void:
 	%MenuClickSound.play()
 	Transition.change_scene_with_transition("res://scenes/world.tscn")
 
 
-func _on_exit_button_pressed():
+func _on_exit_button_pressed() -> void:
 	%MenuClickSound.play()
 	Transition.transition("fadeToBlack")
 	await Transition.faded_to_black
