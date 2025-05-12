@@ -2,6 +2,8 @@
 
 - Fix issue of titles going offscreen
 - Better performance (due to static typing)
+- Multiple bosses start spawning after 10th boss level
+- Fix #8 by adding autowrap
 
 ## v0.14.1 Changes
 
