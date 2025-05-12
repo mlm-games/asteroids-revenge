@@ -61,8 +61,9 @@ func camera_shake(intensity: float = 1.5, duration: float = 1.5, decay: float = 
 			)
 			var cam_rotation := 0.1 * intensity * current_intensity * randf_range(-1, 1)
 			
-			camera.position = original_position + cam_offset
-			camera.rotation = original_rotation + cam_rotation
+			if camera: 
+				camera.position = original_position + cam_offset
+				camera.rotation = original_rotation + cam_rotation
 		else:
 			if camera: # incase scene is changed
 				camera.position = original_position
@@ -73,6 +74,7 @@ func camera_shake(intensity: float = 1.5, duration: float = 1.5, decay: float = 
 	
 	# Reset camera when done
 	tween.tween_callback(func() -> void:
-		camera.position = original_position
-		camera.rotation = original_rotation
+		if camera: 
+			camera.position = original_position
+			camera.rotation = original_rotation
 	)

@@ -4,21 +4,21 @@ class_name World extends Node2D
 
 #HACK: Missile only Forcefield powerup? like setting speed to -ve in direction * speed (easy mode? like in libre-memory-game)
 
-const MiniAsteroidScene = preload("res://scenes/mini_asteroid.tscn")
-const BOSS_SPACESHIP_PATH = 'res://scenes/boss_spaceship.tscn'
+const MiniAsteroidScene : PackedScene = preload("res://scenes/mini_asteroid.tscn")
+const BOSS_SPACESHIP_PATH : StringName = 'res://scenes/boss_spaceship.tscn'
 
-const PARTICLE_SPAWN_OFFSET = 20
-const MIN_PARTICLES = 2
-const MAX_PARTICLES = 4
-const INITIAL_LIVES = 3
+const PARTICLE_SPAWN_OFFSET : int = 20
+const MIN_PARTICLES : int = 2
+const MAX_PARTICLES : int = 4
+const INITIAL_LIVES : int = 3
 
 signal boss_rush_next_level
 
-var score := 0
-var obstacle_type := Vector2i(1, 1)
-var spawntime := Vector2(0.5, 1.5)
+var score : int = 0
+var obstacle_type : Vector2i = Vector2i(1, 1)
+var spawntime : Vector2 = Vector2(0.5, 1.5)
 var particles_spawn_count: int
-var difficulty_level_method := score_dependencies_hard_mode if GameState.hard_mode else score_dependencies
+var difficulty_level_method : Callable = score_dependencies_hard_mode if GameState.hard_mode else score_dependencies
 
 @onready var boss_spawn_node : Camera2D = %Camera2D2
 @onready var boss_rush_label: Label = %BossRushLabel
@@ -142,8 +142,8 @@ func show_game_over_screen() -> void:
 
 func spawn_death_particles() -> void:
 	particles_spawn_count = randi_range(MIN_PARTICLES, MAX_PARTICLES)
-	for i in range(particles_spawn_count):
-		var mini_asteroid := MiniAsteroidScene.instantiate()
+	for i: int in range(particles_spawn_count):
+		var mini_asteroid : Sprite2D = MiniAsteroidScene.instantiate()
 		var random_offset : Vector2 = Vector2(randf() * PARTICLE_SPAWN_OFFSET, randf() * PARTICLE_SPAWN_OFFSET)
 		mini_asteroid.global_position = %PlayerRock.global_position + random_offset
 		add_child(mini_asteroid)
@@ -218,28 +218,39 @@ func spawn_boss() -> void:
 		
 		
 	if not is_boss_present():
-		var boss : CharacterBody2D = ResourceLoader.load_threaded_get(BOSS_SPACESHIP_PATH).instantiate() if !GameState.boss_rush_mode else load(BOSS_SPACESHIP_PATH).instantiate()
-		boss.position.x = boss_spawn_node.position.x
-		boss_spawn_node.add_child(boss)
+		if GameState.boss_rush_mode:
+			var boss_group : int = (GameState.boss_rush_level - 1) / 10
+			var bosses_to_spawn : int = 1 + boss_group
+			
+			for i:int in range(bosses_to_spawn):
+				var boss: CharacterBody2D = load(BOSS_SPACESHIP_PATH).instantiate()
+				#boss.position.x = boss_spawn_node.position.x + (i - (bosses_to_spawn-1)/2.0) * 150
+				boss_spawn_node.add_child(boss)
+		else:
+			var boss : CharacterBody2D = ResourceLoader.load_threaded_get(BOSS_SPACESHIP_PATH).instantiate() if !GameState.boss_rush_mode else load(BOSS_SPACESHIP_PATH).instantiate()
+			boss.position.x = boss_spawn_node.position.x
+			boss_spawn_node.add_child(boss)
 		%SpawnTimer.stop()
 		%PlayerRock/BGM.stop()
 
 
 func boss_defeated() -> void:
+	await get_tree().create_timer(7).timeout # Wait for death anim
+	
 	if GameState.boss_rush_mode:
-		GameState.next_boss_level()
-		GameState.max_boss_rush_level = maxi(GameState.max_boss_rush_level, GameState.boss_rush_level)
-		
-		%PlayerRock.refresh_for_boss_rush()
-		
-		if GameState.lives < INITIAL_LIVES:
-			GameState.lives = INITIAL_LIVES
-			%HUD.update_lives(GameState.lives)
-		
-		await get_tree().create_timer(7).timeout # Wait for death anim
-		spawn_boss()
-		
-		if GameState.boss_rush_mode: boss_rush_label.text = tr("GAMEPLAY_BOSS_RUSH_LEVEL_LABEL") + " " + str(GameState.boss_rush_level)
+		if not is_boss_present():
+			GameState.next_boss_level()
+			GameState.max_boss_rush_level = maxi(GameState.max_boss_rush_level, GameState.boss_rush_level)
+			
+			%PlayerRock.refresh_for_boss_rush()
+			
+			if GameState.lives < INITIAL_LIVES:
+				GameState.lives = INITIAL_LIVES
+				%HUD.update_lives(GameState.lives)
+			
+			spawn_boss()
+			
+			if GameState.boss_rush_mode: boss_rush_label.text = tr("GAMEPLAY_BOSS_RUSH_LEVEL_LABEL") + " " + str(GameState.boss_rush_level)
 
 
 """

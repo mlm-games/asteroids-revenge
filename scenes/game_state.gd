@@ -1,28 +1,28 @@
 extends Node
 
-const SAVE_PATH = "user://savegame.save"
+const SAVE_PATH : StringName = "user://savegame.save"
 
-var highscore :int= 0
-var lowestscore :int= 0
-var lives:int = 3
-var hard_mode := false
-var sound_effects := true
-var music := true
+var highscore : int = 0
+var lowestscore : int = 0
+var lives: int = 3
+var hard_mode : bool = false
+var sound_effects : bool = true
+var music : bool = true
 #var textsize:= 1
 #const TEXT_SIZES: Array = ["SMALL","BIG","VERY BIG"]
-var fire_button_is_visible := false
-var joystick_is_visible := false
+var fire_button_is_visible : bool = false
+var joystick_is_visible : bool = false
 var boss_defeated : bool = false
 var locale : String = "en"
 var frenzy_high_score : int = 0
-var frenzy_lowest_score:int = 0
+var frenzy_lowest_score : int = 0
 var first_time_opened: bool
 var player_alt_touch_controls: bool = false
 
-var boss_rush_mode := false
-var boss_rush_level := 0
-var boss_health_multiplier := 1.0
-var max_boss_rush_level := 0
+var boss_rush_mode : bool = false
+var boss_rush_level : int = 0
+var boss_health_multiplier : float = 1.0
+var max_boss_rush_level : int = 0
 
 #region Saving and loading
 func _ready() -> void:
@@ -42,12 +42,22 @@ func _ready() -> void:
 
 func start_boss_rush() -> void:
 	boss_rush_mode = true
-	boss_rush_level = 0
+	boss_rush_level = 9
 	boss_health_multiplier = 1.0
 
 func next_boss_level() -> void:
+	
 	boss_rush_level += 1
-	boss_health_multiplier = 1.0 + (boss_rush_level * 0.2) #20% per level
+	
+	
+	var level_in_group : int = boss_rush_level % 10
+	if level_in_group == 0:
+		level_in_group = 10
+		boss_health_multiplier = 1.0
+		
+	
+	boss_health_multiplier += (level_in_group * 0.1)
+	
 
 func save_game() -> void:
 	var save_file : FileAccess = FileAccess.open(SAVE_PATH ,FileAccess.WRITE)
@@ -66,7 +76,7 @@ func save_game() -> void:
 		"max_boss_rush_level": max_boss_rush_level
 	}
 	
-	var jstr := JSON.stringify(data)
+	var jstr : String = JSON.stringify(data)
 	save_file.store_line(jstr)
 
 func load_game() -> void:
