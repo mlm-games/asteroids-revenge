@@ -5,7 +5,7 @@ extends Control
 
 @onready var language_options_button: OptionButton = %LanguageOptionsButton
 
-var locales := {
+var locales : Dictionary[int, Dictionary] = {
 	0: {"code": "en", "name": "English"},
 	1: {"code": "fr", "name": "FRENCH / FRANÇAIS"},
 	2: {"code": "es", "name": "SPANISH / ESPAÑOL"},
@@ -39,9 +39,9 @@ var locales := {
 func _ready() -> void:
 	%LanguageOptionsButton.grab_focus()
 	update_buttons()
-	var locale = handle_locale_mismatch(TranslationServer.get_locale())
+	var locale := handle_locale_mismatch(TranslationServer.get_locale())
 	var saved_locale_index :int
-	for i in locales:
+	for i:int in locales:
 		language_options_button.add_item(locales[i].name, i)
 		language_options_button.set_item_metadata(i, locales[i].code)
 		if locale == locales[i].code:
@@ -102,7 +102,7 @@ func _on_android_automove_button_toggled(toggled_on: bool) -> void:
 	update_buttons()
 	GameState.save_game()
 
-func update_buttons():
+func update_buttons() -> void:
 	$VBoxContainer/SoundEffectsButton.button_pressed = GameState.sound_effects
 	$VBoxContainer/MusicButton.button_pressed = GameState.music
 	$VBoxContainer/JoystickButton.button_pressed =  GameState.joystick_is_visible

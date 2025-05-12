@@ -242,6 +242,7 @@ theme_override_fonts/font = ExtResource("3_k5igf")
 theme_override_font_sizes/font_size = 48
 text = "GAME_TITLE"
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="TitleAnim" type="AnimationPlayer" parent="GameName"]
 libraries = {
