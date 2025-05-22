@@ -1,3 +1,8 @@
+## v0.14.2 Changes
+
+- Fix issue of titles going offscreen
+- Better performance (due to static typing)
+
 ## v0.14.1 Changes
 
 - Fix the hard mode not getting hidden along with boss rush
