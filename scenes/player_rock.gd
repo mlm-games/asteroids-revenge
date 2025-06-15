@@ -69,12 +69,14 @@ func hit_effects() -> void:
 	tween.tween_property(%Sprite2D,"modulate",Color.RED,0.1)
 	tween.tween_property(%Sprite2D,"modulate",Color.WHITE,0.1)
 	Engine.time_scale = 0.2
-	if GameState.lives != 0: # Don't slow time on last hit
+	if get_parent().lives != 0: # Don't slow time on last hit
 		await tween.finished
 		$DeathSound.stop()
 		fade_in_out()
+	else:
+		HitEffects.spawn_player_hurt_particles(self)
 	Engine.time_scale = 1
-	HitEffects.spawn_player_hurt_particles(self)
+	
 	
 
 
