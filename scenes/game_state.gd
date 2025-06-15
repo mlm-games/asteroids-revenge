@@ -4,7 +4,6 @@ const SAVE_PATH : StringName = "user://savegame.save"
 
 var highscore : int = 0
 var lowestscore : int = 0
-var lives: int = 3
 var hard_mode : bool = false
 var sound_effects : bool = true
 var music : bool = true

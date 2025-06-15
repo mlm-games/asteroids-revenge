@@ -8,7 +8,6 @@ radius = 7.0
 height = 38.0
 
 [node name="BouncingLaser" type="CharacterBody2D"]
-position = Vector2(507, 1131)
 collision_mask = 0
 script = ExtResource("1_nfhjd")
 speed = 400.0
@@ -19,7 +18,3 @@ texture = ExtResource("1_33iki")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_b6q26")
-
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

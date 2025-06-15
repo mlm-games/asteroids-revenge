@@ -5,7 +5,6 @@ signal game_restarted
 const MAX_BULLETS = 5
 
 var called: bool = false
-@onready var player : Player = get_tree().get_first_node_in_group("Player")
 
 func _ready() -> void:
 	%"Virtual Joystick".visible = GameState.joystick_is_visible
@@ -22,11 +21,6 @@ func _ready() -> void:
 		%FireButton.scale = Vector2(4,4)
 		%FireButton.global_position.x = ProjectSettings.get_setting("display/window/size/viewport_width")/2  - (%FireButton.texture_normal.get_size().x * %FireButton.scale.x)/2
 	
-	# Connect to player signals (for opening scene without player i.e debugging)
-	if player:
-		player.bullet_fired.connect(_on_player_bullet_fired)
-		player.bullets_reset.connect(_on_player_bullets_reset)
-
 
 func update_lives(lives: int) -> void:
 	%LivesLabel.text = tr("GAME_CHARACTER_LIVES") + ": " + str(lives)
@@ -66,10 +60,6 @@ func update_bullets_bar(bullets_fired: int) -> void:
 		%BulletsBar/AnimationPlayer.play("fullBar")
 	elif %BulletsBar/AnimationPlayer.current_animation == "fullBar":
 		%BulletsBar/AnimationPlayer.stop()
-
-
-func _on_player_bullet_fired() -> void:
-	update_bullets_bar(player.bullets_fired)
 
 
 func _on_player_bullets_reset() -> void:

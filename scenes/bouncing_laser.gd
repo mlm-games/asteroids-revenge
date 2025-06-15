@@ -1,9 +1,10 @@
-extends CharacterBody2D
+extends BaseObstacle
 
-@export var speed : float
 @onready var angle : float = randf_range(PI/2,-PI/2)
 
 func _ready() -> void:
+	
+	#velocity = (Vector2.DOWN * speed).rotated(randf_range(-PI / 4, PI / 4))
 	
 	rotation = snappedf(randf_range(-PI/4,PI/4),PI/4)
 	if GameState.hard_mode:

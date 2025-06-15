@@ -7,7 +7,6 @@ func _ready() -> void:
 		%FirstTimeAnimPlayer.play("blink",-1,0.75)
 		GameState.first_time_opened = false
 	GameState.hard_mode = false
-	GameState.lives = 3
 	if GameState.boss_defeated:
 		%BossRushModeButton.show()
 		%HardModeButton.show()

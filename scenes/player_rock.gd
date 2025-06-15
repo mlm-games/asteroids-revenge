@@ -2,7 +2,7 @@ class_name Player extends CharacterBody2D
 
 signal game_over
 signal hit
-signal bullet_fired
+signal bullet_fired(bullets_fired: int)
 signal bullets_reset
 
 const SPEED = 400.0
@@ -41,7 +41,7 @@ func shoot() -> void:
 		rock_bullet.global_position = %Sprite2D.global_position + Vector2(0,50) 
 		get_node("/root").add_child(rock_bullet)
 		bullets_fired += 1
-		bullet_fired.emit()
+		bullet_fired.emit(bullets_fired)
 		%SpawnSound.play()
 	else:
 		#Player gets hit for every 5 bullets he fires (so he can fire inf?)
@@ -74,7 +74,7 @@ func hit_effects() -> void:
 		$DeathSound.stop()
 		fade_in_out()
 	Engine.time_scale = 1
-	spawn_hurt_particles()
+	HitEffects.spawn_player_hurt_particles(self)
 	
 
 
@@ -87,22 +87,6 @@ func fade_in_out() -> void:
 
 func _on_invincibility_timer_timeout() -> void:
 	%Area2D/CollisionShape2D.disabled = false
-
-func spawn_hurt_particles() -> void:
-	var particles_spawn_count : int = randi_range(3, 5)
-	for i:int in range(particles_spawn_count):
-		var mini_asteroid := World.MiniAsteroidScene.instantiate()
-		var random_offset := Vector2(randf() * World.PARTICLE_SPAWN_OFFSET, randf() * World.PARTICLE_SPAWN_OFFSET)
-		mini_asteroid.position = position + random_offset
-		get_tree().get_root().add_child(mini_asteroid)
-		animate_particle(mini_asteroid)
-
-func animate_particle(particle: Node2D) -> void:
-	var tween : Tween = create_tween().set_parallel().set_ease(Tween.EASE_IN)
-	tween.tween_property(particle, "position", position + Vector2(300 * randf_range(-1, 1), 300 * randf_range(-1, 1)), 2.0)
-	tween.tween_property(particle, "rotation", TAU, 2.0)
-	tween.tween_property(particle, "modulate", Color.TRANSPARENT, 2.0)
-	tween.chain().tween_callback(particle.queue_free)
 
 func refresh_for_boss_rush() -> void:
 	bullets_fired = 0

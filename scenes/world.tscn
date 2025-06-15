@@ -97,5 +97,3 @@ label_settings = ExtResource("6_wor0t")
 horizontal_alignment = 1
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
-[connection signal="game_over" from="PlayerRock" to="." method="_on_player_spaceship_game_over"]
-[connection signal="hit" from="PlayerRock" to="." method="_on_player_rock_hit"]

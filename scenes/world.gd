@@ -14,18 +14,31 @@ const INITIAL_LIVES : int = 3
 
 signal boss_rush_next_level
 
+@export var progression: LevelProgression
+
+var current_stage_index := 0
+
+var lives: int = 3
+
 var score : int = 0
 var obstacle_type : Vector2i = Vector2i(1, 1)
 var spawntime : Vector2 = Vector2(0.5, 1.5)
 var particles_spawn_count: int
 var difficulty_level_method : Callable = score_dependencies_hard_mode if GameState.hard_mode else score_dependencies
+var active_bosses: Array[Node2D] = []
 
 @onready var boss_spawn_node : Camera2D = %Camera2D2
 @onready var boss_rush_label: Label = %BossRushLabel
 
 func _ready() -> void:
-	GameState.lives = INITIAL_LIVES
-	%HUD.update_lives(GameState.lives)
+	
+	%PlayerRock.hit.connect(take_life)
+	%PlayerRock.bullets_reset.connect(%HUD.update_bullets_bar.bind(0))
+	%PlayerRock.bullet_fired.connect(%HUD.update_bullets_bar)
+	%PlayerRock.game_over.connect(_on_player_spaceship_game_over)
+	
+	lives = INITIAL_LIVES
+	%HUD.update_lives(lives)
 	$HardModeLabel.visible = GameState.hard_mode
 	if GameState.boss_rush_mode:
 		boss_rush_label.visible = true
@@ -50,7 +63,23 @@ func _process(_delta: float) -> void:
 	update_camera_position_and_projectile_path()
 	update_score()
 	difficulty_level_method.call()
+	#TODO: remove the long dep methods
+	#if current_stage_index < progression_stages.size() - 1:
+		#if score >= progression_stages[current_stage_index + 1].score_threshold:
+			#current_stage_index += 1
+			#var new_stage = progression_stages[current_stage_index]
+			#%SpawnTimer.wait_time = randf_range(new_stage.spawn_time_min, new_stage.spawn_time_max)
+			#print("Advanced to stage ", current_stage_index)
 
+#TODO: update
+#func spawn_obstacle():
+	#var current_stage = progression_stages[current_stage_index]
+	#if current_stage.available_obstacles.is_empty():
+		#return # No obstacles to spawn for this stage
+#
+	## Pick a random scene from this stage's specific list
+	#var obstacle_scene: PackedScene = current_stage.available_obstacles.pick_random()
+	#var new_obstacle = obstacle_scene.instantiate()
 
 func handle_boss_spawn() -> void:
 	if not is_boss_present() && %SpawnTimer.is_stopped() && %PlayerRock.visible and not GameState.boss_rush_mode:
@@ -105,14 +134,10 @@ func spawn_obstacle() -> void:
 	%SpawnFireSound.play()
 
 
-func _on_player_rock_hit() -> void:
-	take_life()
-
-
 func take_life() -> void:
-	GameState.lives -= 1
-	%HUD.update_lives(GameState.lives)
-	if GameState.lives <= 0:
+	lives -= 1
+	%HUD.update_lives(lives)
+	if lives <= 0:
 		_on_player_spaceship_game_over()
 
 func _on_player_spaceship_game_over() -> void:
@@ -214,25 +239,26 @@ func score_dependencies_hard_mode() -> void:
 		1000: spawn_boss()
 
 func spawn_boss() -> void:
-	#if GameState.boss_rush_mode:
-		
-		
-	if not is_boss_present():
-		if GameState.boss_rush_mode:
-			var boss_group : int = (GameState.boss_rush_level - 1) / 10
-			var bosses_to_spawn : int = 1 + boss_group
-			
-			for i:int in range(bosses_to_spawn):
-				var boss: CharacterBody2D = load(BOSS_SPACESHIP_PATH).instantiate()
-				#boss.position.x = boss_spawn_node.position.x + (i - (bosses_to_spawn-1)/2.0) * 150
-				boss_spawn_node.add_child(boss)
-		else:
-			var boss : CharacterBody2D = ResourceLoader.load_threaded_get(BOSS_SPACESHIP_PATH).instantiate() if !GameState.boss_rush_mode else load(BOSS_SPACESHIP_PATH).instantiate()
-			boss.position.x = boss_spawn_node.position.x
-			boss_spawn_node.add_child(boss)
-		%SpawnTimer.stop()
-		%PlayerRock/BGM.stop()
+	# if active_bosses.size() >= MAX_BOSSES: return
 
+	var boss_scene := load(BOSS_SPACESHIP_PATH)
+	var new_boss : CharacterBody2D = boss_scene.instantiate()
+	
+	new_boss.died.connect(_on_boss_died.bind(new_boss))
+	
+	boss_spawn_node.add_child(new_boss)
+	active_bosses.append(new_boss)
+	print("Spawned a boss. Total active: ", active_bosses.size())
+
+func _on_boss_died(boss_instance: Node2D) -> void:
+	if active_bosses.has(boss_instance):
+		active_bosses.erase(boss_instance)
+	
+	print("A boss was defeated. Total remaining: ", active_bosses.size())
+	
+	# If in boss rush and all bosses are gone, spawn the next wave
+	if GameState.boss_rush_mode and active_bosses.is_empty():
+		boss_defeated()
 
 func boss_defeated() -> void:
 	await get_tree().create_timer(7).timeout # Wait for death anim
@@ -244,9 +270,9 @@ func boss_defeated() -> void:
 			
 			%PlayerRock.refresh_for_boss_rush()
 			
-			if GameState.lives < INITIAL_LIVES:
-				GameState.lives = INITIAL_LIVES
-				%HUD.update_lives(GameState.lives)
+			if lives < INITIAL_LIVES:
+				lives = INITIAL_LIVES
+				%HUD.update_lives(lives)
 			
 			spawn_boss()
 			
@@ -256,7 +282,7 @@ func boss_defeated() -> void:
 """
 func _on_game_restarted() -> void:
 	# Reset game state
-	GameState.lives = INITIAL_LIVES
+	lives = INITIAL_LIVES
 	score = 0
 	%PlayerRock.bullets_fired = 0
 	%PlayerRock.show()
@@ -264,7 +290,7 @@ func _on_game_restarted() -> void:
 	%SpawnTimer.start()
 	
 	# Update HUD
-	%HUD.update_lives(GameState.lives)
+	%HUD.update_lives(lives)
 	%HUD.update_score(score, GameState.highscore, GameState.lowestscore)
 	%HUD.update_bullets_bar(0)
 	

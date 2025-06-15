@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 #Player.global_pos + outside viewport to the left = Boss.global pos 
 
+signal died
+
 const SHAPESHIP_TYPE = ["blue", "green", "orange", "red"]
 
 var speed := 100.0
@@ -51,42 +53,48 @@ func _on_shoot_timer_timeout() -> void:
 
 func take_damage(damage: float) -> void:
 	health = max(health - damage, 0)
-	if health > 0:
-		var tween : Tween = create_tween()
-		tween.tween_property(%Sprite2D, "modulate", Color.RED, 0.2)
-		tween.tween_property(%Sprite2D, "modulate", Color.WHITE, 0.2)
-	else:
-		%ShootTimer.stop()
-		$CollisionShape2D.set_deferred("disabled", true)
-		%DeathSound.play()
-		%BossHealthBar.hide()
-		GameState.boss_defeated = true
-		if GameState.boss_rush_mode:
-			get_parent().get_parent().boss_defeated()
-			
-		var part : Array = ["cockpit", "wing"]
-		var material_color : String = spaceship_color.capitalize()
-		if material_color == "Orange":
-			material_color = "Yellow"
-		var particles_spawn_count : int = randi_range(1,3)
-		%AnimationPlayer.play("death")
-		# The particles after death of spaceship
-		for i in range(particles_spawn_count):
-			randomize()
-			var part_path : String = "res://art-and-sound/kenney_space-shooter-redux/PNG/Parts/" + part.pick_random() + material_color + "_" + str(randi_range(0,7)) + ".png"
-			var broken_part : Sprite2D = Sprite2D.new()
-			var random_offset : Vector2 = Vector2(randf() * 20, randf() * 20)  # Random offset around player
-			broken_part.texture = load(part_path)
-			broken_part.global_position = %Sprite2D.global_position + random_offset
-			get_tree().current_scene.add_child(broken_part)
-			# Create tween to fade out and delete
-			var tween : Tween = broken_part.create_tween().set_parallel()
-			tween.tween_property(broken_part,"position", %Sprite2D.global_position + Vector2(300 * randf_range(-1,1), 300 * randf_range(-1,1)),2.0)
-			tween.tween_property(broken_part,"rotation", TAU, 2.0)
-			tween.tween_property(broken_part, "modulate", Color.TRANSPARENT, 2.0)
-			tween.chain().tween_callback(func() -> void: broken_part.queue_free())  # Delete after fading
-		await %DeathSound.finished
-		queue_free()
+	_play_hit_effect()
+	if health <= 0:
+		_die()
+
+func _play_hit_effect() -> void:
+	var tween := create_tween()
+	tween.tween_property(%Sprite2D, "modulate", Color.RED, 0.2)
+	tween.tween_property(%Sprite2D, "modulate", Color.WHITE, 0.2)
+
+func _die() -> void:
+	emit_signal("died") # Let the world handle game logic
+	%ShootTimer.stop()
+	$CollisionShape2D.set_deferred("disabled", true)
+	%DeathSound.play()
+	%BossHealthBar.hide()
+	%AnimationPlayer.play("death")
+	_spawn_debris_particles()
+	await %DeathSound.finished
+	queue_free()
+
+func _spawn_debris_particles() -> void:
+	var part : Array = ["cockpit", "wing"]
+	var material_color : String = spaceship_color.capitalize()
+	if material_color == "Orange":
+		material_color = "Yellow"
+	var particles_spawn_count : int = randi_range(1,3)
+	%AnimationPlayer.play("death")
+	# The particles after death of spaceship
+	for i in range(particles_spawn_count):
+		randomize()
+		var part_path : String = "res://art-and-sound/kenney_space-shooter-redux/PNG/Parts/" + part.pick_random() + material_color + "_" + str(randi_range(0,7)) + ".png"
+		var broken_part : Sprite2D = Sprite2D.new()
+		var random_offset : Vector2 = Vector2(randf() * 20, randf() * 20)  # Random offset around player
+		broken_part.texture = load(part_path)
+		broken_part.global_position = %Sprite2D.global_position + random_offset
+		get_tree().current_scene.add_child(broken_part)
+		# Create tween to fade out and delete
+		var tween : Tween = broken_part.create_tween().set_parallel()
+		tween.tween_property(broken_part,"position", %Sprite2D.global_position + Vector2(300 * randf_range(-1,1), 300 * randf_range(-1,1)),2.0)
+		tween.tween_property(broken_part,"rotation", TAU, 2.0)
+		tween.tween_property(broken_part, "modulate", Color.TRANSPARENT, 2.0)
+		tween.chain().tween_callback(func() -> void: broken_part.queue_free())  # Delete after fading
 #invincibility state
 
 
