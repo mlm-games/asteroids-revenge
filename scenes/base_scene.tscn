@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch42r8jqeulms"]
+
+[ext_resource type="Theme" uid="uid://vdypn6ym62cq" path="res://scenes/main-theme.tres" id="1_yfdfb"]
+[ext_resource type="Texture2D" uid="uid://c33xrciyt6ilb" path="res://art-and-sound/bg_1_1.png" id="3_sybwi"]
+
+[sub_resource type="Environment" id="Environment_ha2ph"]
+background_mode = 3
+glow_enabled = true
+glow_levels/1 = 0.45
+glow_levels/3 = 0.8
+glow_levels/4 = 0.3
+glow_levels/5 = 0.19
+glow_levels/6 = 0.01
+glow_normalized = true
+glow_intensity = 1.65
+glow_blend_mode = 0
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_yfdfb")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_sybwi")
+metadata/_edit_use_anchors_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ha2ph")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.808998, 0.808998, 0.808998, 1)

@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://bll0gg5ysym28"]
+[gd_scene load_steps=4 format=3 uid="uid://bll0gg5ysym28"]
 
 [ext_resource type="Script" uid="uid://by1becefa4y8w" path="res://scenes/base_obstacle.gd" id="1_d4ogx"]
+
+[sub_resource type="Gradient" id="Gradient_d4ogx"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q6skn"]
+gradient = SubResource("Gradient_d4ogx")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.45, 1)
 
 [node name="BaseObstacle" type="CharacterBody2D"]
 script = ExtResource("1_d4ogx")
@@ -10,3 +19,7 @@ script = ExtResource("1_d4ogx")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 2.83
+texture = SubResource("GradientTexture2D_q6skn")

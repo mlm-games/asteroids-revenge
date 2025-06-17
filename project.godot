@@ -13,7 +13,7 @@ config_version=5
 config/name="Asteroid's Revenge!"
 config/description="The asteriods have had enough of your attacks of their belt, you being a special asteriod coming from billions of ligt years away are here to take revenge for millions of asteriods inthe solar system that have been slain with any pity by those nasty Spaceships and will destroy them all! Can you defeat the Spaceships? "
 config/tags=PackedStringArray("done")
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="uid://cjd1sur00m86o"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
@@ -103,4 +103,5 @@ locale/translations=PackedStringArray("res://locale/translations.ar.translation"
 
 textures/canvas_textures/default_texture_filter=0
 textures/vram_compression/import_etc2_astc=true
+viewport/hdr_2d=true
 environment/defaults/default_clear_color=Color(0.00261828, 0.146263, 0.221763, 1)

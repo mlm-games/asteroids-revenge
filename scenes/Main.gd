@@ -3,6 +3,14 @@ extends Control
 @onready var tween := get_tree().create_tween()
 
 func _ready() -> void:
+	%StartButton.pressed.connect(_on_start_button_pressed)
+	%HardModeButton.pressed.connect(_on_hard_mode_button_pressed)
+	%BossRushModeButton.pressed.connect(_on_boss_rush_mode_button_pressed)
+	%ExitButton.pressed.connect(_on_exit_button_pressed)
+	%HelpButton.pressed.connect(_on_help_button_pressed)
+	%SettingsButton.pressed.connect(_on_settings_button_pressed)
+
+
 	if GameState.first_time_opened:
 		%FirstTimeAnimPlayer.play("blink",-1,0.75)
 		GameState.first_time_opened = false
@@ -49,7 +57,7 @@ func _on_help_button_pressed() -> void:
 	Transition.change_scene_with_transition("res://scenes/tutorial.tscn")
 
 
-func _on_touch_screen_button_pressed() -> void:
+func _on_settings_button_pressed() -> void:
 	%MenuClickSound.play()
 	Transition.change_scene_with_transition("res://scenes/settings.tscn")
 

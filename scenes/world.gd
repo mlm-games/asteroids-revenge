@@ -31,7 +31,7 @@ var active_bosses: Array[Node2D] = []
 @onready var boss_rush_label: Label = %BossRushLabel
 
 func _ready() -> void:
-	
+	%SpawnTimer.timeout.connect(_on_spawn_timer_timeout)
 	%PlayerRock.hit.connect(take_life)
 	%PlayerRock.bullets_reset.connect(%HUD.update_bullets_bar.bind(0))
 	%PlayerRock.bullet_fired.connect(%HUD.update_bullets_bar)

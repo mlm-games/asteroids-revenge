@@ -1,8 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://dh74b3h6q3026"]
+[gd_scene load_steps=19 format=3 uid="uid://cjd1sur00m86o"]
 
 [ext_resource type="Script" uid="uid://cu6nvp4mmo11k" path="res://scenes/Main.gd" id="1_0lgb2"]
-[ext_resource type="Theme" uid="uid://vdypn6ym62cq" path="res://scenes/main-theme.tres" id="1_jeava"]
-[ext_resource type="Texture2D" uid="uid://c33xrciyt6ilb" path="res://art-and-sound/bg_1_1.png" id="2_as2ci"]
+[ext_resource type="PackedScene" uid="uid://ch42r8jqeulms" path="res://scenes/base_scene.tscn" id="1_85g3d"]
 [ext_resource type="FontFile" uid="uid://by86tftjfcedw" path="res://art-and-sound/kenney_space-shooter-redux/Bonus/kenvector_future_thin.ttf" id="3_k5igf"]
 [ext_resource type="LabelSettings" uid="uid://cnoygoxh0kgme" path="res://resources/small_textstyle.tres" id="4_xs5df"]
 [ext_resource type="Theme" uid="uid://bmy6kos4l110s" path="res://resources/button-theme.tres" id="5_mt70k"]
@@ -11,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://dyysuucwb4xhm" path="res://art-and-sound/OutThere.ogg" id="7_62cej"]
 [ext_resource type="AudioStream" uid="uid://deq0ubp0x5sp4" path="res://art-and-sound/transition_sound2.ogg" id="10_choun"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6uu41"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tygt5"]
 
 [sub_resource type="Animation" id="Animation_bg1rt"]
 length = 0.001
@@ -49,6 +48,15 @@ _data = {
 &"RESET": SubResource("Animation_bg1rt"),
 &"blink": SubResource("Animation_gcuun")
 }
+
+[sub_resource type="Gradient" id="Gradient_d4ogx"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3jp6d"]
+gradient = SubResource("Gradient_d4ogx")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.45, 1)
 
 [sub_resource type="Animation" id="Animation_choun"]
 length = 0.001
@@ -100,42 +108,22 @@ _data = {
 &"RotateSlightly": SubResource("Animation_85g3d")
 }
 
-[node name="Main" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("1_jeava")
+[node name="Main" instance=ExtResource("1_85g3d")]
 script = ExtResource("1_0lgb2")
-metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("2_as2ci")
-metadata/_edit_use_anchors_ = true
-
-[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+[node name="BGM" type="AudioStreamPlayer2D" parent="." index="3"]
 stream = ExtResource("7_62cej")
 autoplay = true
 bus = &"Music"
 
-[node name="MenuClickSound" type="AudioStreamPlayer2D" parent="."]
+[node name="MenuClickSound" type="AudioStreamPlayer2D" parent="." index="4"]
 unique_name_in_owner = true
 stream = ExtResource("6_porsc")
 volume_db = -11.277
 pitch_scale = 1.16
 bus = &"SoundEffects"
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." index="5"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -145,29 +133,28 @@ offset_top = 700.0
 offset_bottom = 700.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" index="0"]
 layout_direction = 1
 layout_mode = 2
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="SpacerControl" type="Control" parent="MarginContainer/VBoxContainer"]
+[node name="SpacerControl" type="Control" parent="MarginContainer/VBoxContainer" index="0"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 16.0
 
-[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer" index="1"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_k5igf")
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxTexture_6uu41")
+theme_override_styles/normal = SubResource("StyleBoxTexture_tygt5")
 text = "MENU_LABEL_PLAY"
 
-[node name="HintLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="HintLabel" type="Label" parent="MarginContainer/VBoxContainer" index="2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
@@ -179,71 +166,80 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="HardModeButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="HardModeButton" type="Button" parent="MarginContainer/VBoxContainer" index="3"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_k5igf")
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxTexture_6uu41")
+theme_override_styles/normal = SubResource("StyleBoxTexture_tygt5")
 text = "GAME_FRENZY_MODE"
 
-[node name="BossRushModeButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="BossRushModeButton" type="Button" parent="MarginContainer/VBoxContainer" index="4"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_k5igf")
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxTexture_6uu41")
+theme_override_styles/normal = SubResource("StyleBoxTexture_tygt5")
 text = "GAME_BOSS_RUSH_MODE_BUTTON"
 
-[node name="HelpButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="HelpButton" type="Button" parent="MarginContainer/VBoxContainer" index="5"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_k5igf")
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxTexture_6uu41")
+theme_override_styles/normal = SubResource("StyleBoxTexture_tygt5")
 text = "MENU_MODE_HELP"
 
-[node name="FirstTimeAnimPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/HelpButton"]
+[node name="FirstTimeAnimPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/HelpButton" index="0"]
 unique_name_in_owner = true
 root_node = NodePath("../../../..")
 libraries = {
 &"": SubResource("AnimationLibrary_q53df")
 }
 
-[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer" index="6"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme = ExtResource("5_mt70k")
 text = "MENU_LABEL_QUIT"
 
-[node name="SpacerControl2" type="Control" parent="MarginContainer/VBoxContainer"]
+[node name="SpacerControl2" type="Control" parent="MarginContainer/VBoxContainer" index="7"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.67
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" index="8"]
 layout_mode = 2
 
-[node name="SpacerControl3" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="SpacerControl3" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.3
 
-[node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" index="1"]
+unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.827451)
 layout_mode = 2
 theme = ExtResource("5_mt70k")
 icon = ExtResource("6_3qcx3")
 icon_alignment = 2
 
-[node name="GameName" type="Label" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="MarginContainer" index="1"]
+position = Vector2(306, 741)
+scale = Vector2(16.7188, 12.2344)
+energy = 0.27
+texture = SubResource("GradientTexture2D_3jp6d")
+
+[node name="GameName" type="Label" parent="." index="6"]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 0
 offset_left = 5.0
 offset_top = 92.0
 offset_right = 643.0
@@ -257,22 +253,21 @@ text = "GAME_TITLE"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="TitleAnim" type="AnimationPlayer" parent="GameName"]
+[node name="TitleAnim" type="AnimationPlayer" parent="GameName" index="0"]
 libraries = {
 &"": SubResource("AnimationLibrary_ya4ey")
 }
 autoplay = "RotateSlightly"
 
-[node name="AnimSound" type="AudioStreamPlayer" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="GameName" index="1"]
+position = Vector2(317, 31)
+energy = 0.53
+texture = SubResource("GradientTexture2D_3jp6d")
+texture_scale = 10.91
+
+[node name="AnimSound" type="AudioStreamPlayer" parent="." index="7"]
 unique_name_in_owner = true
 stream = ExtResource("10_choun")
 volume_db = 8.595
 pitch_scale = 0.65
 bus = &"SoundEffects"
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HardModeButton" to="." method="_on_hard_mode_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/BossRushModeButton" to="." method="_on_boss_rush_mode_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HelpButton" to="." method="_on_help_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SettingsButton" to="." method="_on_touch_screen_button_pressed"]

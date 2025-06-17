@@ -1,0 +1,278 @@
+[gd_scene load_steps=18 format=3 uid="uid://dh74b3h6q3026"]
+
+[ext_resource type="Theme" uid="uid://vdypn6ym62cq" path="res://scenes/main-theme.tres" id="1_sffo0"]
+[ext_resource type="Script" uid="uid://cu6nvp4mmo11k" path="res://scenes/Main.gd" id="2_x3bvg"]
+[ext_resource type="Texture2D" uid="uid://c33xrciyt6ilb" path="res://art-and-sound/bg_1_1.png" id="3_t6uxt"]
+[ext_resource type="AudioStream" uid="uid://dyysuucwb4xhm" path="res://art-and-sound/OutThere.ogg" id="4_8emnm"]
+[ext_resource type="AudioStream" uid="uid://27gsi8730ljb" path="res://art-and-sound/menu_click_sound.ogg" id="5_uq4kf"]
+[ext_resource type="FontFile" uid="uid://by86tftjfcedw" path="res://art-and-sound/kenney_space-shooter-redux/Bonus/kenvector_future_thin.ttf" id="6_8a8kf"]
+[ext_resource type="LabelSettings" uid="uid://cnoygoxh0kgme" path="res://resources/small_textstyle.tres" id="7_x6k42"]
+[ext_resource type="Theme" uid="uid://bmy6kos4l110s" path="res://resources/button-theme.tres" id="8_4oeg8"]
+[ext_resource type="Texture2D" uid="uid://drwhk2fn0x6rj" path="res://art-and-sound/kenney_space-shooter-redux/wrench.png" id="9_7irt0"]
+[ext_resource type="AudioStream" uid="uid://deq0ubp0x5sp4" path="res://art-and-sound/transition_sound2.ogg" id="10_op1a5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6uu41"]
+
+[sub_resource type="Animation" id="Animation_bg1rt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/HelpButton:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gcuun"]
+resource_name = "blink"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/HelpButton:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.184314), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q53df"]
+_data = {
+&"RESET": SubResource("Animation_bg1rt"),
+&"blink": SubResource("Animation_gcuun")
+}
+
+[sub_resource type="Animation" id="Animation_choun"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_85g3d"]
+resource_name = "RotateSlightly"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 4
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.00174533, -0.00174533]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ya4ey"]
+_data = {
+&"RESET": SubResource("Animation_choun"),
+&"RotateSlightly": SubResource("Animation_85g3d")
+}
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_sffo0")
+script = ExtResource("2_x3bvg")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_t6uxt")
+metadata/_edit_use_anchors_ = true
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_8emnm")
+autoplay = true
+bus = &"Music"
+
+[node name="MenuClickSound" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_uq4kf")
+volume_db = -11.277
+pitch_scale = 1.16
+bus = &"SoundEffects"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 700.0
+offset_bottom = 700.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_direction = 1
+layout_mode = 2
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SpacerControl" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 16.0
+
+[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_8a8kf")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_6uu41")
+text = "MENU_LABEL_PLAY"
+
+[node name="HintLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_8a8kf")
+theme_override_font_sizes/font_size = 48
+text = "GAME_HINT"
+label_settings = ExtResource("7_x6k42")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HardModeButton" type="Button" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_8a8kf")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_6uu41")
+text = "GAME_FRENZY_MODE"
+
+[node name="BossRushModeButton" type="Button" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_8a8kf")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_6uu41")
+text = "GAME_BOSS_RUSH_MODE_BUTTON"
+
+[node name="HelpButton" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_8a8kf")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_6uu41")
+text = "MENU_MODE_HELP"
+
+[node name="FirstTimeAnimPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/HelpButton"]
+unique_name_in_owner = true
+root_node = NodePath("../../../..")
+libraries = {
+&"": SubResource("AnimationLibrary_q53df")
+}
+
+[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme = ExtResource("8_4oeg8")
+text = "MENU_LABEL_QUIT"
+
+[node name="SpacerControl2" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.67
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SpacerControl3" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.3
+
+[node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.827451)
+layout_mode = 2
+theme = ExtResource("8_4oeg8")
+icon = ExtResource("9_7irt0")
+icon_alignment = 2
+
+[node name="GameName" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 5.0
+offset_top = 92.0
+offset_right = 643.0
+offset_bottom = 526.0
+pivot_offset = Vector2(319, 217)
+size_flags_vertical = 3
+size_flags_stretch_ratio = 12.0
+theme_override_fonts/font = ExtResource("6_8a8kf")
+theme_override_font_sizes/font_size = 48
+text = "GAME_TITLE"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="TitleAnim" type="AnimationPlayer" parent="GameName"]
+libraries = {
+&"": SubResource("AnimationLibrary_ya4ey")
+}
+autoplay = "RotateSlightly"
+
+[node name="AnimSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("10_op1a5")
+volume_db = 8.595
+pitch_scale = 0.65
+bus = &"SoundEffects"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HardModeButton" to="." method="_on_hard_mode_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BossRushModeButton" to="." method="_on_boss_rush_mode_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HelpButton" to="." method="_on_help_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SettingsButton" to="." method="_on_touch_screen_button_pressed"]

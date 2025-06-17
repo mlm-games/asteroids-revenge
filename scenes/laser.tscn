@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c404agaryynkx"]
+[gd_scene load_steps=6 format=3 uid="uid://c404agaryynkx"]
 
 [ext_resource type="Script" uid="uid://np8sici1acca" path="res://scenes/laser.gd" id="1_q57i6"]
 [ext_resource type="Texture2D" uid="uid://caaupkvjrfqpu" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Lasers/laserBlue14.png" id="2_ug15y"]
@@ -6,6 +6,15 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hum1q"]
 radius = 6.0
 height = 54.0
+
+[sub_resource type="Gradient" id="Gradient_d4ogx"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a7dhc"]
+gradient = SubResource("Gradient_d4ogx")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.45, 1)
 
 [node name="LaserShot" type="RigidBody2D"]
 position = Vector2(592, 376)
@@ -35,5 +44,11 @@ direction = Vector2(0, 1)
 gravity = Vector2(0, 0)
 initial_velocity_min = 68.98
 initial_velocity_max = 155.08
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.85098, 0.835294, 1)
+energy = 1.61
+texture = SubResource("GradientTexture2D_a7dhc")
+texture_scale = 3.33
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

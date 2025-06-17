@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dw1xhin6im8kv"]
+[gd_scene load_steps=16 format=3 uid="uid://dw1xhin6im8kv"]
 
 [ext_resource type="Script" uid="uid://cshofsmqqv45m" path="res://scenes/hud.gd" id="1_ocri0"]
 [ext_resource type="LabelSettings" uid="uid://bj4owgofe5ayt" path="res://resources/textstyle.tres" id="2_8bg75"]
@@ -79,6 +79,18 @@ _data = {
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2n7ks"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_nqukk"]
+
+[sub_resource type="Environment" id="Environment_hd3ao"]
+background_mode = 3
+glow_enabled = true
+glow_levels/1 = 0.45
+glow_levels/3 = 0.8
+glow_levels/4 = 0.3
+glow_levels/5 = 0.19
+glow_levels/6 = 0.01
+glow_normalized = true
+glow_intensity = 1.65
+glow_blend_mode = 0
 
 [node name="HUD" type="CanvasLayer"]
 layer = -1
@@ -287,3 +299,9 @@ position = Vector2(394, 902)
 scale = Vector2(3.205, 3.205)
 texture_normal = ExtResource("6_5rvp1")
 action = "fire"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hd3ao")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.808998, 0.808998, 0.808998, 1)
