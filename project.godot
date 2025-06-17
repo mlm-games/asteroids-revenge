@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Asteroid's Revenge!"
-config/description="The asteriods have had enough of your attacks of their belt, you being a special asteriod coming from billions of ligt years away are here to take revenge for millions of asteriods inthe solar system that have been slain with any pity by those nasty Spaceships and will destroy them all! Can you defeat the Spaceships? "
+config/description="The asteriods have had enough of the space humans' attacks of their belt, you being a special asteriod coming from billions of ligt years away are here to take revenge for millions of asteriods inthe solar system that have been slain with any pity by those nasty Spaceships and will destroy them all! Can you defeat the Spaceships? "
 config/tags=PackedStringArray("done")
 run/main_scene="uid://cjd1sur00m86o"
 config/features=PackedStringArray("4.4", "Forward Plus")
