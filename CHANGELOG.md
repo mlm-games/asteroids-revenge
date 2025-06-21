@@ -1,3 +1,9 @@
+## v0.15.1 Changes
+
+- Lighting improvement
+- Fix bouncing lasers not bouncing
+- Fix Multiple bosses spawning in normal mode
+
 ## v0.14.2 Changes
 
 - Fix issue of titles going offscreen
