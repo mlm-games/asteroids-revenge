@@ -205,7 +205,7 @@ func score_dependencies() -> void:
 			spawntime = Vector2(0.4, 0.6)
 			obstacle_type.x = 1
 		1000: 
-			spawn_boss()
+			if not is_boss_present(): spawn_boss()
 		1200: 
 			obstacle_type.y = 6
 
@@ -236,10 +236,10 @@ func score_dependencies_hard_mode() -> void:
 			obstacle_type.x = 1
 		800: obstacle_type = Vector2i(6, 6)
 		900: obstacle_type.x = 1
-		1000: spawn_boss()
+		1000: if not is_boss_present(): spawn_boss()
 
 func spawn_boss() -> void:
-	# if active_bosses.size() >= MAX_BOSSES: return
+	 #if active_bosses.size() >= MAX_BOSSES: return
 
 	var boss_scene := load(BOSS_SPACESHIP_PATH)
 	var new_boss : CharacterBody2D = boss_scene.instantiate()

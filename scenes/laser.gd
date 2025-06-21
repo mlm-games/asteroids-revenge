@@ -17,14 +17,6 @@ func _process(_delta: float) -> void:
 	linear_velocity = velocity
 
 
-
-
-
-#For future use (enemy side damage),
-	#if move_and_collide(Vector2(0,speed*delta)).get_collider().name == "PlayerSpaceship":
-		#Damage?
-
-
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	await get_tree().create_timer(0.5).timeout
 	queue_free()

@@ -1,20 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://n77epdb0yra"]
+[gd_scene load_steps=4 format=3 uid="uid://dyla70e0f8ctk"]
 
-[ext_resource type="Texture2D" uid="uid://b3gvskvsxps4u" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Lasers/laserRed02.png" id="1_33iki"]
+[ext_resource type="PackedScene" uid="uid://bll0gg5ysym28" path="res://scenes/base_obstacle.tscn" id="1_lukxe"]
 [ext_resource type="Script" uid="uid://d2c6xfw6mw1lk" path="res://scenes/bouncing_laser.gd" id="1_nfhjd"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b6q26"]
-radius = 7.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4txaa"]
+radius = 6.0
 height = 38.0
 
-[node name="BouncingLaser" type="CharacterBody2D"]
+[node name="BouncingLaser" instance=ExtResource("1_lukxe")]
 collision_mask = 0
 script = ExtResource("1_nfhjd")
 speed = 400.0
-metadata/_edit_group_ = true
 
-[node name="LaserRed02" type="Sprite2D" parent="."]
-texture = ExtResource("1_33iki")
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+position = Vector2(0.5, -0.5)
+scale = Vector2(0.35, 1.25)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_b6q26")
+[node name="CollisionShape2D" parent="." index="3"]
+shape = SubResource("CapsuleShape2D_4txaa")

@@ -5,7 +5,7 @@ signal hit
 signal bullet_fired(bullets_fired: int)
 signal bullets_reset
 
-const SPEED = 400.0
+@export var speed : float = 400.0
 const MAX_BULLETS = 5
 
 var force_field : bool = false
@@ -22,11 +22,11 @@ func _physics_process(delta: float) -> void:
 		%Sprite2D.rotation += delta * PI/2
 		var direction : Vector2 = Input.get_vector("left", "right","up","down")
 		if GameState.player_alt_touch_controls:
-			velocity.x = direction.x * SPEED
-			velocity.y = SPEED/2 
+			velocity.x = direction.x * speed
+			velocity.y = speed/2 
 			velocity *= abs(velocity.normalized())
 		else:
-			velocity = direction * SPEED
+			velocity = direction * speed
 			velocity.y /= 2
 		move_and_slide()
 		
