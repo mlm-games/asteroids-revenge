@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cjd1sur00m86o"]
+[gd_scene load_steps=22 format=3 uid="uid://cjd1sur00m86o"]
 
 [ext_resource type="Script" uid="uid://cu6nvp4mmo11k" path="res://scenes/Main.gd" id="1_0lgb2"]
 [ext_resource type="PackedScene" uid="uid://ch42r8jqeulms" path="res://scenes/base_scene.tscn" id="1_85g3d"]
@@ -6,11 +6,19 @@
 [ext_resource type="LabelSettings" uid="uid://cnoygoxh0kgme" path="res://resources/small_textstyle.tres" id="4_xs5df"]
 [ext_resource type="Theme" uid="uid://bmy6kos4l110s" path="res://resources/button-theme.tres" id="5_mt70k"]
 [ext_resource type="Texture2D" uid="uid://drwhk2fn0x6rj" path="res://art-and-sound/kenney_space-shooter-redux/wrench.png" id="6_3qcx3"]
+[ext_resource type="Shader" uid="uid://dhympip8vcjb1" path="res://resources/pixelated.gdshader" id="6_choun"]
 [ext_resource type="AudioStream" uid="uid://27gsi8730ljb" path="res://art-and-sound/menu_click_sound.ogg" id="6_porsc"]
 [ext_resource type="AudioStream" uid="uid://dyysuucwb4xhm" path="res://art-and-sound/OutThere.ogg" id="7_62cej"]
 [ext_resource type="AudioStream" uid="uid://deq0ubp0x5sp4" path="res://art-and-sound/transition_sound2.ogg" id="10_choun"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tygt5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ya4ey"]
+shader = ExtResource("6_choun")
+shader_parameter/pixel_size = 1.0
+shader_parameter/color_levels = 5.345
+shader_parameter/dither = true
+shader_parameter/chromatic_aberration = 2.0
 
 [sub_resource type="Animation" id="Animation_bg1rt"]
 length = 0.001
@@ -57,6 +65,13 @@ gradient = SubResource("Gradient_d4ogx")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.45, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eb6dy"]
+shader = ExtResource("6_choun")
+shader_parameter/pixel_size = 1.23
+shader_parameter/color_levels = 8.0
+shader_parameter/dither = true
+shader_parameter/chromatic_aberration = 2.0
 
 [sub_resource type="Animation" id="Animation_choun"]
 length = 0.001
@@ -156,6 +171,7 @@ text = "MENU_LABEL_PLAY"
 
 [node name="HintLabel" type="Label" parent="MarginContainer/VBoxContainer" index="2"]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_ya4ey")
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_k5igf")
@@ -239,6 +255,7 @@ texture = SubResource("GradientTexture2D_3jp6d")
 
 [node name="GameName" type="Label" parent="." index="6"]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_eb6dy")
 layout_mode = 0
 offset_left = 5.0
 offset_top = 92.0

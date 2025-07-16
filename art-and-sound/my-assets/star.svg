@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="48"
+   height="48"
+   viewBox="0 0 48 48"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   sodipodi:docname="star.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="13.5625"
+     inkscape:cx="23.410138"
+     inkscape:cy="23.336406"
+     inkscape:window-width="1536"
+     inkscape:window-height="902"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <linearGradient
+       id="linearGradient2"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#c8e3ff;stop-opacity:1;"
+         offset="0"
+         id="stop2" />
+      <stop
+         style="stop-color:#33819b;stop-opacity:1;"
+         offset="1"
+         id="stop3" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2"
+       id="radialGradient3"
+       cx="17.105991"
+       cy="21.013824"
+       fx="17.105991"
+       fy="21.013824"
+       r="15.305135"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       sodipodi:type="star"
+       style="opacity:1;fill:url(#radialGradient3);fill-opacity:1;stroke-width:3.47606;paint-order:fill markers stroke"
+       id="path2"
+       inkscape:flatsided="false"
+       sodipodi:sides="4"
+       sodipodi:cx="17.105991"
+       sodipodi:cy="21.013824"
+       sodipodi:r1="15.953893"
+       sodipodi:r2="7.9769464"
+       sodipodi:arg1="1.8662372"
+       sodipodi:arg2="2.6516354"
+       inkscape:rounded="0.2"
+       inkscape:randomized="0"
+       d="M 12.46083,36.276497 C 10.211683,35.591974 11.173865,26.842099 10.067509,24.767681 8.961153,22.693263 1.158796,18.617809 1.8433191,16.368663 2.5278422,14.119516 11.277717,15.081698 13.352135,13.975342 c 2.074417,-1.106356 6.149871,-8.9087129 8.399018,-8.2241898 2.249147,0.6845231 1.286965,9.4343978 2.393321,11.5088158 1.106356,2.074418 8.908713,6.149872 8.22419,8.399018 -0.684523,2.249147 -9.434398,1.286965 -11.508816,2.393321 -2.074418,1.106356 -6.149872,8.908713 -8.399018,8.22419 z"
+       inkscape:transform-center-x="-1.9024434"
+       inkscape:transform-center-y="0.83437016"
+       transform="rotate(-15,31.894123,-3.6756849)" />
+  </g>
+</svg>

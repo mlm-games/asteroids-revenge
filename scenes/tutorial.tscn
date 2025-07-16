@@ -1,17 +1,54 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmhhmvlxjb4g4"]
+[gd_scene load_steps=17 format=3 uid="uid://dmhhmvlxjb4g4"]
 
-[ext_resource type="Texture2D" uid="uid://c33xrciyt6ilb" path="res://art-and-sound/bg_1_1.png" id="1_nuoml"]
 [ext_resource type="LabelSettings" uid="uid://bj4owgofe5ayt" path="res://resources/textstyle.tres" id="1_u60ei"]
 [ext_resource type="Script" uid="uid://mbpwnml8gb0p" path="res://scenes/tutorial.gd" id="1_whia5"]
+[ext_resource type="Shader" uid="uid://yv41jfhhduej" path="res://scenes/nebula.gdshader" id="2_ckvwl"]
+[ext_resource type="Shader" uid="uid://clvsl8spqfmcu" path="res://scenes/starry-bg.gdshader" id="2_gbqnl"]
+[ext_resource type="Texture2D" uid="uid://brn7mld6nt6eu" path="res://art-and-sound/my-assets/star.svg" id="3_ckvwl"]
 [ext_resource type="Theme" uid="uid://vdypn6ym62cq" path="res://scenes/main-theme.tres" id="3_e3krh"]
 [ext_resource type="LabelSettings" uid="uid://cnoygoxh0kgme" path="res://resources/small_textstyle.tres" id="5_jbwbu"]
 [ext_resource type="AudioStream" uid="uid://27gsi8730ljb" path="res://art-and-sound/menu_click_sound.ogg" id="6_r1n8x"]
+[ext_resource type="Shader" uid="uid://dhympip8vcjb1" path="res://resources/pixelated.gdshader" id="7_nlqja"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nlqja"]
+shader = ExtResource("2_gbqnl")
+shader_parameter/star_color = Color(1, 1, 0.85, 1)
+shader_parameter/star_texture = ExtResource("3_ckvwl")
+shader_parameter/star_size = 0.366
+shader_parameter/star_alpha = 1.0
+shader_parameter/speed_layer_1 = Vector2(0, -15)
+shader_parameter/density_layer_1 = 0.007
+shader_parameter/speed_layer_2 = Vector2(0, -30)
+shader_parameter/density_layer_2 = 0.012
+shader_parameter/speed_layer_3 = Vector2(0, -60)
+shader_parameter/density_layer_3 = 0.002
+shader_parameter/twinkle_speed = 3.768
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ckvwl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0epgs"]
+shader = ExtResource("2_ckvwl")
+shader_parameter/color_deep_space = Color(0.01, 0.02, 0.08, 1)
+shader_parameter/color_nebula_mid = Color(0.3, 0.1, 0.4, 1)
+shader_parameter/color_nebula_bright = Color(0.8, 0.2, 0.5, 1)
+shader_parameter/scale = 3.81
+shader_parameter/octaves = 5
+shader_parameter/scroll_speed = Vector2(0.02, -0.255)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbcdj"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_vm740"]
 action = &"ui_cancel"
 
 [sub_resource type="Shortcut" id="Shortcut_u3xp4"]
 events = [SubResource("InputEventAction_vm740")]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g2equ"]
+shader = ExtResource("7_nlqja")
+shader_parameter/pixel_size = 1.0
+shader_parameter/color_levels = 5.0
+shader_parameter/dither = true
+shader_parameter/chromatic_aberration = 2.0
 
 [node name="Tutorial" type="Control"]
 layout_mode = 3
@@ -22,15 +59,36 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_whia5")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0338532, 0.0338533, 0.0338533, 1)
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+
+[node name="Stars" type="TextureRect" parent="Parallax2D"]
+material = SubResource("ShaderMaterial_nlqja")
 offset_right = 648.0
 offset_bottom = 1152.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("1_nuoml")
+texture = SubResource("NoiseTexture2D_ckvwl")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_0epgs")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="BackButton" type="Button" parent="."]
+material = SubResource("ShaderMaterial_tbcdj")
 layout_mode = 1
 offset_right = 306.0
 offset_bottom = 57.0
@@ -60,6 +118,7 @@ theme = ExtResource("3_e3krh")
 theme_override_constants/separation = 50
 
 [node name="ControlsLabel" type="Label" parent="VBoxContainer"]
+material = SubResource("ShaderMaterial_g2equ")
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 text = "MENU_OPTIONS_CONTROLS"
@@ -72,6 +131,7 @@ autowrap_mode = 3
 layout_mode = 2
 
 [node name="ControlsLabel2" type="Label" parent="VBoxContainer/HBoxContainer"]
+material = SubResource("ShaderMaterial_g2equ")
 layout_mode = 2
 size_flags_horizontal = 3
 text = "CONTEXT_PLACE_SPACE"
@@ -81,6 +141,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="ControlsLabel4" type="Label" parent="VBoxContainer/HBoxContainer"]
+material = SubResource("ShaderMaterial_g2equ")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.25
@@ -91,6 +152,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="ControlsLabel3" type="Label" parent="VBoxContainer/HBoxContainer"]
+material = SubResource("ShaderMaterial_g2equ")
 layout_mode = 2
 size_flags_horizontal = 3
 text = "GAME_ACTION_SHOOT"
@@ -103,6 +165,7 @@ autowrap_mode = 3
 layout_mode = 2
 
 [node name="ControlsLabel2" type="Label" parent="VBoxContainer/HBoxContainer2"]
+material = SubResource("ShaderMaterial_g2equ")
 layout_mode = 2
 size_flags_horizontal = 3
 text = "CONTROLS_ARROW_KEYS"
@@ -112,6 +175,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="ControlsLabel4" type="Label" parent="VBoxContainer/HBoxContainer2"]
+material = SubResource("ShaderMaterial_g2equ")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.25
@@ -122,6 +186,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="ControlsLabel3" type="Label" parent="VBoxContainer/HBoxContainer2"]
+material = SubResource("ShaderMaterial_g2equ")
 layout_mode = 2
 size_flags_horizontal = 3
 text = "CONTROLS_MOVEMENT"
@@ -131,6 +196,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="ControlsLabel2" type="Label" parent="VBoxContainer"]
+material = SubResource("ShaderMaterial_g2equ")
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_vertical = 8
@@ -144,6 +210,7 @@ autowrap_mode = 3
 layout_mode = 2
 
 [node name="ControlsLabel2" type="Label" parent="VBoxContainer/HBoxContainer3"]
+material = SubResource("ShaderMaterial_g2equ")
 layout_mode = 2
 size_flags_horizontal = 3
 text = "HELP_JOYSTICK_CONTROLS"
@@ -156,6 +223,7 @@ autowrap_mode = 3
 layout_mode = 2
 
 [node name="ControlsLabel2" type="Label" parent="VBoxContainer/HBoxContainer4"]
+material = SubResource("ShaderMaterial_g2equ")
 layout_mode = 2
 size_flags_horizontal = 3
 text = "HELP_FIRE_BUTTON_CONTROLS"
@@ -165,6 +233,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Label" type="Label" parent="VBoxContainer"]
+material = SubResource("ShaderMaterial_g2equ")
 layout_mode = 2
 text = "HELP_ANDROID_CONTROLS"
 label_settings = ExtResource("5_jbwbu")
