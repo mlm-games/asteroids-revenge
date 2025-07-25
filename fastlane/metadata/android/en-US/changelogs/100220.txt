@@ -1,0 +1,5 @@
+v0.15.2 Changes
+
+- Add boss boost particles
+- Fix boss mode and normal mode playing at the same time
+
