@@ -45,6 +45,7 @@ func _ready() -> void:
 		boss_rush_label.text = tr("GAMEPLAY_BOSS_RUSH_LEVEL_LABEL") + " " + str(GameState.boss_rush_level)
 		
 		spawn_boss()
+		stop_game_effects()
 	
 	ResourceLoader.load_threaded_request(BOSS_SPACESHIP_PATH)
 	

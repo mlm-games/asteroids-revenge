@@ -1,9 +1,41 @@
-[gd_scene load_steps=12 format=3 uid="uid://basjlr2ltfo70"]
+[gd_scene load_steps=18 format=3 uid="uid://basjlr2ltfo70"]
 
 [ext_resource type="Script" uid="uid://xxwklu2ef6p2" path="res://scenes/boss_spaceship.gd" id="1_wffw1"]
 [ext_resource type="AudioStream" uid="uid://4mk624f2vxfm" path="res://art-and-sound/kenney_space-shooter-redux/Bonus/sfx_laser1.ogg" id="3_rvogu"]
 [ext_resource type="AudioStream" uid="uid://x2ci72ak32wa" path="res://art-and-sound/through space.ogg" id="4_eejcy"]
 [ext_resource type="AudioStream" uid="uid://bccmmcxao62qu" path="res://art-and-sound/launches/iceball.wav" id="4_ghvdv"]
+[ext_resource type="Texture2D" uid="uid://dhatbididhoxk" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Lasers/laserBlue01.png" id="5_ywmh6"]
+
+[sub_resource type="Curve" id="Curve_p1q3i"]
+_data = [Vector2(0, 0.231315), 0.0, 0.0, 0, 0, Vector2(0.743842, 0.0837275), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_g62k3"]
+curve = SubResource("Curve_p1q3i")
+
+[sub_resource type="Curve" id="Curve_n2sq3"]
+_data = [Vector2(0, 0.956954), 0.0, 0.0, 0, 0, Vector2(0.236453, 0.102176), 0.0, 0.0, 0, 0, Vector2(0.953202, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_yws5e"]
+curve = SubResource("Curve_n2sq3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s353r"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(30, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 175.0
+initial_velocity_max = 240.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -9.91
+linear_accel_max = -2.23517e-06
+alpha_curve = SubResource("CurveTexture_g62k3")
+emission_curve = SubResource("CurveTexture_yws5e")
+hue_variation_min = 0.1
+hue_variation_max = 0.18
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4wv0b"]
 size = Vector2(100, 100)
@@ -144,6 +176,15 @@ size = Vector2(99, 38)
 collision_mask = 0
 script = ExtResource("1_wffw1")
 metadata/_edit_group_ = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, 35.955)
+amount = 55
+amount_ratio = 0.3458
+texture = ExtResource("5_ywmh6")
+trail_enabled = true
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_s353r")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true

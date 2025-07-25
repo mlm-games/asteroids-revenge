@@ -70,8 +70,10 @@ func _die() -> void:
 	%BossHealthBar.hide()
 	%AnimationPlayer.play("death")
 	_spawn_debris_particles()
+	$GPUParticles2D.emitting = false
 	await %DeathSound.finished
 	queue_free()
+	
 
 func _spawn_debris_particles() -> void:
 	var part : Array = ["cockpit", "wing"]
