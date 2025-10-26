@@ -1,0 +1,61 @@
+name: Publish to Snapcraft
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_name:
+        description: 'Version name (e.g., 0.2.4)'
+        required: true
+
+concurrency:
+  group: snap-${{ inputs.version_name }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Preflight | Check release tag
+        run: |
+          curl -fsSL "https://api.github.com/repos/${{ github.repository }}/releases/tags/${{ inputs.version_name }}" >/dev/null
+
+      - name: Preflight | Check secret
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
+        run: |
+          [ -n "$SNAPCRAFT_STORE_CREDENTIALS" ] || { echo "Missing secret SNAPCRAFT_TOKEN" >&2; exit 1; }
+
+      - name: Fetch Linux binary (with fallback)
+        run: |
+          set -euo pipefail
+          mkdir -p others/snap/builds others/snap/gui
+          cp others/flathub/io.github.mlm_games.asteroids-revenge.desktop others/snap/gui/asteroids-revenge.desktop
+          cp fastlane/metadata/android/en-US/images/icon.png others/snap/gui/icon.png
+          sed -i -e 's|^Exec=.*|Exec=asteroids-revenge|' \
+                 -e 's|^Icon=.*|Icon=${SNAP}/meta/gui/icon.png|' \
+                 others/snap/gui/asteroids-revenge.desktop
+          curl -fL "https://github.com/${{ github.repository }}/releases/download/${{ inputs.version_name }}/asteroids-revenge.x86_64" -o others/snap/builds/asteroids-revenge
+          chmod +x others/snap/builds/asteroids-revenge
+
+      - name: Update version in snapcraft.yml
+        run: |
+          sed -i "s/^version: .*/version: '${{ inputs.version_name }}'/" others/snap/snapcraft.yaml
+          echo "others/snap/snapcraft.yaml version updated"
+
+      - name: Build snap
+        uses: snapcore/action-build@v1
+        id: build
+        with:
+          path: others/snap
+
+      - name: Publish to Snap Store
+        uses: snapcore/action-publish@v1
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
+        with:
+          snap: ${{ steps.build.outputs.snap }}
+          release: stable
