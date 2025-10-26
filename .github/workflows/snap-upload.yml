@@ -38,7 +38,7 @@ jobs:
           sed -i -e 's|^Exec=.*|Exec=asteroids-revenge|' \
                  -e 's|^Icon=.*|Icon=${SNAP}/meta/gui/icon.png|' \
                  others/snap/gui/asteroids-revenge.desktop
-          curl -fL "https://github.com/${{ github.repository }}/releases/download/${{ inputs.version_name }}/asteroids-revenge.x86_64" -o others/snap/builds/asteroids-revenge
+          curl -fL "https://github.com/${{ github.repository }}/releases/download/${{ inputs.version_name }}/asteroids-revenge-linux.x86_64" -o others/snap/builds/asteroids-revenge
           chmod +x others/snap/builds/asteroids-revenge
 
       - name: Update version in snapcraft.yml
