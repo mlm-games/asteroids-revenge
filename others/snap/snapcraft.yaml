@@ -1,0 +1,39 @@
+name: asteroids-revenge
+base: core22
+version: '0.15.2'
+summary: Endless survival bulletHell (highscore based).
+description: |
+  It is an endless game where you play as an supernatural asteroid who is tired of the genocide caused by the spaceships from Earth and wants to destroy the planet by doing a kamikaze
+
+grade: stable
+confinement: strict
+
+architectures:
+  - build-on: amd64
+  - build-on: arm64
+
+apps:
+  asteroids-revenge:
+    command: asteroids-revenge
+    extensions: [gnome]
+    plugs: [home, network, removable-media, unity7]
+
+parts:
+  asteroids-revenge:
+    plugin: dump
+    source: ./builds/
+    source-type: local
+    stage-packages:
+      - libglu1-mesa
+      - libxcursor1
+      - libxinerama1
+      - libxrandr2
+      - libxi6
+      - libpulse0
+    override-build: |
+      snapcraftctl build
+      chmod +x $SNAPCRAFT_PART_INSTALL/asteroids-revenge
+
+layout:
+  /usr/share/asteroids-revenge:
+    bind: $SNAP/usr/share/asteroids-revenge
