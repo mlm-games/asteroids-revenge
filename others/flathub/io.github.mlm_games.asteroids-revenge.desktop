@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Asteroids Revenge
+GenericName=AsteroidsRevenge
+Comment=Dodge lasers and battle a crooked spaceship!
+Exec=asteroids-revenge
+Terminal=false
+Icon=io.github.mlm_games.asteroids-revenge
+Type=Application
+Categories=Game;ArcadeGame;
