@@ -1,12 +1,42 @@
-[gd_scene load_steps=9 format=3 uid="uid://divaw71qkw2lp"]
+[gd_scene load_steps=15 format=3 uid="uid://divaw71qkw2lp"]
 
 [ext_resource type="Script" uid="uid://d2jvst3mxg1br" path="res://scenes/asteroid_bullet.gd" id="1_00uet"]
 [ext_resource type="PackedScene" uid="uid://bdv8udonykbs1" path="res://scenes/mini_asteroid.tscn" id="2_ndjqt"]
+[ext_resource type="Texture2D" uid="uid://dhatbididhoxk" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Lasers/laserBlue01.png" id="2_ujktb"]
 [ext_resource type="Texture2D" uid="uid://bcfman7jtjuyn" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Meteors/meteorGrey_big1.png" id="3_c7hgf"]
 [ext_resource type="AudioStream" uid="uid://2gth7dqm5o4v" path="res://art-and-sound/my-assets/mini_asteroid_death.ogg" id="4_h2xg5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b5us7"]
 radius = 36.0
+
+[sub_resource type="Curve" id="Curve_vnjbc"]
+_data = [Vector2(0, 0.13483155), 0.0, 0.0, 0, 0, Vector2(0.743842, 0.0837275), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ujktb"]
+curve = SubResource("Curve_vnjbc")
+
+[sub_resource type="Curve" id="Curve_xk7qq"]
+_data = [Vector2(0, 0.956954), 0.0, 0.0, 0, 0, Vector2(0.236453, 0.102176), 0.0, 0.0, 0, 0, Vector2(0.953202, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_vnjbc"]
+curve = SubResource("Curve_xk7qq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xk7qq"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(30, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(0.66, -7.485, 1)
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 175.0
+initial_velocity_max = 240.0
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_ujktb")
+emission_curve = SubResource("CurveTexture_vnjbc")
+hue_variation_min = 0.1
+hue_variation_max = 0.18
 
 [sub_resource type="Gradient" id="Gradient_a7dhc"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -26,6 +56,16 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_b5us7")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -1.38)
+amount = 5
+texture = ExtResource("2_ujktb")
+lifetime = 0.2
+draw_order = 2
+trail_enabled = true
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_xk7qq")
 
 [node name="MiniAsteroid" parent="." instance=ExtResource("2_ndjqt")]
 position = Vector2(0, 0)

@@ -1,10 +1,40 @@
-[gd_scene load_steps=13 format=3 uid="uid://cxi3stw7wrvli"]
+[gd_scene load_steps=19 format=3 uid="uid://cxi3stw7wrvli"]
 
 [ext_resource type="Script" uid="uid://cv6lgtatphwgd" path="res://scenes/player_rock.gd" id="1_kccwu"]
 [ext_resource type="Texture2D" uid="uid://fv4u676rvcc6" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Meteors/meteorBrown_big1.png" id="2_ctg6k"]
 [ext_resource type="PackedScene" uid="uid://divaw71qkw2lp" path="res://scenes/asteroid_bullet.tscn" id="2_m20jj"]
 [ext_resource type="AudioStream" uid="uid://bdri2e7vh3reo" path="res://art-and-sound/launches/rlaunch.wav" id="3_xgo6l"]
+[ext_resource type="Texture2D" uid="uid://dhatbididhoxk" path="res://art-and-sound/kenney_space-shooter-redux/PNG/Lasers/laserBlue01.png" id="4_nkwj1"]
 [ext_resource type="AudioStream" uid="uid://bccmmcxao62qu" path="res://art-and-sound/launches/iceball.wav" id="5_baikv"]
+
+[sub_resource type="Curve" id="Curve_5mdgw"]
+_data = [Vector2(0, 0.13483155), 0.0, 0.0, 0, 0, Vector2(0.743842, 0.0837275), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_g62k3"]
+curve = SubResource("Curve_5mdgw")
+
+[sub_resource type="Curve" id="Curve_6v2mq"]
+_data = [Vector2(0, 0.956954), 0.0, 0.0, 0, 0, Vector2(0.236453, 0.102176), 0.0, 0.0, 0, 0, Vector2(0.953202, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_yws5e"]
+curve = SubResource("Curve_6v2mq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_syyn6"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(30, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(0.66, -7.485, 1)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 175.0
+initial_velocity_max = 240.0
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_g62k3")
+emission_curve = SubResource("CurveTexture_yws5e")
+hue_variation_min = 0.1
+hue_variation_max = 0.18
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4pdcd"]
 radius = 56.0
@@ -116,6 +146,18 @@ motion_mode = 1
 script = ExtResource("1_kccwu")
 rock_bullet_scene = ExtResource("2_m20jj")
 metadata/_edit_group_ = true
+
+[node name="MovementParticles" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -1.38)
+scale = Vector2(2.5, 2.4999998)
+amount = 5
+texture = ExtResource("4_nkwj1")
+lifetime = 0.2
+draw_order = 2
+trail_enabled = true
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_syyn6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true

@@ -30,6 +30,16 @@ func _physics_process(delta: float) -> void:
 			velocity.y /= 2
 		move_and_slide()
 		
+		if velocity.y > 0:
+			%MovementParticles.emitting = true
+			(%MovementParticles.process_material as ParticleProcessMaterial).direction = Vector3.DOWN
+		elif velocity.y < 0:
+			%MovementParticles.emitting = true
+			(%MovementParticles.process_material as ParticleProcessMaterial).direction = Vector3.UP
+		else:
+			%MovementParticles.emitting = false
+		
+		
 		if Input.is_action_just_pressed("fire"):
 			shoot()
 
