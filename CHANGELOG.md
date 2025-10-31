@@ -1,3 +1,10 @@
+## v0.15.3 Changes
+
+- Update to Godot 4.5
+- Correct inner description's mistakes
+- Add player and mini asteroid movement particles
+- Add boss hit sound
+
 ## v0.15.2 Changes
 
 - Add boss boost particles
