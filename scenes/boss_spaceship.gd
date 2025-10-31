@@ -54,6 +54,7 @@ func _on_shoot_timer_timeout() -> void:
 func take_damage(damage: float) -> void:
 	health = max(health - damage, 0)
 	_play_hit_effect()
+	%HitSound.play()
 	if health <= 0:
 		_die()
 
