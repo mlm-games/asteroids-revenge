@@ -32,12 +32,12 @@ jobs:
       - name: Fetch Linux binary (with fallback)
         run: |
           set -euo pipefail
-          mkdir -p others/snap/builds others/snap/gui
-          cp others/flathub/io.github.mlm_games.asteroids-revenge.desktop others/snap/gui/asteroids-revenge.desktop
-          cp fastlane/metadata/android/en-US/images/icon.png others/snap/gui/icon.png
+          mkdir -p others/snap/builds others/snap/snap/gui
+          cp others/flathub/io.github.mlm_games.asteroids-revenge.desktop others/snap/snap/gui/asteroids-revenge.desktop
+          cp fastlane/metadata/android/en-US/images/icon.png others/snap/snap/gui/icon.png
           sed -i -e 's|^Exec=.*|Exec=asteroids-revenge|' \
                  -e 's|^Icon=.*|Icon=${SNAP}/meta/gui/icon.png|' \
-                 others/snap/gui/asteroids-revenge.desktop
+                 others/snap/snap/gui/asteroids-revenge.desktop
           curl -fL "https://github.com/${{ github.repository }}/releases/download/${{ inputs.version_name }}/asteroids-revenge-linux.x86_64" -o others/snap/builds/asteroids-revenge
           chmod +x others/snap/builds/asteroids-revenge
 
