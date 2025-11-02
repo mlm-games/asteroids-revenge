@@ -1,0 +1,4 @@
+v0.15.4 Changes
+
+- Fix flathub details
+
