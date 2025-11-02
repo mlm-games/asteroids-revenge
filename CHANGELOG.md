@@ -1,3 +1,7 @@
+## v0.15.4 Changes
+
+- Fix flathub details
+
 ## v0.15.3 Changes
 
 - Update to Godot 4.5
