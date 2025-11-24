@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 #Player.global_pos + outside viewport to the left = Boss.global pos 
 
+# Bullets appear even when the boss is present in normal mode? isn't it hard as it is (for beginners)?
+
 signal died
 
 const SHAPESHIP_TYPE = ["blue", "green", "orange", "red"]

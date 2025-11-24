@@ -32,6 +32,7 @@ func _physics_process(delta: float) -> void:
 		
 		if velocity.y > 0:
 			%MovementParticles.emitting = true
+			%MovementParticles.amount_ratio = abs(velocity.y / (speed/2))
 			(%MovementParticles.process_material as ParticleProcessMaterial).direction = Vector3.DOWN
 		elif velocity.y < 0:
 			%MovementParticles.emitting = true
